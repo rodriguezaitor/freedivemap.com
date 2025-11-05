@@ -8,7 +8,7 @@ import sitemap from "@astrojs/sitemap";
 
 // https://astro.build/config
 export default defineConfig({
-  site: "https://landing-2st.pages.dev",
+  site: "https://mails-web.pages.dev",
   adapter: cloudflare(),
   prefetch: true,
   vite: {
