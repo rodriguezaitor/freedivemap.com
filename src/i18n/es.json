@@ -30,6 +30,10 @@
       "about": {
         "title": "Acerca de — Mails.com",
         "description": "Conoce más sobre Mails.com y nuestra misión."
+      },
+      "404": {
+        "title": "Página No Encontrada — Mails.com",
+        "description": "La página que buscas no existe."
       }
     },
     "og": {
@@ -38,5 +42,10 @@
     "twitter": {
       "card": "summary"
     }
+  },
+  "404": {
+    "title": "Página No Encontrada",
+    "message": "Lo sentimos, no pudimos encontrar la página que buscas.",
+    "backHome": "Volver al inicio"
   }
 }

@@ -10,7 +10,7 @@ import '../styles/global.css';
 const pathname = Astro.url.pathname;
 const locales = ['en', 'es'];
 const currentLocale = Astro.currentLocale || 'en';
-const { seoKey = 'home', seoOverrides } = Astro.props as { seoKey?: string; seoOverrides?: { title?: string; description?: string; image?: string; twitterCard?: string } };
+const { seoKey = 'home', seoOverrides, noindex = false } = Astro.props as { seoKey?: string; seoOverrides?: { title?: string; description?: string; image?: string; twitterCard?: string }; noindex?: boolean };
 
 // Extract path without locale prefix
 let pathWithoutLocale = pathname;
@@ -70,6 +70,7 @@ const twitterCard = seoOverrides?.twitterCard || t(currentLocale, 'seo.twitter.c
 		<meta name="twitter:title" content={title} />
 		<meta name="twitter:description" content={description} />
 		{ogImage && <meta name="twitter:image" content={ogImage} />}
+		{noindex && <meta name="robots" content="noindex, nofollow" />}
 		<link rel="sitemap" type="application/xml" href="/sitemap-index.xml" />
 		<link rel="canonical" href={canonical} />
 		<link rel="alternate" hreflang="en" href={enUrl} />
