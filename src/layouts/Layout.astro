@@ -1,14 +1,85 @@
+---
+import { ClientRouter } from 'astro:transitions';
+import { t } from "../utils/i18n.js";
+import Footer from '../components/Footer.astro';
+import { getRelativeLocaleUrl } from 'astro:i18n';
+import '../styles/global.css';
+
+// Get current pathname without locale prefix
+// With prefixDefaultLocale: true, all URLs have locale prefix (e.g., /en/ or /es/)
+const pathname = Astro.url.pathname;
+const locales = ['en', 'es'];
+const currentLocale = Astro.currentLocale || 'en';
+const { seoKey = 'home', seoOverrides } = Astro.props as { seoKey?: string; seoOverrides?: { title?: string; description?: string; image?: string; twitterCard?: string } };
+
+// Extract path without locale prefix
+let pathWithoutLocale = pathname;
+for (const locale of locales) {
+  if (pathname.startsWith(`/${locale}/`)) {
+    pathWithoutLocale = pathname.slice(`/${locale}/`.length) || '/';
+    break;
+  } else if (pathname === `/${locale}`) {
+    pathWithoutLocale = '/';
+    break;
+  }
+}
+
+// Generate canonical URL (current page with full pathname)
+const canonical = Astro.site
+  ? new URL(pathname, Astro.site).toString()
+  : pathname;
+
+// Generate alternate URLs for each locale (maintaining current path)
+const enUrl = Astro.site
+  ? new URL(getRelativeLocaleUrl('en', pathWithoutLocale), Astro.site).toString()
+  : getRelativeLocaleUrl('en', pathWithoutLocale);
+
+const esUrl = Astro.site
+  ? new URL(getRelativeLocaleUrl('es', pathWithoutLocale), Astro.site).toString()
+  : getRelativeLocaleUrl('es', pathWithoutLocale);
+
+// SEO: compute localized title/description and social
+const title = seoOverrides?.title
+  || t(currentLocale, `seo.pages.${seoKey}.title`)
+  || t(currentLocale, 'seo.default.title');
+const description = seoOverrides?.description
+  || t(currentLocale, `seo.pages.${seoKey}.description`)
+  || t(currentLocale, 'seo.default.description');
+const ogImageRel = seoOverrides?.image || t(currentLocale, 'seo.og.image');
+const base = Astro.site ? new URL(Astro.site) : undefined;
+const ogImage = ogImageRel && base ? new URL(ogImageRel, base).toString() : ogImageRel || undefined;
+const twitterCard = seoOverrides?.twitterCard || t(currentLocale, 'seo.twitter.card') || 'summary';
+---
+
 <!doctype html>
-<html lang="en">
+<html lang={Astro.currentLocale}>
 	<head>
 		<meta charset="UTF-8" />
 		<meta name="viewport" content="width=device-width" />
 		<link rel="icon" type="image/svg+xml" href="/favicon.svg" />
 		<meta name="generator" content={Astro.generator} />
-		<title>Astro Basics</title>
+		<title>{title}</title>
+		<meta name="description" content={description} />
+		<meta property="og:title" content={title} />
+		<meta property="og:description" content={description} />
+		<meta property="og:url" content={canonical} />
+		{ogImage && <meta property="og:image" content={ogImage} />}
+		<meta property="og:locale" content={currentLocale} />
+		{currentLocale === 'en' ? <meta property="og:locale:alternate" content="es" /> : <meta property="og:locale:alternate" content="en" />}
+		<meta name="twitter:card" content={twitterCard} />
+		<meta name="twitter:title" content={title} />
+		<meta name="twitter:description" content={description} />
+		{ogImage && <meta name="twitter:image" content={ogImage} />}
+		<link rel="sitemap" type="application/xml" href="/sitemap-index.xml" />
+		<link rel="canonical" href={canonical} />
+		<link rel="alternate" hreflang="en" href={enUrl} />
+		<link rel="alternate" hreflang="es" href={esUrl} />
+		<link rel="alternate" hreflang="x-default" href={enUrl} />
 	</head>
 	<body>
+		<ClientRouter />
 		<slot />
+		<Footer />
 	</body>
 </html>
 

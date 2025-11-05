@@ -1,0 +1,42 @@
+{
+  "hello": "Hola desde Mails.com",
+  "description": "Esta es la página en español",
+  "currentLanguage": "Idioma actual",
+  "switchTo": "Cambiar a",
+  "common": {
+    "languages": {
+      "es": "Español",
+      "en": "English"
+    },
+    "nav": {
+      "home": "Inicio",
+      "about": "Acerca de"
+    }
+  },
+  "about": {
+    "title": "Sobre Mails.com",
+    "content": "Creamos email rápido, privado y agradable para todos."
+  },
+  "seo": {
+    "default": {
+      "title": "Mails.com — Email que funciona",
+      "description": "Email rápido, privado y agradable."
+    },
+    "pages": {
+      "home": {
+        "title": "Mails.com — Bienvenido",
+        "description": "Bienvenido a Mails.com. Prueba un email mejor."
+      },
+      "about": {
+        "title": "Acerca de — Mails.com",
+        "description": "Conoce más sobre Mails.com y nuestra misión."
+      }
+    },
+    "og": {
+      "image": "/favicon.svg"
+    },
+    "twitter": {
+      "card": "summary"
+    }
+  }
+}

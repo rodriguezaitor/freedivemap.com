@@ -1,0 +1,43 @@
+{
+  "hello": "Hello from Mails.com",
+  "description": "This is the English page",
+  "currentLanguage": "Current language",
+  "switchTo": "Switch to",
+  "common": {
+    "languages": {
+      "es": "Español",
+      "en": "English"
+    },
+    "nav": {
+      "home": "Home",
+      "about": "About"
+    }
+  },
+  "about": {
+    "title": "About Mails.com",
+    "content": "We build fast, private, and delightful email for everyone."
+  },
+  "seo": {
+    "default": {
+      "title": "Mails.com — Email that works",
+      "description": "Fast, private, and delightful email."
+    },
+    "pages": {
+      "home": {
+        "title": "Mails.com — Welcome",
+        "description": "Welcome to Mails.com. Try a better email experience."
+      },
+      "about": {
+        "title": "About — Mails.com",
+        "description": "Learn more about Mails.com and our mission."
+      }
+    },
+    "og": {
+      "image": "/favicon.svg"
+    },
+    "twitter": {
+      "card": "summary"
+    }
+  }
+}
+
