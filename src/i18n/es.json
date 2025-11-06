@@ -37,7 +37,10 @@
       }
     },
     "og": {
-      "image": "/favicon.svg"
+      "type": "website",
+      "siteName": "Mails.com",
+      "image": "/favicon.svg",
+      "imageAlt": "Logo de Mails.com"
     },
     "twitter": {
       "card": "summary"

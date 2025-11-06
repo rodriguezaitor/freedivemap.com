@@ -48,6 +48,9 @@ const description = seoOverrides?.description
 const ogImageRel = seoOverrides?.image || t(currentLocale, 'seo.og.image');
 const base = Astro.site ? new URL(Astro.site) : undefined;
 const ogImage = ogImageRel && base ? new URL(ogImageRel, base).toString() : ogImageRel || undefined;
+const ogType = t(currentLocale, 'seo.og.type') || 'website';
+const ogSiteName = t(currentLocale, 'seo.og.siteName') || 'Mails.com';
+const ogImageAlt = t(currentLocale, 'seo.og.imageAlt') || '';
 const twitterCard = seoOverrides?.twitterCard || t(currentLocale, 'seo.twitter.card') || 'summary';
 ---
 
@@ -62,10 +65,13 @@ const twitterCard = seoOverrides?.twitterCard || t(currentLocale, 'seo.twitter.c
 		<meta name="description" content={description} />
 		<meta property="og:title" content={title} />
 		<meta property="og:description" content={description} />
+		<meta property="og:type" content={ogType} />
 		<meta property="og:url" content={canonical} />
+		<meta property="og:site_name" content={ogSiteName} />
 		{ogImage && <meta property="og:image" content={ogImage} />}
-		<meta property="og:locale" content={currentLocale} />
-		{currentLocale === 'en' ? <meta property="og:locale:alternate" content="es" /> : <meta property="og:locale:alternate" content="en" />}
+		{ogImage && ogImageAlt && <meta property="og:image:alt" content={ogImageAlt} />}
+		<meta property="og:locale" content={currentLocale === 'en' ? 'en_US' : 'es_ES'} />
+		{currentLocale === 'en' ? <meta property="og:locale:alternate" content="es_ES" /> : <meta property="og:locale:alternate" content="en_US" />}
 		<meta name="twitter:card" content={twitterCard} />
 		<meta name="twitter:title" content={title} />
 		<meta name="twitter:description" content={description} />
