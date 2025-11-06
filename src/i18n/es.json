@@ -1,6 +1,6 @@
 {
-  "hello": "Hola desde Mails.com",
-  "description": "Esta es la página en español",
+  "hello": "Bienvenido a FreeDiveMap",
+  "description": "Descubre y explora sitios de buceo alrededor del mundo",
   "currentLanguage": "Idioma actual",
   "switchTo": "Cambiar a",
   "common": {
@@ -14,33 +14,33 @@
     }
   },
   "about": {
-    "title": "Sobre Mails.com",
-    "content": "Creamos email rápido, privado y agradable para todos."
+    "title": "Sobre FreeDiveMap",
+    "content": "FreeDiveMap es tu puerta de entrada para descubrir increíbles sitios de buceo en todo el mundo. Explora, comparte y planifica tu próxima aventura de buceo."
   },
   "seo": {
     "default": {
-      "title": "Mails.com — Email que funciona",
-      "description": "Email rápido, privado y agradable."
+      "title": "FreeDiveMap — Descubre Sitios de Buceo en Todo el Mundo",
+      "description": "Explora y descubre sitios de buceo alrededor del mundo. Encuentra las mejores ubicaciones para bucear, planifica tu próxima aventura y comparte tus lugares favoritos."
     },
     "pages": {
       "home": {
-        "title": "Mails.com — Bienvenido",
-        "description": "Bienvenido a Mails.com. Prueba un email mejor."
+        "title": "FreeDiveMap — Descubre Sitios de Buceo en Todo el Mundo",
+        "description": "Bienvenido a FreeDiveMap. Explora sitios de buceo, planifica tu próxima aventura de buceo y descubre increíbles ubicaciones submarinas alrededor del mundo."
       },
       "about": {
-        "title": "Acerca de — Mails.com",
-        "description": "Conoce más sobre Mails.com y nuestra misión."
+        "title": "Acerca de — FreeDiveMap",
+        "description": "Conoce más sobre FreeDiveMap y nuestra misión de ayudar a los buceadores a descubrir increíbles sitios de buceo en todo el mundo."
       },
       "404": {
-        "title": "Página No Encontrada — Mails.com",
+        "title": "Página No Encontrada — FreeDiveMap",
         "description": "La página que buscas no existe."
       }
     },
     "og": {
       "type": "website",
-      "siteName": "Mails.com",
+      "siteName": "FreeDiveMap",
       "image": "/favicon.svg",
-      "imageAlt": "Logo de Mails.com"
+      "imageAlt": "Logo de FreeDiveMap"
     },
     "twitter": {
       "card": "summary_large_image"

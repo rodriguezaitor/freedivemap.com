@@ -1,6 +1,6 @@
 {
-  "hello": "Hello from Mails.com",
-  "description": "This is the English page",
+  "hello": "Welcome to FreeDiveMap",
+  "description": "Discover and explore dive sites around the world",
   "currentLanguage": "Current language",
   "switchTo": "Switch to",
   "common": {
@@ -14,33 +14,33 @@
     }
   },
   "about": {
-    "title": "About Mails.com",
-    "content": "We build fast, private, and delightful email for everyone."
+    "title": "About FreeDiveMap",
+    "content": "FreeDiveMap is your gateway to discovering amazing dive sites worldwide. Explore, share, and plan your next diving adventure."
   },
   "seo": {
     "default": {
-      "title": "Mails.com — Email that works",
-      "description": "Fast, private, and delightful email."
+      "title": "FreeDiveMap — Discover Dive Sites Worldwide",
+      "description": "Explore and discover dive sites around the world. Find the best diving locations, plan your next adventure, and share your favorite spots."
     },
     "pages": {
       "home": {
-        "title": "Mails.com — Welcome",
-        "description": "Welcome to Mails.com. Try a better email experience."
+        "title": "FreeDiveMap — Discover Dive Sites Worldwide",
+        "description": "Welcome to FreeDiveMap. Explore dive sites, plan your next diving adventure, and discover amazing underwater locations around the world."
       },
       "about": {
-        "title": "About — Mails.com",
-        "description": "Learn more about Mails.com and our mission."
+        "title": "About — FreeDiveMap",
+        "description": "Learn more about FreeDiveMap and our mission to help divers discover amazing dive sites worldwide."
       },
       "404": {
-        "title": "Page Not Found — Mails.com",
+        "title": "Page Not Found — FreeDiveMap",
         "description": "The page you're looking for doesn't exist."
       }
     },
     "og": {
       "type": "website",
-      "siteName": "Mails.com",
+      "siteName": "FreeDiveMap",
       "image": "/favicon.svg",
-      "imageAlt": "Mails.com logo"
+      "imageAlt": "FreeDiveMap logo"
     },
     "twitter": {
       "card": "summary_large_image"
