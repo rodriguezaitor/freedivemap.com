@@ -43,7 +43,7 @@
       "imageAlt": "Mails.com logo"
     },
     "twitter": {
-      "card": "summary"
+      "card": "summary_large_image"
     }
   },
   "404": {
