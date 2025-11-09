@@ -51,9 +51,11 @@ const faqQuestions = [
 const faqSchema = generateFAQSchema(faqQuestions);
 
 // Generate breadcrumbs
+// Safely convert Astro.site to string for Cloudflare Workers compatibility
+const siteUrl = Astro.site ? String(Astro.site) : Astro.url.origin;
 const breadcrumbs = generateBreadcrumbs(
   locale,
-  Astro.site?.toString() || '',
+  siteUrl,
   [
     { name: t(locale, 'common.nav.home'), path: '/' },
     { name: regionName, path: `/${regionSlug}/` }

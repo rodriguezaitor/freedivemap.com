@@ -7,7 +7,9 @@ import { generateOrganizationSchema } from '../../utils/seo';
 
 <Layout seoKey="home">
 	{(() => {
-		const orgSchema = generateOrganizationSchema(Astro.site?.toString() || 'https://freedivemap.com');
+		// Safely convert Astro.site to string for Cloudflare Workers compatibility
+		const siteUrl = Astro.site ? String(Astro.site) : Astro.url.origin;
+		const orgSchema = generateOrganizationSchema(siteUrl);
 		return <script type="application/ld+json" set:html={JSON.stringify(orgSchema)} />;
 	})()}
 	<Header />
