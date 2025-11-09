@@ -11,23 +11,9 @@
     "nav": {
       "home": "Home",
       "about": "About",
-      "schools": "Schools",
-      "addSchool": "Add School",
       "search": "Search",
-      "searchPlaceholder": "Search by country, city, or school..."
-    },
-    "filters": {
-      "country": "Country",
-      "certification": "Certification",
-      "level": "Level",
-      "courseType": "Course Type",
-      "all": "All",
-      "beginner": "Beginner",
-      "depth": "Depth",
-      "fun": "Recreational",
-      "aida": "AIDA",
-      "ssi": "SSI",
-      "molchanovs": "Molchanovs"
+      "searchPlaceholder": "Search by city...",
+      "viewLocation": "View Location"
     },
     "pagination": {
       "previous": "Previous",
@@ -43,56 +29,29 @@
       "contact": "Contact",
       "privacy": "Privacy",
       "terms": "Terms",
-      "seoText": "FreediveMap is the global directory of freediving schools, instructors and training centers worldwide."
+      "seoText": "FreediveMap is the global directory of freediving destinations and dive sites worldwide."
     }
   },
   "home": {
     "hero": {
-      "title": "Find your next freediving school",
-      "subtitle": "Discover certified centers around the world and read real reviews.",
-      "browseSchools": "Browse Schools",
-      "addSchool": "Add Your School"
+      "title": "Discover freediving destinations worldwide",
+      "subtitle": "Explore amazing dive sites and plan your next freediving adventure."
     },
     "featuredRegions": {
       "title": "Explore by Region",
-      "subtitle": "Find freediving schools in your favorite destination"
+      "subtitle": "Discover freediving destinations in your favorite region"
     },
     "topDestinations": {
       "title": "Top Destinations",
       "subtitle": "Popular freediving locations worldwide"
     },
-    "topSchools": {
-      "title": "Top Rated Schools",
-      "subtitle": "Highly rated freediving centers"
-    },
-    "addSchoolSection": {
-      "title": "Run a freediving center?",
-      "description": "Add it for free and get visibility.",
-      "cta": "Add Your School"
-    },
     "seoContent": {
-      "title": "Find the Best Freediving Schools Worldwide",
-      "paragraph1": "FreediveMap is your comprehensive guide to finding certified freediving schools, training centers, and professional instructors around the world. Whether you're a beginner looking for your first freediving course or an experienced diver seeking advanced depth training, we connect you with the best schools in the industry.",
-      "paragraph2": "Our directory features schools certified by leading organizations including AIDA (International Association for the Development of Apnea), SSI (Scuba Schools International), and Molchanovs. These certifications ensure that you receive professional instruction from qualified instructors who follow international safety standards.",
-      "paragraph3": "From the warm waters of Koh Tao in Thailand to the world-famous Blue Hole in Dahab, Egypt, our platform helps you discover freediving schools in the most sought-after destinations. Each school listing includes detailed information about courses offered, certification programs, instructor qualifications, and real reviews from students.",
-      "paragraph4": "Whether you're interested in beginner courses, depth training, or recreational freediving, FreediveMap makes it easy to compare schools, read reviews, and find the perfect training center for your needs. Start your freediving journey today by exploring our directory of certified schools worldwide."
+      "title": "Discover Amazing Freediving Destinations Worldwide",
+      "paragraph1": "FreediveMap is your comprehensive guide to discovering freediving destinations and dive sites around the world. Whether you're a beginner exploring your first freediving location or an experienced diver seeking new adventures, we help you find the best spots for your freediving journey.",
+      "paragraph2": "From the warm waters of Koh Tao in Thailand to the world-famous Blue Hole in Dahab, Egypt, our platform helps you discover freediving destinations in the most sought-after locations. Each destination includes detailed information about dive sites, conditions, and what makes each location special.",
+      "paragraph3": "Explore destinations across Asia, Europe, Africa, and the Americas. Each region offers unique freediving experiences with different conditions, marine life, and underwater landscapes. Whether you're interested in shallow reef diving, deep water training, or recreational freediving, FreediveMap helps you plan your perfect adventure.",
+      "paragraph4": "Start your freediving journey today by exploring our directory of amazing destinations worldwide. Discover new dive sites, plan your next trip, and connect with the freediving community around the globe."
     }
-  },
-  "schools": {
-    "title": "Freediving Schools",
-    "description": "Browse our directory of certified freediving schools worldwide",
-    "noResults": "No schools found",
-    "viewSchool": "View School",
-    "rating": "Rating",
-    "reviews": "reviews",
-    "certifications": "Certifications",
-    "courseTypes": "Course Types",
-    "location": "Location",
-    "contact": "Contact",
-    "website": "Website",
-    "email": "Email",
-    "phone": "Phone",
-    "relatedSchools": "Related Schools"
   },
   "regions": {
     "asia": {
@@ -116,40 +75,26 @@
     "region": {
       "q1": "What are the best freediving destinations in {region}?",
       "a1": "{region} offers several world-class freediving destinations including {destinations}. Each location provides unique training opportunities and excellent conditions for freediving.",
-      "q2": "Which certification is best for freediving?",
-      "a2": "The best certification depends on your goals. AIDA is widely recognized for competitive freediving, SSI offers comprehensive training programs, and Molchanovs focuses on technique and safety. All three are internationally recognized and provide excellent instruction.",
-      "q3": "How much does a freediving course cost?",
-      "a3": "Course costs vary by location, certification level, and course duration. Beginner courses typically range from $200-$500, while advanced courses can cost $500-$1500. Contact individual schools for specific pricing."
+      "q2": "What makes a good freediving destination?",
+      "a2": "A good freediving destination offers clear water, good visibility, interesting marine life, and safe conditions. Popular destinations often have warm water, easy access to dive sites, and a vibrant freediving community.",
+      "q3": "When is the best time to visit {region} for freediving?",
+      "a3": "The best time varies by destination. Generally, you want to visit during the dry season when visibility is best. Many tropical destinations offer year-round freediving, while others have specific seasons with optimal conditions."
     },
     "country": {
       "q1": "Is {country} good for freediving?",
-      "a1": "Yes, {country} offers excellent freediving conditions with {features}. The country has a growing freediving community and several certified schools offering courses for all levels.",
-      "q2": "How much does a freediving course cost in {country}?",
-      "a2": "Freediving course costs in {country} vary depending on the school and certification level. Beginner courses typically start around {price}, while advanced courses may cost more. Contact schools directly for current pricing.",
-      "q3": "Which certification is best for freediving in {country}?",
-      "a3": "All major certifications (AIDA, SSI, Molchanovs) are available in {country}. The best choice depends on your goals - AIDA for competitive diving, SSI for comprehensive training, and Molchanovs for technique-focused instruction."
+      "a1": "Yes, {country} offers excellent freediving conditions with {features}. The country has beautiful dive sites and amazing underwater experiences for freedivers of all levels.",
+      "q2": "What are the best dive sites in {country}?",
+      "a2": "{country} has many amazing dive sites, each offering unique experiences. Popular locations include {features}, known for their clear waters, abundant marine life, and excellent visibility.",
+      "q3": "When is the best time to visit {country} for freediving?",
+      "a3": "The best time to visit {country} for freediving depends on the specific destination. Generally, the dry season offers the best visibility and conditions. Many locations offer year-round freediving opportunities."
     },
     "city": {
       "q1": "Is {city} good for freediving?",
       "a1": "Yes, {city} is an excellent destination for freediving. The location offers {features}, making it ideal for both beginners and experienced freedivers.",
-      "q2": "How much does a freediving course cost in {city}?",
-      "a2": "Freediving course costs in {city} typically range from {priceRange}. Prices vary by school, certification level, and course duration. Contact schools directly for specific pricing.",
-      "q3": "Which certification is best for freediving?",
-      "a3": "The best certification depends on your goals. AIDA is ideal for competitive freediving, SSI offers comprehensive programs, and Molchanovs focuses on technique and safety. All are internationally recognized."
-    }
-  },
-  "addSchool": {
-    "title": "Add Your School",
-    "description": "List your freediving school for free and reach thousands of potential students",
-    "form": {
-      "name": "School Name",
-      "country": "Country",
-      "city": "City",
-      "email": "Email",
-      "phone": "Phone",
-      "website": "Website",
-      "certifications": "Certifications",
-      "submit": "Submit"
+      "q2": "What are the best dive sites in {city}?",
+      "a2": "{city} offers several amazing dive sites with {features}. Each location provides unique underwater experiences, from shallow reefs to deeper training areas.",
+      "q3": "What conditions can I expect in {city}?",
+      "a3": "{city} typically offers {features}. The water temperature, visibility, and marine life vary by season, so it's best to check current conditions before your visit."
     }
   },
   "about": {
@@ -158,21 +103,13 @@
   },
   "seo": {
     "default": {
-      "title": "FreeDiveMap — Discover Freediving Schools Worldwide",
-      "description": "Find certified freediving schools, training centers, and instructors worldwide. Compare courses, read reviews, and start your freediving journey."
+      "title": "FreeDiveMap — Discover Freediving Destinations Worldwide",
+      "description": "Explore amazing freediving destinations and dive sites worldwide. Plan your next freediving adventure and discover new underwater experiences."
     },
     "pages": {
       "home": {
-        "title": "FreeDiveMap — Find Your Next Freediving School",
-        "description": "Discover certified freediving schools around the world. Browse by region, read real reviews, and find the perfect training center for your freediving journey."
-      },
-      "schools": {
-        "title": "Freediving Schools Directory — FreeDiveMap",
-        "description": "Browse our comprehensive directory of certified freediving schools worldwide. Filter by location, certification, and course type to find your perfect school."
-      },
-      "addSchool": {
-        "title": "Add Your Freediving School — FreeDiveMap",
-        "description": "List your freediving school for free on FreeDiveMap. Reach thousands of potential students and grow your business."
+        "title": "FreeDiveMap — Discover Freediving Destinations Worldwide",
+        "description": "Explore amazing freediving destinations around the world. Browse by region and discover the perfect dive sites for your freediving adventure."
       },
       "about": {
         "title": "About — FreeDiveMap",

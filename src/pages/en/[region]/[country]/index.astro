@@ -1,38 +1,35 @@
 ---
 export const prerender = false;
 
-import Layout from '../../../../../layouts/Layout.astro';
-import Header from '../../../../../components/Header.astro';
-import SchoolCard from '../../../../../components/SchoolCard.astro';
-import { getSchoolsByCountry, getCountryBySlug, getRegionBySlug, generateCityUrl, generateCountryUrl, generateRegionUrl } from '../../../../../utils/schools';
-import { regions } from '../../../../../utils/schools';
-import { t } from '../../../../../utils/i18n.js';
-import { generateFAQSchema, generateBreadcrumbSchema, generateBreadcrumbs } from '../../../../../utils/seo';
+import Layout from '../../../../layouts/Layout.astro';
+import Header from '../../../../components/Header.astro';
+import { getCountryBySlug, getRegionBySlug, generateCityUrl, generateCountryUrl, generateRegionUrl } from '../../../../utils/schools';
+import { regions } from '../../../../utils/schools';
+import { t } from '../../../../utils/i18n.js';
+import { generateFAQSchema, generateBreadcrumbSchema, generateBreadcrumbs } from '../../../../utils/seo';
 import { getRelativeLocaleUrl } from 'astro:i18n';
 
 const locale = Astro.currentLocale || 'en';
 const { region: regionSlug, country: countrySlug } = Astro.params;
 
 if (!regionSlug || !countrySlug) {
-  return Astro.redirect(getRelativeLocaleUrl(locale, 'schools'));
+  return Astro.redirect(getRelativeLocaleUrl(locale, '/'));
 }
 
 const region = getRegionBySlug(regionSlug);
 const country = getCountryBySlug(regionSlug, countrySlug);
 
 if (!region || !country) {
-  return Astro.redirect(getRelativeLocaleUrl(locale, 'schools'));
+  return Astro.redirect(getRelativeLocaleUrl(locale, '/'));
 }
 
 const regionName = region.name[locale];
 const countryName = country.name[locale];
-const schoolsInCountry = getSchoolsByCountry(countrySlug);
 
 // Get cities in this country
 const citiesInCountry = Object.entries(country.cities).map(([slug, city]) => ({
   slug,
-  name: city.name[locale],
-  schoolCount: schoolsInCountry.filter(s => s.city === slug).length
+  name: city.name[locale]
 }));
 
 // Generate FAQ
@@ -63,17 +60,16 @@ const breadcrumbs = generateBreadcrumbs(
   Astro.site?.toString() || '',
   [
     { name: t(locale, 'common.nav.home'), path: '/' },
-    { name: t(locale, 'schools.title'), path: '/schools/' },
-    { name: regionName, path: `/schools/${regionSlug}/` },
-    { name: countryName, path: `/schools/${regionSlug}/${countrySlug}/` }
+    { name: regionName, path: `/${regionSlug}/` },
+    { name: countryName, path: `/${regionSlug}/${countrySlug}/` }
   ]
 );
 
 const breadcrumbSchema = generateBreadcrumbSchema(breadcrumbs);
 
 // SEO
-const seoTitle = `Freediving Schools in ${countryName} — FreeDiveMap`;
-const seoDescription = `Find certified freediving schools in ${countryName}. Browse courses, read reviews, and find the perfect training center for your freediving journey.`;
+const seoTitle = `Freediving in ${countryName} — FreeDiveMap`;
+const seoDescription = `Discover freediving destinations in ${countryName}. Explore dive sites and plan your next freediving adventure.`;
 ---
 
 <Layout seoKey="schools" seoOverrides={{ title: seoTitle, description: seoDescription }}>
@@ -89,8 +85,6 @@ const seoDescription = `Find certified freediving schools in ${countryName}. Bro
         <ol class="flex items-center space-x-2">
           <li><a href={getRelativeLocaleUrl(locale, '/')} class="text-gray-500 hover:text-blue-600">{t(locale, 'common.nav.home')}</a></li>
           <li class="text-gray-400">/</li>
-          <li><a href={getRelativeLocaleUrl(locale, 'schools')} class="text-gray-500 hover:text-blue-600">{t(locale, 'schools.title')}</a></li>
-          <li class="text-gray-400">/</li>
           <li><a href={generateRegionUrl(locale, regionSlug)} class="text-gray-500 hover:text-blue-600">{regionName}</a></li>
           <li class="text-gray-400">/</li>
           <li class="text-gray-900 font-medium">{countryName}</li>
@@ -100,11 +94,10 @@ const seoDescription = `Find certified freediving schools in ${countryName}. Bro
       <!-- Page Header -->
       <div class="mb-8">
         <h1 class="text-3xl md:text-4xl font-bold text-gray-900 mb-4">
-          Freediving Schools in {countryName}
+          Freediving in {countryName}
         </h1>
         <p class="text-lg text-gray-600 leading-relaxed max-w-3xl">
-          {countryName} offers excellent freediving conditions with certified schools and professional instructors. 
-          Whether you're a beginner or experienced freediver, you'll find the perfect training center for your needs.
+          {countryName} offers excellent freediving destinations with beautiful dive sites and amazing underwater experiences.
         </p>
       </div>
 
@@ -122,7 +115,7 @@ const seoDescription = `Find certified freediving schools in ${countryName}. Bro
                 >
                   <h3 class="text-xl font-semibold text-gray-900 mb-2">{city.name}</h3>
                   <p class="text-sm text-gray-600">
-                    {city.schoolCount} {city.schoolCount === 1 ? 'school' : 'schools'}
+                    Explore freediving destinations
                   </p>
                 </a>
               );
@@ -130,36 +123,8 @@ const seoDescription = `Find certified freediving schools in ${countryName}. Bro
           </div>
         </div>
       )}
-
-      <!-- Schools in Country -->
-      <div class="mb-12">
-        <h2 class="text-2xl font-semibold text-gray-900 mb-6">
-          All Schools in {countryName}
-        </h2>
-        {schoolsInCountry.length > 0 ? (
-          <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6">
-            {schoolsInCountry.map(school => (
-              <SchoolCard school={school} />
-            ))}
-          </div>
-        ) : (
-          <p class="text-gray-600">{t(locale, 'schools.noResults')}</p>
-        )}
-      </div>
-
-      <!-- FAQ Section -->
-      <div class="bg-white rounded-lg shadow-md p-8 mb-8">
-        <h2 class="text-2xl font-semibold text-gray-900 mb-6">Frequently Asked Questions</h2>
-        <div class="space-y-6">
-          {faqQuestions.map((qa, index) => (
-            <div key={index}>
-              <h3 class="text-lg font-semibold text-gray-900 mb-2">{qa.question}</h3>
-              <p class="text-gray-700 leading-relaxed">{qa.answer}</p>
-            </div>
-          ))}
-        </div>
-      </div>
     </div>
   </main>
 </Layout>
+
 

@@ -1,40 +1,28 @@
 ---
 import { getRelativeLocaleUrl } from 'astro:i18n';
 import { t } from '../utils/i18n.js';
-import { schools, getAllCountries, getAllCities } from '../utils/schools';
+import { getAllCities, generateCityUrl } from '../utils/schools';
 
 const locale = Astro.currentLocale || 'en';
-const schoolsUrl = getRelativeLocaleUrl(locale, 'schools');
 
-// Get all searchable items for autocomplete
-const allCountries = getAllCountries();
+// Get all cities for autocomplete
 const allCities = getAllCities();
-const allSchoolNames = schools.map(s => s.name);
 
-// Create search data for client-side autocomplete
+// Create search data for client-side autocomplete (only cities)
 const searchData = {
-  countries: allCountries.map(c => ({
-    name: c.name[locale],
-    slug: c.country,
-    type: 'country'
-  })),
   cities: allCities.map(c => ({
     name: c.name[locale],
     slug: c.city,
     country: c.country,
     region: c.region,
     type: 'city'
-  })),
-  schools: allSchoolNames.map(name => ({
-    name,
-    type: 'school'
   }))
 };
 ---
 
 <div class="relative w-full max-w-2xl mx-auto">
   <form 
-    action={schoolsUrl} 
+    action="#" 
     method="get" 
     class="flex gap-2"
     id="search-form"
@@ -44,7 +32,7 @@ const searchData = {
         type="text"
         name="q"
         id="search-input"
-        placeholder={t(locale, 'common.nav.searchPlaceholder')}
+        placeholder={t(locale, 'common.nav.searchPlaceholder') || 'Search by city...'}
         class="w-full px-4 py-3 pl-10 border border-gray-300 rounded-lg focus:outline-none focus:ring-2 focus:ring-blue-500 focus:border-blue-500"
         autocomplete="off"
       />
@@ -74,12 +62,14 @@ const searchData = {
   </div>
 </div>
 
-<script define:vars={{ searchData, locale, schoolsUrl }}>
-  const searchInput = document.getElementById('search-input');
-  const autocompleteResults = document.getElementById('autocomplete-results');
-  const searchForm = document.getElementById('search-form');
+<script define:vars={{ searchData, locale }}>
+  // Wait for DOM to be ready
+  document.addEventListener('DOMContentLoaded', () => {
+    const searchInput = document.getElementById('search-input');
+    const autocompleteResults = document.getElementById('autocomplete-results');
+    const searchForm = document.getElementById('search-form');
 
-  if (searchInput && autocompleteResults) {
+    if (!searchInput || !autocompleteResults || !searchForm) return;
     let selectedIndex = -1;
     let results: Array<{ name: string; url: string; type: string }> = [];
 
@@ -89,35 +79,15 @@ const searchData = {
       const lowerQuery = query.toLowerCase();
       const matches: Array<{ name: string; url: string; type: string }> = [];
 
-      // Search countries
-      searchData.countries.forEach(country => {
-        if (country.name.toLowerCase().includes(lowerQuery)) {
-          matches.push({
-            name: country.name,
-            url: `${schoolsUrl}?country=${country.slug}`,
-            type: 'country'
-          });
-        }
-      });
-
-      // Search cities
+      // Search only cities
       searchData.cities.forEach(city => {
         if (city.name.toLowerCase().includes(lowerQuery)) {
+          // Generate city URL using the new structure: /locale/region/country/city
+          const cityUrl = `/${locale}/${city.region}/${city.country}/${city.slug}/`;
           matches.push({
             name: city.name,
-            url: `${schoolsUrl}?city=${city.slug}`,
+            url: cityUrl,
             type: 'city'
-          });
-        }
-      });
-
-      // Search schools
-      searchData.schools.forEach(school => {
-        if (school.name.toLowerCase().includes(lowerQuery)) {
-          matches.push({
-            name: school.name,
-            url: `${schoolsUrl}?q=${encodeURIComponent(school.name)}`,
-            type: 'school'
           });
         }
       });
@@ -164,16 +134,61 @@ const searchData = {
         e.preventDefault();
         selectedIndex = Math.max(selectedIndex - 1, -1);
         updateSelection();
-      } else if (e.key === 'Enter' && selectedIndex >= 0) {
+      } else if (e.key === 'Enter') {
         e.preventDefault();
-        const selected = results[selectedIndex];
-        if (selected) {
-          window.location.href = selected.url;
+        const query = (e.target as HTMLInputElement).value.trim();
+        
+        // If there's a selected result, use it
+        if (selectedIndex >= 0 && results[selectedIndex]) {
+          window.location.href = results[selectedIndex].url;
+          return;
+        }
+        
+        // If there are visible results, use first one
+        if (results.length > 0) {
+          window.location.href = results[0].url;
+          return;
+        }
+        
+        // If no visible results, search again with current query
+        if (query.length >= 2) {
+          const matches = getSearchResults(query);
+          if (matches.length > 0) {
+            window.location.href = matches[0].url;
+          }
         }
       } else if (e.key === 'Escape') {
         autocompleteResults.classList.add('hidden');
       }
     });
+
+    // Handle form submission
+    if (searchForm) {
+      searchForm.addEventListener('submit', (e) => {
+        e.preventDefault();
+        const query = searchInput.value.trim();
+        
+        // If there are visible results, use them
+        if (selectedIndex >= 0 && results[selectedIndex]) {
+          window.location.href = results[selectedIndex].url;
+          return;
+        }
+        
+        // If there are results but none selected, use first result
+        if (results.length > 0) {
+          window.location.href = results[0].url;
+          return;
+        }
+        
+        // If no visible results, search again with current query
+        if (query.length >= 2) {
+          const matches = getSearchResults(query);
+          if (matches.length > 0) {
+            window.location.href = matches[0].url;
+          }
+        }
+      });
+    }
 
     function updateSelection() {
       const items = autocompleteResults.querySelectorAll('.autocomplete-item');
@@ -192,7 +207,7 @@ const searchData = {
         autocompleteResults.classList.add('hidden');
       }
     });
-  }
+  });
 </script>
 
 <style>

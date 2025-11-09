@@ -2,18 +2,12 @@
 import { getRelativeLocaleUrl } from 'astro:i18n';
 import { t } from '../utils/i18n.js';
 import { Button } from '@/components/ui/button';
-import SchoolCard from './SchoolCard.astro';
 import Search from './Search.astro';
-import { getTopRatedSchools, generateRegionUrl, generateCityUrl } from '../utils/schools';
-import { schools, regions } from '../utils/schools';
+import { generateRegionUrl, generateCityUrl } from '../utils/schools';
+import { regions } from '../utils/schools';
 import destinationsData from '../data/destinations.json';
 
 const locale = Astro.currentLocale || 'en';
-const schoolsUrl = getRelativeLocaleUrl(locale, 'schools');
-const addSchoolUrl = getRelativeLocaleUrl(locale, 'add-school');
-
-// Get top rated schools
-const topSchools = getTopRatedSchools(5);
 
 // Get featured regions
 const featuredRegions = [
@@ -43,20 +37,6 @@ const topDestinations = destinationsData.slice(0, 6);
         <div class="mb-8">
           <Search />
         </div>
-
-        <!-- CTAs -->
-        <div class="flex flex-col sm:flex-row gap-4 justify-center items-center">
-          <Button variant="default" class="text-lg px-8 py-6">
-            <a href={schoolsUrl} class="flex items-center gap-2">
-              {t(locale, 'home.hero.browseSchools')}
-            </a>
-          </Button>
-          <Button variant="outline" class="text-lg px-8 py-6">
-            <a href={addSchoolUrl} rel="nofollow" class="flex items-center gap-2">
-              {t(locale, 'home.hero.addSchool')}
-            </a>
-          </Button>
-        </div>
       </div>
     </div>
   </section>
@@ -76,7 +56,7 @@ const topDestinations = destinationsData.slice(0, 6);
         {featuredRegions.map(region => {
           const regionUrl = generateRegionUrl(locale, region.slug);
           const regionData = regions[region.slug];
-          const schoolCount = schools.filter(s => s.region === region.slug).length;
+          const countryCount = Object.keys(regionData?.countries || {}).length;
           return (
             <a 
               href={regionUrl}
@@ -88,7 +68,7 @@ const topDestinations = destinationsData.slice(0, 6);
               </p>
               <div class="flex items-center justify-between">
                 <span class="text-sm text-blue-600 font-medium">
-                  {schoolCount} {schoolCount === 1 ? 'school' : 'schools'}
+                  {countryCount} {countryCount === 1 ? 'country' : 'countries'}
                 </span>
                 <span class="text-blue-600">→</span>
               </div>
@@ -134,49 +114,6 @@ const topDestinations = destinationsData.slice(0, 6);
           );
         })}
       </div>
-    </div>
-  </section>
-
-  <!-- Top Rated Schools Section -->
-  <section class="py-16 bg-white">
-    <div class="mx-auto max-w-7xl px-4 sm:px-6 lg:px-8">
-      <div class="text-center mb-12">
-        <h2 class="text-3xl md:text-4xl font-bold text-gray-900 mb-4">
-          {t(locale, 'home.topSchools.title')}
-        </h2>
-        <p class="text-lg text-gray-600 max-w-2xl mx-auto">
-          {t(locale, 'home.topSchools.subtitle')}
-        </p>
-      </div>
-      <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6">
-        {topSchools.map(school => (
-          <SchoolCard school={school} />
-        ))}
-      </div>
-      <div class="text-center mt-8">
-        <Button variant="outline">
-          <a href={schoolsUrl} class="px-6 py-3">
-            View All Schools →
-          </a>
-        </Button>
-      </div>
-    </div>
-  </section>
-
-  <!-- Add School CTA Section -->
-  <section class="py-16 bg-blue-600">
-    <div class="mx-auto max-w-7xl px-4 sm:px-6 lg:px-8 text-center">
-      <h2 class="text-3xl md:text-4xl font-bold text-white mb-4">
-        {t(locale, 'home.addSchoolSection.title')}
-      </h2>
-      <p class="text-xl text-blue-100 mb-8 max-w-2xl mx-auto">
-        {t(locale, 'home.addSchoolSection.description')}
-      </p>
-      <Button variant="default" class="bg-white text-blue-600 hover:bg-gray-100">
-        <a href={addSchoolUrl} rel="nofollow" class="px-8 py-3 text-lg">
-          {t(locale, 'home.addSchoolSection.cta')}
-        </a>
-      </Button>
     </div>
   </section>
 
