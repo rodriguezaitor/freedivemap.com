@@ -3,11 +3,13 @@ import { getRelativeLocaleUrl } from 'astro:i18n';
 import { t } from '../utils/i18n.js';
 import { Button } from '@/components/ui/button';
 import Search from './Search.astro';
-import { generateRegionUrl, generateCityUrl } from '../utils/schools';
-import { regions } from '../utils/schools';
-import destinationsData from '../data/destinations.json';
+import { generateRegionUrl, generateCityUrl, getRegionBySlug } from '../utils/schools';
+import destinationsDataRaw from '../data/destinations.json';
 
 const locale = Astro.currentLocale || 'en';
+
+// Handle JSON import for Cloudflare Workers compatibility
+const destinationsData = (destinationsDataRaw as any)?.default || destinationsDataRaw || [];
 
 // Get featured regions
 const featuredRegions = [
@@ -18,7 +20,7 @@ const featuredRegions = [
 ];
 
 // Get top destinations
-const topDestinations = destinationsData.slice(0, 6);
+const topDestinations = Array.isArray(destinationsData) ? destinationsData.slice(0, 6) : [];
 ---
 
 <div class="min-h-screen bg-white">
@@ -55,8 +57,8 @@ const topDestinations = destinationsData.slice(0, 6);
       <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-6">
         {featuredRegions.map(region => {
           const regionUrl = generateRegionUrl(locale, region.slug);
-          const regionData = regions[region.slug];
-          const countryCount = Object.keys(regionData?.countries || {}).length;
+          const regionData = getRegionBySlug(region.slug);
+          const countryCount = regionData ? Object.keys(regionData.countries || {}).length : 0;
           return (
             <a 
               href={regionUrl}

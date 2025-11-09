@@ -1,5 +1,9 @@
-import en from '../i18n/en.json';
-import es from '../i18n/es.json';
+import enRaw from '../i18n/en.json';
+import esRaw from '../i18n/es.json';
+
+// Handle JSON import for Cloudflare Workers compatibility
+const en = (enRaw?.default || enRaw || {});
+const es = (esRaw?.default || esRaw || {});
 
 const translations = { en, es };
 

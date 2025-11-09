@@ -26,9 +26,11 @@ export interface City {
   slug: string;
 }
 
-// Handle both default export and direct import
-const regionsObj = regionsData || (regionsData as any).default || {};
+// Handle both default export and direct import for Cloudflare Workers compatibility
+// In Cloudflare Workers, JSON imports may be wrapped in a default property
+const regionsObj = (regionsData as any)?.default || regionsData || {};
 
+// Cast to proper type - Cloudflare Workers should handle this correctly
 export const regions: Record<string, Region> = regionsObj as Record<string, Region>;
 
 export function getRegionBySlug(slug: string): Region | undefined {
