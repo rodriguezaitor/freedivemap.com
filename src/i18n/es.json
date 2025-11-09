@@ -10,7 +10,146 @@
     },
     "nav": {
       "home": "Inicio",
-      "about": "Acerca de"
+      "about": "Acerca de",
+      "schools": "Escuelas",
+      "addSchool": "Añadir Escuela",
+      "search": "Buscar",
+      "searchPlaceholder": "Buscar por país, ciudad o escuela..."
+    },
+    "filters": {
+      "country": "País",
+      "certification": "Certificación",
+      "level": "Nivel",
+      "courseType": "Tipo de Curso",
+      "all": "Todos",
+      "beginner": "Principiante",
+      "depth": "Profundidad",
+      "fun": "Recreativo",
+      "aida": "AIDA",
+      "ssi": "SSI",
+      "molchanovs": "Molchanovs"
+    },
+    "pagination": {
+      "previous": "Anterior",
+      "next": "Siguiente",
+      "page": "Página",
+      "of": "de",
+      "showing": "Mostrando",
+      "results": "resultados"
+    },
+    "footer": {
+      "copyright": "FreediveMap",
+      "about": "Acerca de",
+      "contact": "Contacto",
+      "privacy": "Privacidad",
+      "terms": "Términos",
+      "seoText": "FreediveMap es el directorio global de escuelas de freediving, instructores y centros de entrenamiento en todo el mundo."
+    }
+  },
+  "home": {
+    "hero": {
+      "title": "Encuentra tu próxima escuela de freediving",
+      "subtitle": "Descubre centros certificados alrededor del mundo y lee reseñas reales.",
+      "browseSchools": "Explorar Escuelas",
+      "addSchool": "Añade Tu Escuela"
+    },
+    "featuredRegions": {
+      "title": "Explora por Región",
+      "subtitle": "Encuentra escuelas de freediving en tu destino favorito"
+    },
+    "topDestinations": {
+      "title": "Destinos Principales",
+      "subtitle": "Ubicaciones populares de freediving en todo el mundo"
+    },
+    "topSchools": {
+      "title": "Escuelas Mejor Valoradas",
+      "subtitle": "Centros de freediving altamente valorados"
+    },
+    "addSchoolSection": {
+      "title": "¿Diriges un centro de freediving?",
+      "description": "Añádelo gratis y obtén visibilidad.",
+      "cta": "Añade Tu Escuela"
+    },
+    "seoContent": {
+      "title": "Encuentra las Mejores Escuelas de Freediving en Todo el Mundo",
+      "paragraph1": "FreediveMap es tu guía completa para encontrar escuelas de freediving certificadas, centros de entrenamiento e instructores profesionales en todo el mundo. Ya seas un principiante buscando tu primer curso de freediving o un buceador experimentado buscando entrenamiento avanzado de profundidad, te conectamos con las mejores escuelas de la industria.",
+      "paragraph2": "Nuestro directorio incluye escuelas certificadas por organizaciones líderes como AIDA (Asociación Internacional para el Desarrollo de la Apnea), SSI (Scuba Schools International) y Molchanovs. Estas certificaciones garantizan que recibas instrucción profesional de instructores calificados que siguen estándares internacionales de seguridad.",
+      "paragraph3": "Desde las aguas cálidas de Koh Tao en Tailandia hasta el famoso Blue Hole en Dahab, Egipto, nuestra plataforma te ayuda a descubrir escuelas de freediving en los destinos más buscados. Cada listado de escuela incluye información detallada sobre los cursos ofrecidos, programas de certificación, calificaciones de instructores y reseñas reales de estudiantes.",
+      "paragraph4": "Ya sea que estés interesado en cursos para principiantes, entrenamiento de profundidad o freediving recreativo, FreediveMap facilita comparar escuelas, leer reseñas y encontrar el centro de entrenamiento perfecto para tus necesidades. Comienza tu viaje de freediving hoy explorando nuestro directorio de escuelas certificadas en todo el mundo."
+    }
+  },
+  "schools": {
+    "title": "Escuelas de Freediving",
+    "description": "Explora nuestro directorio de escuelas de freediving certificadas en todo el mundo",
+    "noResults": "No se encontraron escuelas",
+    "viewSchool": "Ver Escuela",
+    "rating": "Valoración",
+    "reviews": "reseñas",
+    "certifications": "Certificaciones",
+    "courseTypes": "Tipos de Curso",
+    "location": "Ubicación",
+    "contact": "Contacto",
+    "website": "Sitio Web",
+    "email": "Correo",
+    "phone": "Teléfono",
+    "relatedSchools": "Escuelas Relacionadas"
+  },
+  "regions": {
+    "asia": {
+      "name": "Asia",
+      "description": "Asia alberga algunos de los destinos de freediving más populares del mundo, incluyendo Koh Tao en Tailandia, Panglao en Filipinas y Amed en Indonesia. Estas ubicaciones ofrecen aguas cálidas, excelente visibilidad y vibrantes comunidades de freediving perfectas tanto para principiantes como para buceadores avanzados."
+    },
+    "europe": {
+      "name": "Europa",
+      "description": "Europa ofrece oportunidades de freediving durante todo el año con instalaciones de clase mundial en destinos como Tenerife, España y Malta. Estas ubicaciones proporcionan excelentes condiciones para el entrenamiento de profundidad y el desarrollo de técnica, atrayendo a freedivers de todo el mundo."
+    },
+    "africa": {
+      "name": "África",
+      "description": "África es reconocida por el freediving, particularmente Dahab en Egipto, hogar del famoso Blue Hole. Esta región ofrece instalaciones de entrenamiento de profundidad de clase mundial y es un centro para el freediving competitivo, atrayendo a buceadores profesionales e instructores de todo el mundo."
+    },
+    "americas": {
+      "name": "Américas",
+      "description": "Las Américas ofrecen experiencias diversas de freediving desde las aguas del Caribe de Cozumel, México hasta las condiciones pristinas en Roatán, Honduras. Estos destinos proporcionan excelentes oportunidades para principiantes y freedivers recreativos con aguas cálidas y abundante vida marina."
+    }
+  },
+  "faq": {
+    "region": {
+      "q1": "¿Cuáles son los mejores destinos de freediving en {region}?",
+      "a1": "{region} ofrece varios destinos de freediving de clase mundial incluyendo {destinations}. Cada ubicación proporciona oportunidades únicas de entrenamiento y excelentes condiciones para el freediving.",
+      "q2": "¿Qué certificación es mejor para freediving?",
+      "a2": "La mejor certificación depende de tus objetivos. AIDA es ampliamente reconocida para freediving competitivo, SSI ofrece programas de entrenamiento completos, y Molchanovs se enfoca en técnica y seguridad. Las tres son reconocidas internacionalmente y proporcionan excelente instrucción.",
+      "q3": "¿Cuánto cuesta un curso de freediving?",
+      "a3": "Los costos de los cursos varían según la ubicación, el nivel de certificación y la duración del curso. Los cursos para principiantes típicamente oscilan entre $200-$500, mientras que los cursos avanzados pueden costar $500-$1500. Contacta a escuelas individuales para precios específicos."
+    },
+    "country": {
+      "q1": "¿Es {country} bueno para freediving?",
+      "a1": "Sí, {country} ofrece excelentes condiciones de freediving con {features}. El país tiene una creciente comunidad de freediving y varias escuelas certificadas que ofrecen cursos para todos los niveles.",
+      "q2": "¿Cuánto cuesta un curso de freediving en {country}?",
+      "a2": "Los costos de los cursos de freediving en {country} varían según la escuela y el nivel de certificación. Los cursos para principiantes típicamente comienzan alrededor de {price}, mientras que los cursos avanzados pueden costar más. Contacta a las escuelas directamente para precios actuales.",
+      "q3": "¿Qué certificación es mejor para freediving en {country}?",
+      "a3": "Todas las certificaciones principales (AIDA, SSI, Molchanovs) están disponibles en {country}. La mejor opción depende de tus objetivos: AIDA para buceo competitivo, SSI para entrenamiento completo, y Molchanovs para instrucción enfocada en técnica."
+    },
+    "city": {
+      "q1": "¿Es {city} bueno para freediving?",
+      "a1": "Sí, {city} es un excelente destino para freediving. La ubicación ofrece {features}, haciéndolo ideal tanto para principiantes como para freedivers experimentados.",
+      "q2": "¿Cuánto cuesta un curso de freediving en {city}?",
+      "a2": "Los costos de los cursos de freediving en {city} típicamente oscilan entre {priceRange}. Los precios varían según la escuela, el nivel de certificación y la duración del curso. Contacta a las escuelas directamente para precios específicos.",
+      "q3": "¿Qué certificación es mejor para freediving?",
+      "a3": "La mejor certificación depende de tus objetivos. AIDA es ideal para freediving competitivo, SSI ofrece programas completos, y Molchanovs se enfoca en técnica y seguridad. Todas son reconocidas internacionalmente."
+    }
+  },
+  "addSchool": {
+    "title": "Añade Tu Escuela",
+    "description": "Lista tu escuela de freediving gratis y llega a miles de estudiantes potenciales",
+    "form": {
+      "name": "Nombre de la Escuela",
+      "country": "País",
+      "city": "Ciudad",
+      "email": "Correo",
+      "phone": "Teléfono",
+      "website": "Sitio Web",
+      "certifications": "Certificaciones",
+      "submit": "Enviar"
     }
   },
   "about": {
@@ -19,13 +158,21 @@
   },
   "seo": {
     "default": {
-      "title": "FreeDiveMap — Descubre Sitios de Buceo en Todo el Mundo",
-      "description": "Explora y descubre sitios de buceo alrededor del mundo. Encuentra las mejores ubicaciones para bucear, planifica tu próxima aventura y comparte tus lugares favoritos."
+      "title": "FreeDiveMap — Descubre Escuelas de Freediving en Todo el Mundo",
+      "description": "Encuentra escuelas de freediving certificadas, centros de entrenamiento e instructores en todo el mundo. Compara cursos, lee reseñas y comienza tu viaje de freediving."
     },
     "pages": {
       "home": {
-        "title": "FreeDiveMap — Descubre Sitios de Buceo en Todo el Mundo",
-        "description": "Bienvenido a FreeDiveMap. Explora sitios de buceo, planifica tu próxima aventura de buceo y descubre increíbles ubicaciones submarinas alrededor del mundo."
+        "title": "FreeDiveMap — Encuentra Tu Próxima Escuela de Freediving",
+        "description": "Descubre escuelas de freediving certificadas alrededor del mundo. Explora por región, lee reseñas reales y encuentra el centro de entrenamiento perfecto para tu viaje de freediving."
+      },
+      "schools": {
+        "title": "Directorio de Escuelas de Freediving — FreeDiveMap",
+        "description": "Explora nuestro directorio completo de escuelas de freediving certificadas en todo el mundo. Filtra por ubicación, certificación y tipo de curso para encontrar tu escuela perfecta."
+      },
+      "addSchool": {
+        "title": "Añade Tu Escuela de Freediving — FreeDiveMap",
+        "description": "Lista tu escuela de freediving gratis en FreeDiveMap. Llega a miles de estudiantes potenciales y haz crecer tu negocio."
       },
       "about": {
         "title": "Acerca de — FreeDiveMap",

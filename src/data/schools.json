@@ -1,0 +1,233 @@
+[
+  {
+    "id": "1",
+    "name": "Apnea Total Koh Tao",
+    "slug": "apnea-total-koh-tao",
+    "country": "thailand",
+    "city": "koh-tao",
+    "region": "asia",
+    "coordinates": {
+      "lat": 10.0956,
+      "lng": 99.8404
+    },
+    "certifications": ["AIDA", "SSI", "Molchanovs"],
+    "courseTypes": ["beginner", "depth", "fun"],
+    "rating": 4.8,
+    "reviewCount": 127,
+    "logo": "/images/schools/apnea-total-koh-tao.jpg",
+    "description": "Professional freediving school in Koh Tao offering courses from beginner to advanced levels. Certified AIDA, SSI, and Molchanovs instructors.",
+    "contact": {
+      "email": "info@apneatotalkohtao.com",
+      "phone": "+66 77 456 789",
+      "website": "https://apneatotalkohtao.com"
+    }
+  },
+  {
+    "id": "2",
+    "name": "Dahab Freedivers",
+    "slug": "dahab-freedivers",
+    "country": "egypt",
+    "city": "dahab",
+    "region": "africa",
+    "coordinates": {
+      "lat": 28.5000,
+      "lng": 34.5167
+    },
+    "certifications": ["AIDA", "Molchanovs"],
+    "courseTypes": ["beginner", "depth"],
+    "rating": 4.9,
+    "reviewCount": 203,
+    "logo": "/images/schools/dahab-freedivers.jpg",
+    "description": "World-renowned freediving center in Dahab, Egypt. Home to the famous Blue Hole and world-class depth training facilities.",
+    "contact": {
+      "email": "info@dahabfreedivers.com",
+      "phone": "+20 69 364 1234",
+      "website": "https://dahabfreedivers.com"
+    }
+  },
+  {
+    "id": "3",
+    "name": "Freedive Panglao",
+    "slug": "freedive-panglao",
+    "country": "philippines",
+    "city": "panglao",
+    "region": "asia",
+    "coordinates": {
+      "lat": 9.5781,
+      "lng": 123.7679
+    },
+    "certifications": ["AIDA", "SSI"],
+    "courseTypes": ["beginner", "fun"],
+    "rating": 4.7,
+    "reviewCount": 89,
+    "logo": "/images/schools/freedive-panglao.jpg",
+    "description": "Beautiful freediving school in Panglao, Philippines. Perfect for beginners and recreational freedivers with warm waters and excellent visibility.",
+    "contact": {
+      "email": "info@freedivepanglao.com",
+      "phone": "+63 38 502 3456",
+      "website": "https://freedivepanglao.com"
+    }
+  },
+  {
+    "id": "4",
+    "name": "Amed Freediving Academy",
+    "slug": "amed-freediving-academy",
+    "country": "indonesia",
+    "city": "amed",
+    "region": "asia",
+    "coordinates": {
+      "lat": -8.3333,
+      "lng": 115.6167
+    },
+    "certifications": ["AIDA", "SSI", "Molchanovs"],
+    "courseTypes": ["beginner", "depth", "fun"],
+    "rating": 4.6,
+    "reviewCount": 156,
+    "logo": "/images/schools/amed-freediving-academy.jpg",
+    "description": "Premier freediving school in Amed, Bali. Offering comprehensive courses from beginner to instructor level with stunning dive sites.",
+    "contact": {
+      "email": "info@amedfreediving.com",
+      "phone": "+62 363 23456",
+      "website": "https://amedfreediving.com"
+    }
+  },
+  {
+    "id": "5",
+    "name": "Tenerife Freediving Center",
+    "slug": "tenerife-freediving-center",
+    "country": "spain",
+    "city": "tenerife",
+    "region": "europe",
+    "coordinates": {
+      "lat": 28.2916,
+      "lng": -16.6291
+    },
+    "certifications": ["AIDA", "SSI"],
+    "courseTypes": ["beginner", "depth"],
+    "rating": 4.5,
+    "reviewCount": 94,
+    "logo": "/images/schools/tenerife-freediving-center.jpg",
+    "description": "Professional freediving center in Tenerife, Canary Islands. Year-round training with excellent conditions for depth and technique development.",
+    "contact": {
+      "email": "info@tenerifefreediving.com",
+      "phone": "+34 922 123 456",
+      "website": "https://tenerifefreediving.com"
+    }
+  },
+  {
+    "id": "6",
+    "name": "Blue Corner Freediving",
+    "slug": "blue-corner-freediving",
+    "country": "thailand",
+    "city": "koh-tao",
+    "region": "asia",
+    "coordinates": {
+      "lat": 10.0980,
+      "lng": 99.8420
+    },
+    "certifications": ["AIDA", "Molchanovs"],
+    "courseTypes": ["beginner", "depth"],
+    "rating": 4.7,
+    "reviewCount": 112,
+    "logo": "/images/schools/blue-corner-freediving.jpg",
+    "description": "Established freediving school in Koh Tao with focus on safety and technique. AIDA and Molchanovs certified instructors.",
+    "contact": {
+      "email": "info@bluecornerfreediving.com",
+      "phone": "+66 77 456 890",
+      "website": "https://bluecornerfreediving.com"
+    }
+  },
+  {
+    "id": "7",
+    "name": "Sharm El Sheikh Freediving",
+    "slug": "sharm-el-sheikh-freediving",
+    "country": "egypt",
+    "city": "sharm-el-sheikh",
+    "region": "africa",
+    "coordinates": {
+      "lat": 27.9158,
+      "lng": 34.3300
+    },
+    "certifications": ["AIDA", "SSI"],
+    "courseTypes": ["beginner", "fun"],
+    "rating": 4.4,
+    "reviewCount": 78,
+    "logo": "/images/schools/sharm-freediving.jpg",
+    "description": "Freediving school in Sharm El Sheikh offering courses for all levels. Great for beginners with calm waters and excellent marine life.",
+    "contact": {
+      "email": "info@sharmfreediving.com",
+      "phone": "+20 69 360 1234",
+      "website": "https://sharmfreediving.com"
+    }
+  },
+  {
+    "id": "8",
+    "name": "Malta Freediving Academy",
+    "slug": "malta-freediving-academy",
+    "country": "malta",
+    "city": "valletta",
+    "region": "europe",
+    "coordinates": {
+      "lat": 35.8997,
+      "lng": 14.5147
+    },
+    "certifications": ["AIDA", "SSI", "Molchanovs"],
+    "courseTypes": ["beginner", "depth", "fun"],
+    "rating": 4.8,
+    "reviewCount": 145,
+    "logo": "/images/schools/malta-freediving-academy.jpg",
+    "description": "Premier freediving academy in Malta. Offering world-class training with access to deep water sites and professional facilities.",
+    "contact": {
+      "email": "info@maltafreediving.com",
+      "phone": "+356 2123 4567",
+      "website": "https://maltafreediving.com"
+    }
+  },
+  {
+    "id": "9",
+    "name": "Cozumel Freediving",
+    "slug": "cozumel-freediving",
+    "country": "mexico",
+    "city": "cozumel",
+    "region": "americas",
+    "coordinates": {
+      "lat": 20.5083,
+      "lng": -86.9458
+    },
+    "certifications": ["AIDA", "SSI"],
+    "courseTypes": ["beginner", "fun"],
+    "rating": 4.6,
+    "reviewCount": 67,
+    "logo": "/images/schools/cozumel-freediving.jpg",
+    "description": "Freediving school in Cozumel, Mexico. Perfect for beginners with warm Caribbean waters and abundant marine life.",
+    "contact": {
+      "email": "info@cozumelfreediving.com",
+      "phone": "+52 987 123 4567",
+      "website": "https://cozumelfreediving.com"
+    }
+  },
+  {
+    "id": "10",
+    "name": "Roatan Freediving Center",
+    "slug": "roatan-freediving-center",
+    "country": "honduras",
+    "city": "roatan",
+    "region": "americas",
+    "coordinates": {
+      "lat": 16.3167,
+      "lng": -86.5500
+    },
+    "certifications": ["AIDA"],
+    "courseTypes": ["beginner", "fun"],
+    "rating": 4.5,
+    "reviewCount": 43,
+    "logo": "/images/schools/roatan-freediving-center.jpg",
+    "description": "Freediving center in Roatan, Honduras. Offering courses in pristine Caribbean waters with excellent visibility.",
+    "contact": {
+      "email": "info@roatanfreediving.com",
+      "phone": "+504 9876 5432",
+      "website": "https://roatanfreediving.com"
+    }
+  }
+]
+

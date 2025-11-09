@@ -1,0 +1,212 @@
+---
+import { getRelativeLocaleUrl } from 'astro:i18n';
+import { t } from '../utils/i18n.js';
+import { Button } from '@/components/ui/button';
+import SchoolCard from './SchoolCard.astro';
+import Search from './Search.astro';
+import { getTopRatedSchools, generateRegionUrl, generateCityUrl } from '../utils/schools';
+import { schools, regions } from '../utils/schools';
+import destinationsData from '../data/destinations.json';
+
+const locale = Astro.currentLocale || 'en';
+const schoolsUrl = getRelativeLocaleUrl(locale, 'schools');
+const addSchoolUrl = getRelativeLocaleUrl(locale, 'add-school');
+
+// Get top rated schools
+const topSchools = getTopRatedSchools(5);
+
+// Get featured regions
+const featuredRegions = [
+  { slug: 'asia', name: t(locale, 'regions.asia.name') },
+  { slug: 'europe', name: t(locale, 'regions.europe.name') },
+  { slug: 'africa', name: t(locale, 'regions.africa.name') },
+  { slug: 'americas', name: t(locale, 'regions.americas.name') }
+];
+
+// Get top destinations
+const topDestinations = destinationsData.slice(0, 6);
+---
+
+<div class="min-h-screen bg-white">
+  <!-- Hero Section -->
+  <section class="bg-gradient-to-br from-blue-50 via-cyan-50 to-teal-50 py-20">
+    <div class="mx-auto max-w-7xl px-4 sm:px-6 lg:px-8">
+      <div class="text-center">
+        <h1 class="text-4xl md:text-5xl lg:text-6xl font-bold text-gray-900 mb-6">
+          {t(locale, 'home.hero.title')}
+        </h1>
+        <p class="text-xl md:text-2xl text-gray-700 mb-8 max-w-3xl mx-auto">
+          {t(locale, 'home.hero.subtitle')}
+        </p>
+        
+        <!-- Search Bar -->
+        <div class="mb-8">
+          <Search />
+        </div>
+
+        <!-- CTAs -->
+        <div class="flex flex-col sm:flex-row gap-4 justify-center items-center">
+          <Button variant="default" class="text-lg px-8 py-6">
+            <a href={schoolsUrl} class="flex items-center gap-2">
+              {t(locale, 'home.hero.browseSchools')}
+            </a>
+          </Button>
+          <Button variant="outline" class="text-lg px-8 py-6">
+            <a href={addSchoolUrl} rel="nofollow" class="flex items-center gap-2">
+              {t(locale, 'home.hero.addSchool')}
+            </a>
+          </Button>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- Featured Regions Section -->
+  <section class="py-16 bg-white">
+    <div class="mx-auto max-w-7xl px-4 sm:px-6 lg:px-8">
+      <div class="text-center mb-12">
+        <h2 class="text-3xl md:text-4xl font-bold text-gray-900 mb-4">
+          {t(locale, 'home.featuredRegions.title')}
+        </h2>
+        <p class="text-lg text-gray-600 max-w-2xl mx-auto">
+          {t(locale, 'home.featuredRegions.subtitle')}
+        </p>
+      </div>
+      <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-6">
+        {featuredRegions.map(region => {
+          const regionUrl = generateRegionUrl(locale, region.slug);
+          const regionData = regions[region.slug];
+          const schoolCount = schools.filter(s => s.region === region.slug).length;
+          return (
+            <a 
+              href={regionUrl}
+              class="bg-white rounded-lg shadow-md hover:shadow-lg transition-shadow border border-gray-200 p-6 block"
+            >
+              <h3 class="text-xl font-semibold text-gray-900 mb-2">{region.name}</h3>
+              <p class="text-sm text-gray-600 mb-4">
+                {t(locale, `regions.${region.slug}.description`).substring(0, 100)}...
+              </p>
+              <div class="flex items-center justify-between">
+                <span class="text-sm text-blue-600 font-medium">
+                  {schoolCount} {schoolCount === 1 ? 'school' : 'schools'}
+                </span>
+                <span class="text-blue-600">→</span>
+              </div>
+            </a>
+          );
+        })}
+      </div>
+    </div>
+  </section>
+
+  <!-- Top Destinations Section -->
+  <section class="py-16 bg-gray-50">
+    <div class="mx-auto max-w-7xl px-4 sm:px-6 lg:px-8">
+      <div class="text-center mb-12">
+        <h2 class="text-3xl md:text-4xl font-bold text-gray-900 mb-4">
+          {t(locale, 'home.topDestinations.title')}
+        </h2>
+        <p class="text-lg text-gray-600 max-w-2xl mx-auto">
+          {t(locale, 'home.topDestinations.subtitle')}
+        </p>
+      </div>
+      <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6">
+        {topDestinations.map(destination => {
+          const cityUrl = generateCityUrl(locale, destination.region, destination.country, destination.city);
+          return (
+            <a 
+              href={cityUrl}
+              class="bg-white rounded-lg shadow-md hover:shadow-lg transition-shadow border border-gray-200 overflow-hidden block"
+            >
+              <div class="h-48 bg-gradient-to-br from-blue-400 to-cyan-500 flex items-center justify-center">
+                <span class="text-4xl">🌊</span>
+              </div>
+              <div class="p-6">
+                <h3 class="text-xl font-semibold text-gray-900 mb-2">
+                  {destination.name[locale]}
+                </h3>
+                <p class="text-sm text-gray-600 mb-4">
+                  {destination.description[locale]}
+                </p>
+                <span class="text-blue-600 font-medium text-sm">Explore →</span>
+              </div>
+            </a>
+          );
+        })}
+      </div>
+    </div>
+  </section>
+
+  <!-- Top Rated Schools Section -->
+  <section class="py-16 bg-white">
+    <div class="mx-auto max-w-7xl px-4 sm:px-6 lg:px-8">
+      <div class="text-center mb-12">
+        <h2 class="text-3xl md:text-4xl font-bold text-gray-900 mb-4">
+          {t(locale, 'home.topSchools.title')}
+        </h2>
+        <p class="text-lg text-gray-600 max-w-2xl mx-auto">
+          {t(locale, 'home.topSchools.subtitle')}
+        </p>
+      </div>
+      <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6">
+        {topSchools.map(school => (
+          <SchoolCard school={school} />
+        ))}
+      </div>
+      <div class="text-center mt-8">
+        <Button variant="outline">
+          <a href={schoolsUrl} class="px-6 py-3">
+            View All Schools →
+          </a>
+        </Button>
+      </div>
+    </div>
+  </section>
+
+  <!-- Add School CTA Section -->
+  <section class="py-16 bg-blue-600">
+    <div class="mx-auto max-w-7xl px-4 sm:px-6 lg:px-8 text-center">
+      <h2 class="text-3xl md:text-4xl font-bold text-white mb-4">
+        {t(locale, 'home.addSchoolSection.title')}
+      </h2>
+      <p class="text-xl text-blue-100 mb-8 max-w-2xl mx-auto">
+        {t(locale, 'home.addSchoolSection.description')}
+      </p>
+      <Button variant="default" class="bg-white text-blue-600 hover:bg-gray-100">
+        <a href={addSchoolUrl} rel="nofollow" class="px-8 py-3 text-lg">
+          {t(locale, 'home.addSchoolSection.cta')}
+        </a>
+      </Button>
+    </div>
+  </section>
+
+  <!-- SEO Content Section -->
+  <section class="py-16 bg-white">
+    <div class="mx-auto max-w-4xl px-4 sm:px-6 lg:px-8">
+      <article class="prose prose-lg max-w-none">
+        <h2 class="text-3xl font-bold text-gray-900 mb-6">
+          {t(locale, 'home.seoContent.title')}
+        </h2>
+        <p class="text-gray-700 mb-4 leading-relaxed">
+          {t(locale, 'home.seoContent.paragraph1')}
+        </p>
+        <h3 class="text-2xl font-semibold text-gray-900 mt-8 mb-4">
+          Professional Freediving Certifications
+        </h3>
+        <p class="text-gray-700 mb-4 leading-relaxed">
+          {t(locale, 'home.seoContent.paragraph2')}
+        </p>
+        <h3 class="text-2xl font-semibold text-gray-900 mt-8 mb-4">
+          World-Class Freediving Destinations
+        </h3>
+        <p class="text-gray-700 mb-4 leading-relaxed">
+          {t(locale, 'home.seoContent.paragraph3')}
+        </p>
+        <p class="text-gray-700 mb-4 leading-relaxed">
+          {t(locale, 'home.seoContent.paragraph4')}
+        </p>
+      </article>
+    </div>
+  </section>
+</div>
+

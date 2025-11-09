@@ -1,0 +1,174 @@
+{
+  "asia": {
+    "name": {
+      "en": "Asia",
+      "es": "Asia"
+    },
+    "slug": "asia",
+    "countries": {
+      "thailand": {
+        "name": {
+          "en": "Thailand",
+          "es": "Tailandia"
+        },
+        "slug": "thailand",
+        "cities": {
+          "koh-tao": {
+            "name": {
+              "en": "Koh Tao",
+              "es": "Koh Tao"
+            },
+            "slug": "koh-tao"
+          }
+        }
+      },
+      "philippines": {
+        "name": {
+          "en": "Philippines",
+          "es": "Filipinas"
+        },
+        "slug": "philippines",
+        "cities": {
+          "panglao": {
+            "name": {
+              "en": "Panglao",
+              "es": "Panglao"
+            },
+            "slug": "panglao"
+          }
+        }
+      },
+      "indonesia": {
+        "name": {
+          "en": "Indonesia",
+          "es": "Indonesia"
+        },
+        "slug": "indonesia",
+        "cities": {
+          "amed": {
+            "name": {
+              "en": "Amed",
+              "es": "Amed"
+            },
+            "slug": "amed"
+          }
+        }
+      }
+    }
+  },
+  "europe": {
+    "name": {
+      "en": "Europe",
+      "es": "Europa"
+    },
+    "slug": "europe",
+    "countries": {
+      "spain": {
+        "name": {
+          "en": "Spain",
+          "es": "España"
+        },
+        "slug": "spain",
+        "cities": {
+          "tenerife": {
+            "name": {
+              "en": "Tenerife",
+              "es": "Tenerife"
+            },
+            "slug": "tenerife"
+          }
+        }
+      },
+      "malta": {
+        "name": {
+          "en": "Malta",
+          "es": "Malta"
+        },
+        "slug": "malta",
+        "cities": {
+          "valletta": {
+            "name": {
+              "en": "Valletta",
+              "es": "La Valeta"
+            },
+            "slug": "valletta"
+          }
+        }
+      }
+    }
+  },
+  "africa": {
+    "name": {
+      "en": "Africa",
+      "es": "África"
+    },
+    "slug": "africa",
+    "countries": {
+      "egypt": {
+        "name": {
+          "en": "Egypt",
+          "es": "Egipto"
+        },
+        "slug": "egypt",
+        "cities": {
+          "dahab": {
+            "name": {
+              "en": "Dahab",
+              "es": "Dahab"
+            },
+            "slug": "dahab"
+          },
+          "sharm-el-sheikh": {
+            "name": {
+              "en": "Sharm El Sheikh",
+              "es": "Sharm El Sheikh"
+            },
+            "slug": "sharm-el-sheikh"
+          }
+        }
+      }
+    }
+  },
+  "americas": {
+    "name": {
+      "en": "Americas",
+      "es": "Américas"
+    },
+    "slug": "americas",
+    "countries": {
+      "mexico": {
+        "name": {
+          "en": "Mexico",
+          "es": "México"
+        },
+        "slug": "mexico",
+        "cities": {
+          "cozumel": {
+            "name": {
+              "en": "Cozumel",
+              "es": "Cozumel"
+            },
+            "slug": "cozumel"
+          }
+        }
+      },
+      "honduras": {
+        "name": {
+          "en": "Honduras",
+          "es": "Honduras"
+        },
+        "slug": "honduras",
+        "cities": {
+          "roatan": {
+            "name": {
+              "en": "Roatan",
+              "es": "Roatán"
+            },
+            "slug": "roatan"
+          }
+        }
+      }
+    }
+  }
+}
+

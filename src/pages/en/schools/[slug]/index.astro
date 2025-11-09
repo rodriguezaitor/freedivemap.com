@@ -1,0 +1,204 @@
+---
+export const prerender = false;
+
+import Layout from '../../../../layouts/Layout.astro';
+import Header from '../../../../components/Header.astro';
+import MapPlaceholder from '../../../../components/MapPlaceholder.astro';
+import { getSchoolBySlug, getRelatedSchools, generateSchoolUrl, getRegionBySlug, getCountryBySlug, schools } from '../../../../utils/schools';
+import { regions } from '../../../../utils/schools';
+import { t } from '../../../../utils/i18n.js';
+import { generateLocalBusinessSchema, generateBreadcrumbSchema, generateBreadcrumbs } from '../../../../utils/seo';
+import { getRelativeLocaleUrl } from 'astro:i18n';
+import SchoolCard from '../../../../components/SchoolCard.astro';
+import schoolsData from '../../../../data/schools.json';
+
+const locale = Astro.currentLocale || 'en';
+const { slug } = Astro.params;
+
+if (!slug) {
+  return Astro.redirect(getRelativeLocaleUrl(locale, 'schools'));
+}
+
+// Get school by slug - try direct import first, then utility function
+const allSchools = Array.isArray(schoolsData) ? schoolsData : (schoolsData as any).default || [];
+let school = allSchools.find((s: any) => s.slug === slug);
+
+// Fallback to utility function if not found
+if (!school) {
+  school = getSchoolBySlug(slug);
+}
+
+if (!school) {
+  console.error('School not found for slug:', slug);
+  console.error('Available slugs from direct import:', allSchools.map((s: any) => s.slug));
+  console.error('Available slugs from utils:', schools.map(s => s.slug));
+  return Astro.redirect(getRelativeLocaleUrl(locale, 'schools'));
+}
+
+const relatedSchools = getRelatedSchools(school, 3).filter(s => s.id !== school.id);
+const region = getRegionBySlug(school.region);
+const country = getCountryBySlug(school.region, school.country);
+
+const regionName = region?.name[locale] || school.region;
+const countryName = country?.name[locale] || school.country;
+
+// Generate LocalBusiness schema
+const localBusinessSchema = generateLocalBusinessSchema({
+  name: school.name,
+  description: school.description,
+  coordinates: school.coordinates,
+  contact: school.contact,
+  address: {
+    city: school.city,
+    country: school.country
+  },
+  url: generateSchoolUrl(locale, school)
+});
+
+// Generate breadcrumbs
+const breadcrumbs = generateBreadcrumbs(
+  locale,
+  Astro.site?.toString() || '',
+  [
+    { name: t(locale, 'common.nav.home'), path: '/' },
+    { name: t(locale, 'schools.title'), path: '/schools/' },
+    { name: regionName, path: `/schools/${school.region}/` },
+    { name: countryName, path: `/schools/${school.region}/${school.country}/` },
+    { name: school.name, path: `/schools/${slug}/` }
+  ]
+);
+
+const breadcrumbSchema = generateBreadcrumbSchema(breadcrumbs);
+
+// SEO
+const seoTitle = `${school.name} — Freediving School in ${countryName} — FreeDiveMap`;
+const seoDescription = school.description;
+---
+
+<Layout seoKey="schools" seoOverrides={{ title: seoTitle, description: seoDescription }} noindex={false}>
+  <script type="application/ld+json" set:html={JSON.stringify(localBusinessSchema)} />
+  <script type="application/ld+json" set:html={JSON.stringify(breadcrumbSchema)} />
+  
+  <Header />
+  
+  <main class="min-h-screen bg-gray-50">
+    <div class="mx-auto max-w-7xl px-4 sm:px-6 lg:px-8 py-8">
+      <!-- Breadcrumbs -->
+      <nav class="mb-6 text-sm" aria-label="Breadcrumb">
+        <ol class="flex items-center space-x-2 flex-wrap">
+          <li><a href={getRelativeLocaleUrl(locale, '/')} class="text-gray-500 hover:text-blue-600">{t(locale, 'common.nav.home')}</a></li>
+          <li class="text-gray-400">/</li>
+          <li><a href={getRelativeLocaleUrl(locale, 'schools')} class="text-gray-500 hover:text-blue-600">{t(locale, 'schools.title')}</a></li>
+          <li class="text-gray-400">/</li>
+          <li class="text-gray-900 font-medium">{school.name}</li>
+        </ol>
+      </nav>
+
+      <div class="grid grid-cols-1 lg:grid-cols-3 gap-8">
+        <!-- Main Content -->
+        <div class="lg:col-span-2">
+          <!-- School Header -->
+          <div class="bg-white rounded-lg shadow-md p-8 mb-6">
+            <h1 class="text-3xl md:text-4xl font-bold text-gray-900 mb-4">
+              {school.name}
+            </h1>
+            <div class="flex items-center gap-4 mb-4">
+              <div class="flex items-center gap-1 text-yellow-500">
+                <svg class="w-6 h-6 fill-current" viewBox="0 0 20 20">
+                  <path d="M10 15l-5.878 3.09 1.123-6.545L.489 6.91l6.572-.955L10 0l2.939 5.955 6.572.955-4.756 4.635 1.123 6.545z" />
+                </svg>
+                <span class="text-gray-900 font-semibold text-lg">{school.rating.toFixed(1)}</span>
+              </div>
+              <span class="text-gray-600">
+                {school.reviewCount} {t(locale, 'schools.reviews')}
+              </span>
+            </div>
+            <p class="text-lg text-gray-700 mb-4 flex items-center gap-2">
+              <svg class="w-5 h-5 text-gray-400" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M17.657 16.657L13.414 20.9a1.998 1.998 0 01-2.827 0l-4.244-4.243a8 8 0 1111.314 0z" />
+                <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M15 11a3 3 0 11-6 0 3 3 0 016 0z" />
+              </svg>
+              {school.city}, {countryName}
+            </p>
+            <p class="text-gray-700 leading-relaxed">
+              {school.description}
+            </p>
+          </div>
+
+          <!-- Certifications & Course Types -->
+          <div class="bg-white rounded-lg shadow-md p-8 mb-6">
+            <h2 class="text-2xl font-semibold text-gray-900 mb-6">{t(locale, 'schools.certifications')}</h2>
+            <div class="flex flex-wrap gap-3 mb-6">
+              {school.certifications.map(cert => (
+                <span class="px-4 py-2 bg-blue-100 text-blue-800 font-medium rounded-lg">
+                  {cert}
+                </span>
+              ))}
+            </div>
+            <h2 class="text-2xl font-semibold text-gray-900 mb-6">{t(locale, 'schools.courseTypes')}</h2>
+            <div class="flex flex-wrap gap-3">
+              {school.courseTypes.map(type => (
+                <span class="px-4 py-2 bg-green-100 text-green-800 font-medium rounded-lg">
+                  {t(locale, `common.filters.${type}`)}
+                </span>
+              ))}
+            </div>
+          </div>
+
+          <!-- Contact Information -->
+          <div class="bg-white rounded-lg shadow-md p-8 mb-6">
+            <h2 class="text-2xl font-semibold text-gray-900 mb-6">{t(locale, 'schools.contact')}</h2>
+            <div class="space-y-4">
+              {school.contact.email && (
+                <div class="flex items-center gap-3">
+                  <span class="font-medium text-gray-700">{t(locale, 'schools.email')}:</span>
+                  <a href={`mailto:${school.contact.email}`} class="text-blue-600 hover:underline">
+                    {school.contact.email}
+                  </a>
+                </div>
+              )}
+              {school.contact.phone && (
+                <div class="flex items-center gap-3">
+                  <span class="font-medium text-gray-700">{t(locale, 'schools.phone')}:</span>
+                  <a href={`tel:${school.contact.phone}`} class="text-blue-600 hover:underline">
+                    {school.contact.phone}
+                  </a>
+                </div>
+              )}
+              {school.contact.website && (
+                <div class="flex items-center gap-3">
+                  <span class="font-medium text-gray-700">{t(locale, 'schools.website')}:</span>
+                  <a href={school.contact.website} target="_blank" rel="noopener noreferrer" class="text-blue-600 hover:underline">
+                    {school.contact.website}
+                  </a>
+                </div>
+              )}
+            </div>
+          </div>
+        </div>
+
+        <!-- Sidebar -->
+        <div class="lg:col-span-1">
+          <!-- Map -->
+          <div class="bg-white rounded-lg shadow-md p-6 mb-6">
+            <h2 class="text-xl font-semibold text-gray-900 mb-4">{t(locale, 'schools.location')}</h2>
+            <MapPlaceholder className="h-[300px] w-full rounded-lg" />
+          </div>
+
+          <!-- Related Schools -->
+          {relatedSchools.length > 0 && (
+            <div class="bg-white rounded-lg shadow-md p-6">
+              <h2 class="text-xl font-semibold text-gray-900 mb-4">{t(locale, 'schools.relatedSchools')}</h2>
+              <div class="space-y-4">
+                {relatedSchools.map(relatedSchool => (
+                  <SchoolCard school={relatedSchool} />
+                ))}
+              </div>
+            </div>
+          )}
+        </div>
+      </div>
+    </div>
+  </main>
+</Layout>
+

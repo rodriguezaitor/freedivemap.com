@@ -1,0 +1,106 @@
+---
+import { getRelativeLocaleUrl } from 'astro:i18n';
+import { t } from '../utils/i18n.js';
+
+const locale = Astro.currentLocale || 'en';
+const otherLocale = locale === 'es' ? 'en' : 'es';
+const otherLocaleUrl = getRelativeLocaleUrl(otherLocale, Astro.url.pathname.replace(`/${locale}`, '').replace(`/${otherLocale}`, '') || '/');
+const homeUrl = getRelativeLocaleUrl(locale, '/');
+const schoolsUrl = getRelativeLocaleUrl(locale, 'schools');
+const addSchoolUrl = getRelativeLocaleUrl(locale, 'add-school');
+const aboutUrl = getRelativeLocaleUrl(locale, 'about');
+---
+
+<header class="w-full border-b bg-white sticky top-0 z-50">
+  <nav class="mx-auto max-w-7xl px-4 sm:px-6 lg:px-8">
+    <div class="flex h-16 items-center justify-between">
+      <!-- Logo -->
+      <div class="flex-shrink-0">
+        <a href={homeUrl} class="text-2xl font-bold text-gray-900 hover:text-blue-600 transition-colors">
+          FreediveMap
+        </a>
+      </div>
+
+      <!-- Desktop Navigation -->
+      <div class="hidden md:flex md:items-center md:space-x-6">
+        <a href={schoolsUrl} class="text-gray-700 hover:text-blue-600 px-3 py-2 text-sm font-medium transition-colors">
+          {t(locale, 'common.nav.schools')}
+        </a>
+        <a href={addSchoolUrl} rel="nofollow" class="text-gray-700 hover:text-blue-600 px-3 py-2 text-sm font-medium transition-colors">
+          {t(locale, 'common.nav.addSchool')}
+        </a>
+        <a href={aboutUrl} class="text-gray-700 hover:text-blue-600 px-3 py-2 text-sm font-medium transition-colors">
+          {t(locale, 'common.nav.about')}
+        </a>
+        
+        <!-- Language Toggle -->
+        <a 
+          href={otherLocaleUrl} 
+          class="text-gray-700 hover:text-blue-600 px-3 py-2 text-sm font-medium transition-colors"
+          aria-label={`Switch to ${otherLocale === 'en' ? 'English' : 'Español'}`}
+        >
+          {t(locale, `common.languages.${otherLocale}`)}
+        </a>
+      </div>
+
+      <!-- Mobile Menu Button -->
+      <div class="md:hidden">
+        <button 
+          type="button" 
+          class="mobile-menu-button inline-flex items-center justify-center rounded-md p-2 text-gray-700 hover:bg-gray-100 focus:outline-none focus:ring-2 focus:ring-inset focus:ring-blue-500"
+          aria-expanded="false"
+          aria-label="Toggle menu"
+        >
+          <svg class="h-6 w-6" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M4 6h16M4 12h16M4 18h16" />
+          </svg>
+        </button>
+      </div>
+    </div>
+
+    <!-- Mobile Navigation -->
+    <div class="mobile-menu hidden md:hidden pb-4">
+      <div class="space-y-1 px-2 pt-2">
+        <a href={schoolsUrl} class="block px-3 py-2 text-base font-medium text-gray-700 hover:bg-gray-100 hover:text-blue-600 rounded-md">
+          {t(locale, 'common.nav.schools')}
+        </a>
+        <a href={addSchoolUrl} rel="nofollow" class="block px-3 py-2 text-base font-medium text-gray-700 hover:bg-gray-100 hover:text-blue-600 rounded-md">
+          {t(locale, 'common.nav.addSchool')}
+        </a>
+        <a href={aboutUrl} class="block px-3 py-2 text-base font-medium text-gray-700 hover:bg-gray-100 hover:text-blue-600 rounded-md">
+          {t(locale, 'common.nav.about')}
+        </a>
+        <a 
+          href={otherLocaleUrl} 
+          class="block px-3 py-2 text-base font-medium text-gray-700 hover:bg-gray-100 hover:text-blue-600 rounded-md"
+        >
+          {t(locale, `common.languages.${otherLocale}`)}
+        </a>
+      </div>
+    </div>
+  </nav>
+</header>
+
+<script>
+  // Mobile menu toggle
+  document.addEventListener('DOMContentLoaded', () => {
+    const menuButton = document.querySelector('.mobile-menu-button');
+    const mobileMenu = document.querySelector('.mobile-menu');
+    
+    if (menuButton && mobileMenu) {
+      menuButton.addEventListener('click', () => {
+        const isHidden = mobileMenu.classList.contains('hidden');
+        mobileMenu.classList.toggle('hidden', !isHidden);
+        menuButton.setAttribute('aria-expanded', isHidden ? 'true' : 'false');
+      });
+    }
+  });
+</script>
+
+<style>
+  /* Ensure header stays on top */
+  header {
+    box-shadow: 0 1px 3px 0 rgb(0 0 0 / 0.1);
+  }
+</style>
+
