@@ -4,7 +4,25 @@ import { t } from '../utils/i18n.js';
 
 const locale = Astro.currentLocale || 'en';
 const otherLocale = locale === 'es' ? 'en' : 'es';
-const otherLocaleUrl = getRelativeLocaleUrl(otherLocale);
+
+// Get current pathname without locale prefix
+const pathname = Astro.url.pathname;
+const locales = ['en', 'es'];
+let pathWithoutLocale = pathname;
+
+// Extract path without locale prefix
+for (const loc of locales) {
+  if (pathname.startsWith(`/${loc}/`)) {
+    pathWithoutLocale = pathname.slice(`/${loc}/`.length) || '/';
+    break;
+  } else if (pathname === `/${loc}`) {
+    pathWithoutLocale = '/';
+    break;
+  }
+}
+
+// Generate URL for the other locale maintaining the current path
+const otherLocaleUrl = getRelativeLocaleUrl(otherLocale, pathWithoutLocale);
 const homeUrl = getRelativeLocaleUrl(locale);
 const aboutUrl = getRelativeLocaleUrl(locale, 'about');
 const languageKey = `common.languages.${otherLocale}`;
