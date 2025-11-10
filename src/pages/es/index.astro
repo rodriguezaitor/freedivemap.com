@@ -4,61 +4,38 @@ import Header from '../../components/Header.astro';
 import { Button } from '@/components/ui/button';
 import { getRelativeLocaleUrl } from 'astro:i18n';
 import { t } from '../../utils/i18n.js';
+import { getCollection } from 'astro:content';
 
 const locale = Astro.currentLocale || 'es';
 
-// Search data - hardcoded for now
+// Get all regions from the collection
+const allRegions = await getCollection('regions');
+const regions = allRegions.map(region => ({
+  name: region.data.name[locale],
+  description: region.data.description?.[locale] || '',
+  url: `/${locale}/${region.id}/`,
+  countries: Object.keys(region.data.countries).length,
+  slug: region.id,
+}));
+
+// Get all destinations from the collection
+const allDestinations = await getCollection('destinations');
+const destinations = allDestinations.slice(0, 6).map(dest => ({
+  name: dest.data.name[locale],
+  description: dest.data.description[locale],
+  url: `/${locale}/${dest.data.region}/${dest.data.country}/${dest.data.city}/`,
+}));
+
+// Search data - build from destinations collection
 const searchData = {
-  cities: [
-    { name: "Koh Tao", slug: "koh-tao", country: "thailand", region: "asia", type: "city" },
-    { name: "Panglao", slug: "panglao", country: "philippines", region: "asia", type: "city" },
-    { name: "Amed", slug: "amed", country: "indonesia", region: "asia", type: "city" },
-    { name: "Tenerife", slug: "tenerife", country: "spain", region: "europe", type: "city" },
-    { name: "Valletta", slug: "valletta", country: "malta", region: "europe", type: "city" },
-    { name: "Dahab", slug: "dahab", country: "egypt", region: "africa", type: "city" },
-    { name: "Sharm El Sheikh", slug: "sharm-el-sheikh", country: "egypt", region: "africa", type: "city" },
-    { name: "Cozumel", slug: "cozumel", country: "mexico", region: "americas", type: "city" },
-    { name: "Roatan", slug: "roatan", country: "honduras", region: "americas", type: "city" },
-  ]
+  cities: allDestinations.map(dest => ({
+    name: dest.data.name[locale],
+    slug: dest.data.city,
+    country: dest.data.country,
+    region: dest.data.region,
+    type: "city"
+  }))
 };
-
-// Destinations data
-const destinations = [
-  { name: t(locale, 'home.destinations.amed.name'), description: t(locale, 'home.destinations.amed.description'), url: `/${locale}/asia/indonesia/amed/` },
-  { name: t(locale, 'home.destinations.panglao.name'), description: t(locale, 'home.destinations.panglao.description'), url: `/${locale}/asia/philippines/panglao/` },
-  { name: t(locale, 'home.destinations.dahab.name'), description: t(locale, 'home.destinations.dahab.description'), url: `/${locale}/africa/egypt/dahab/` },
-  { name: t(locale, 'home.destinations.tenerife.name'), description: t(locale, 'home.destinations.tenerife.description'), url: `/${locale}/europe/spain/tenerife/` },
-  { name: t(locale, 'home.destinations.valletta.name'), description: t(locale, 'home.destinations.valletta.description'), url: `/${locale}/europe/malta/valletta/` },
-  { name: t(locale, 'home.destinations.kohTao.name'), description: t(locale, 'home.destinations.kohTao.description'), url: `/${locale}/asia/thailand/koh-tao/` },
-];
-
-// Regions data
-const regions = [
-  { 
-    name: t(locale, 'home.regions.asia.title'), 
-    description: t(locale, 'home.regions.asia.description'), 
-    url: `/${locale}/asia/`,
-    countries: 0
-  },
-  { 
-    name: t(locale, 'home.regions.europe.title'), 
-    description: t(locale, 'home.regions.europe.description'), 
-    url: `/${locale}/europe/`,
-    countries: 0
-  },
-  { 
-    name: t(locale, 'home.regions.africa.title'), 
-    description: t(locale, 'home.regions.africa.description'), 
-    url: `/${locale}/africa/`,
-    countries: 0
-  },
-  { 
-    name: t(locale, 'home.regions.americas.title'), 
-    description: t(locale, 'home.regions.americas.description'), 
-    url: `/${locale}/americas/`,
-    countries: 0
-  },
-];
 ---
 
 <Layout seoKey="home">

@@ -1,0 +1,163 @@
+---
+export const prerender = false;
+
+import { getCollection, getEntry } from 'astro:content';
+import Layout from '../../layouts/Layout.astro';
+import Header from '../../components/Header.astro';
+import { getRelativeLocaleUrl } from 'astro:i18n';
+import { t } from '../../utils/i18n.js';
+
+const locale = Astro.currentLocale || 'en';
+const { region: regionSlug } = Astro.params;
+
+if (!regionSlug) {
+  return Astro.redirect('/en/');
+}
+
+// Get the region from the collection
+const region = await getEntry('regions', regionSlug);
+
+if (!region) {
+  return Astro.redirect('/en/');
+}
+
+// Get all destinations for this region
+const allDestinations = await getCollection('destinations', ({ data }) => {
+  return data.region === regionSlug;
+});
+
+// Count countries in this region
+const countryCount = Object.keys(region.data.countries).length;
+
+// Get all countries with their cities
+const countries = Object.entries(region.data.countries).map(([countrySlug, countryData]: [string, any]) => {
+  const cities = Object.entries(countryData.cities).map(([citySlug, cityData]: [string, any]) => ({
+    slug: citySlug,
+    ...cityData,
+  }));
+  
+  return {
+    slug: countrySlug,
+    ...countryData,
+    cities,
+    cityCount: cities.length,
+  };
+});
+
+// Filter destinations by country to show on country cards
+const destinationsByCountry = countries.reduce((acc, country) => {
+  acc[country.slug] = allDestinations.filter(dest => dest.data.country === country.slug);
+  return acc;
+}, {} as Record<string, typeof allDestinations>);
+---
+
+<Layout seoKey="home">
+  <Header />
+  
+  <div class="min-h-screen bg-white">
+    <!-- Hero Section -->
+    <section class="bg-gradient-to-br from-blue-50 via-cyan-50 to-teal-50 py-16">
+      <div class="mx-auto max-w-7xl px-4 sm:px-6 lg:px-8">
+        <div class="text-center">
+          <h1 class="text-4xl md:text-5xl lg:text-6xl font-bold text-gray-900 mb-6">
+            {region.data.name[locale]}
+          </h1>
+          <p class="text-xl md:text-2xl text-gray-700 mb-8 max-w-3xl mx-auto">
+            {region.data.description?.[locale] || ''}
+          </p>
+          <div class="flex items-center justify-center gap-4 text-lg text-gray-600">
+            <span>{countryCount} {t(locale, 'home.regions.countries')}</span>
+            <span>•</span>
+            <span>{allDestinations.length} {locale === 'en' ? 'destinations' : 'destinos'}</span>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- Countries Section -->
+    <section class="py-16 bg-white">
+      <div class="mx-auto max-w-7xl px-4 sm:px-6 lg:px-8">
+        <div class="text-center mb-12">
+          <h2 class="text-3xl md:text-4xl font-bold text-gray-900 mb-4">
+            {locale === 'en' ? 'Countries' : 'Países'}
+          </h2>
+          <p class="text-lg text-gray-600 max-w-2xl mx-auto">
+            {locale === 'en' ? 'Explore freediving destinations by country' : 'Explora destinos de buceo libre por país'}
+          </p>
+        </div>
+        
+        <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6">
+          {countries.map((country) => {
+            const countryDestinations = destinationsByCountry[country.slug] || [];
+            return (
+              <a 
+                href={`/${locale}/${regionSlug}/${country.slug}/`} 
+                class="bg-white rounded-lg shadow-md hover:shadow-lg transition-shadow border border-gray-200 p-6 block"
+              >
+                <h3 class="text-xl font-semibold text-gray-900 mb-2">{country.name[locale]}</h3>
+                <p class="text-sm text-gray-600 mb-4">
+                  {country.cityCount} {locale === 'en' ? 'cities' : 'ciudades'}
+                </p>
+                {countryDestinations.length > 0 && (
+                  <div class="mt-4">
+                    <p class="text-xs text-gray-500 mb-2">{locale === 'en' ? 'Top destinations:' : 'Destinos principales:'}</p>
+                    <div class="flex flex-wrap gap-2">
+                      {countryDestinations.slice(0, 3).map((dest) => (
+                        <span class="text-xs px-2 py-1 bg-blue-100 text-blue-800 rounded">
+                          {dest.data.name[locale]}
+                        </span>
+                      ))}
+                    </div>
+                  </div>
+                )}
+                <div class="flex items-center justify-between mt-4">
+                  <span class="text-sm text-blue-600 font-medium">
+                    {locale === 'en' ? 'Explore →' : 'Explorar →'}
+                  </span>
+                </div>
+              </a>
+            );
+          })}
+        </div>
+      </div>
+    </section>
+
+    <!-- Top Destinations Section -->
+    {allDestinations.length > 0 && (
+      <section class="py-16 bg-gray-50">
+        <div class="mx-auto max-w-7xl px-4 sm:px-6 lg:px-8">
+          <div class="text-center mb-12">
+            <h2 class="text-3xl md:text-4xl font-bold text-gray-900 mb-4">
+              {locale === 'en' ? 'Top Destinations' : 'Destinos Principales'}
+            </h2>
+            <p class="text-lg text-gray-600 max-w-2xl mx-auto">
+              {locale === 'en' ? 'Popular freediving locations in this region' : 'Ubicaciones populares de buceo libre en esta región'}
+            </p>
+          </div>
+          
+          <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6">
+            {allDestinations.map((destination) => {
+              const countrySlug = destination.data.country;
+              const citySlug = destination.data.city;
+              const destinationUrl = `/${locale}/${regionSlug}/${countrySlug}/${citySlug}/`;
+              
+              return (
+                <a href={destinationUrl} class="bg-white rounded-lg shadow-md hover:shadow-lg transition-shadow border border-gray-200 overflow-hidden block">
+                  <div class="h-48 bg-gradient-to-br from-blue-400 to-cyan-500 flex items-center justify-center">
+                    <span class="text-4xl">🌊</span>
+                  </div>
+                  <div class="p-6">
+                    <h3 class="text-xl font-semibold text-gray-900 mb-2">{destination.data.name[locale]}</h3>
+                    <p class="text-sm text-gray-600 mb-4">{destination.data.description[locale]}</p>
+                    <span class="text-blue-600 font-medium text-sm">{t(locale, 'home.destinations.explore')}</span>
+                  </div>
+                </a>
+              );
+            })}
+          </div>
+        </div>
+      </section>
+    )}
+  </div>
+</Layout>
+

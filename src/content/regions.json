@@ -5,6 +5,10 @@
       "es": "Asia"
     },
     "slug": "asia",
+    "description": {
+      "en": "Asia is home to some of the world's most popular freediving destinations, including Koh Tao in Thailand, Amed in Indonesia, and Panglao in the Philippines.",
+      "es": "Asia alberga algunos de los destinos de buceo libre más populares del mundo, incluyendo Koh Tao en Tailandia, Amed en Indonesia y Panglao en Filipinas."
+    },
     "countries": {
       "thailand": {
         "name": {
@@ -62,6 +66,10 @@
       "es": "Europa"
     },
     "slug": "europe",
+    "description": {
+      "en": "Europe offers year-round freediving opportunities with world-class facilities in destinations like Tenerife, Spain and Valletta, Malta.",
+      "es": "Europa ofrece oportunidades de buceo libre durante todo el año con instalaciones de clase mundial en destinos como Tenerife, España y Valletta, Malta."
+    },
     "countries": {
       "spain": {
         "name": {
@@ -103,6 +111,10 @@
       "es": "África"
     },
     "slug": "africa",
+    "description": {
+      "en": "Africa is renowned for freediving, particularly Egypt's Dahab, home to the famous Blue Hole. This region offers exceptional depth training opportunities.",
+      "es": "África es reconocida por el buceo libre, particularmente Dahab en Egipto, hogar del famoso Blue Hole. Esta región ofrece excepcionales oportunidades de entrenamiento en profundidad."
+    },
     "countries": {
       "egypt": {
         "name": {
@@ -135,6 +147,10 @@
       "es": "Américas"
     },
     "slug": "americas",
+    "description": {
+      "en": "The Americas offer diverse freediving experiences from the Caribbean waters of Cozumel, Mexico to the tropical destinations of Central America.",
+      "es": "Las Américas ofrecen diversas experiencias de buceo libre desde las aguas del Caribe de Cozumel, México hasta los destinos tropicales de Centroamérica."
+    },
     "countries": {
       "mexico": {
         "name": {
