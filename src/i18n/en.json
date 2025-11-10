@@ -11,90 +11,85 @@
     "nav": {
       "home": "Home",
       "about": "About",
-      "search": "Search",
-      "searchPlaceholder": "Search by city...",
-      "viewLocation": "View Location"
+      "contact": "Contact"
     },
-    "pagination": {
-      "previous": "Previous",
-      "next": "Next",
-      "page": "Page",
-      "of": "of",
-      "showing": "Showing",
-      "results": "results"
+    "legal": {
+      "privacy": "Privacy",
+      "terms": "Terms"
     },
     "footer": {
-      "copyright": "FreediveMap",
-      "about": "About",
-      "contact": "Contact",
-      "privacy": "Privacy",
-      "terms": "Terms",
-      "seoText": "FreediveMap is the global directory of freediving destinations and dive sites worldwide."
+      "description": "FreediveMap is the global directory of freediving destinations and dive sites worldwide."
     }
   },
   "home": {
     "hero": {
       "title": "Discover freediving destinations worldwide",
-      "subtitle": "Explore amazing dive sites and plan your next freediving adventure."
+      "subtitle": "Explore amazing dive sites and plan your next freediving adventure.",
+      "searchPlaceholder": "Search by city...",
+      "searchButton": "Search"
     },
-    "featuredRegions": {
+    "regions": {
       "title": "Explore by Region",
-      "subtitle": "Discover freediving destinations in your favorite region"
+      "subtitle": "Discover freediving destinations in your favorite region",
+      "countries": "countries",
+      "asia": {
+        "title": "Asia",
+        "description": "Asia is home to some of the world's most popular freediving destinations, including Koh Tao in Thailand, Amed in Indonesia, and Panglao in the Philippines."
+      },
+      "europe": {
+        "title": "Europe",
+        "description": "Europe offers year-round freediving opportunities with world-class facilities in destinations like Tenerife, Spain and Valletta, Malta."
+      },
+      "africa": {
+        "title": "Africa",
+        "description": "Africa is renowned for freediving, particularly Egypt's Dahab, home to the famous Blue Hole. This region offers exceptional depth training opportunities."
+      },
+      "americas": {
+        "title": "Americas",
+        "description": "The Americas offer diverse freediving experiences from the Caribbean waters of Cozumel, Mexico to the tropical destinations of Central America."
+      }
     },
-    "topDestinations": {
+    "destinations": {
       "title": "Top Destinations",
-      "subtitle": "Popular freediving locations worldwide"
+      "subtitle": "Popular freediving locations worldwide",
+      "explore": "Explore →",
+      "amed": {
+        "name": "Amed, Indonesia",
+        "description": "Amed in Bali offers stunning dive sites and comprehensive freediving courses in a beautiful tropical setting."
+      },
+      "panglao": {
+        "name": "Panglao, Philippines",
+        "description": "Panglao offers warm waters, excellent visibility, and is perfect for beginners and recreational freedivers."
+      },
+      "dahab": {
+        "name": "Dahab, Egypt",
+        "description": "Dahab is home to the famous Blue Hole and is a world-renowned destination for depth training and competitive freediving."
+      },
+      "tenerife": {
+        "name": "Tenerife, Spain",
+        "description": "Tenerife provides year-round freediving training with excellent conditions for depth and technique development."
+      },
+      "valletta": {
+        "name": "Valletta, Malta",
+        "description": "Malta offers world-class freediving facilities with access to deep water sites and professional training centers."
+      },
+      "kohTao": {
+        "name": "Koh Tao, Thailand",
+        "description": "Koh Tao is one of the world's premier freediving destinations, known for its calm waters, excellent visibility, and vibrant freediving community."
+      }
     },
-    "seoContent": {
+    "seo": {
       "title": "Discover Amazing Freediving Destinations Worldwide",
-      "paragraph1": "FreediveMap is your comprehensive guide to discovering freediving destinations and dive sites around the world. Whether you're a beginner exploring your first freediving location or an experienced diver seeking new adventures, we help you find the best spots for your freediving journey.",
-      "paragraph2": "From the warm waters of Koh Tao in Thailand to the world-famous Blue Hole in Dahab, Egypt, our platform helps you discover freediving destinations in the most sought-after locations. Each destination includes detailed information about dive sites, conditions, and what makes each location special.",
-      "paragraph3": "Explore destinations across Asia, Europe, Africa, and the Americas. Each region offers unique freediving experiences with different conditions, marine life, and underwater landscapes. Whether you're interested in shallow reef diving, deep water training, or recreational freediving, FreediveMap helps you plan your perfect adventure.",
-      "paragraph4": "Start your freediving journey today by exploring our directory of amazing destinations worldwide. Discover new dive sites, plan your next trip, and connect with the freediving community around the globe."
-    }
-  },
-  "regions": {
-    "asia": {
-      "name": "Asia",
-      "description": "Asia is home to some of the world's most popular freediving destinations, including Koh Tao in Thailand, Panglao in the Philippines, and Amed in Indonesia. These locations offer warm waters, excellent visibility, and vibrant freediving communities perfect for both beginners and advanced divers."
-    },
-    "europe": {
-      "name": "Europe",
-      "description": "Europe offers year-round freediving opportunities with world-class facilities in destinations like Tenerife, Spain and Malta. These locations provide excellent conditions for depth training and technique development, attracting freedivers from around the world."
-    },
-    "africa": {
-      "name": "Africa",
-      "description": "Africa is renowned for freediving, particularly Egypt's Dahab, home to the famous Blue Hole. This region offers world-class depth training facilities and is a hub for competitive freediving, attracting professional divers and instructors from across the globe."
-    },
-    "americas": {
-      "name": "Americas",
-      "description": "The Americas offer diverse freediving experiences from the Caribbean waters of Cozumel, Mexico to the pristine conditions in Roatan, Honduras. These destinations provide excellent opportunities for beginners and recreational freedivers with warm waters and abundant marine life."
-    }
-  },
-  "faq": {
-    "region": {
-      "q1": "What are the best freediving destinations in {region}?",
-      "a1": "{region} offers several world-class freediving destinations including {destinations}. Each location provides unique training opportunities and excellent conditions for freediving.",
-      "q2": "What makes a good freediving destination?",
-      "a2": "A good freediving destination offers clear water, good visibility, interesting marine life, and safe conditions. Popular destinations often have warm water, easy access to dive sites, and a vibrant freediving community.",
-      "q3": "When is the best time to visit {region} for freediving?",
-      "a3": "The best time varies by destination. Generally, you want to visit during the dry season when visibility is best. Many tropical destinations offer year-round freediving, while others have specific seasons with optimal conditions."
-    },
-    "country": {
-      "q1": "Is {country} good for freediving?",
-      "a1": "Yes, {country} offers excellent freediving conditions with {features}. The country has beautiful dive sites and amazing underwater experiences for freedivers of all levels.",
-      "q2": "What are the best dive sites in {country}?",
-      "a2": "{country} has many amazing dive sites, each offering unique experiences. Popular locations include {features}, known for their clear waters, abundant marine life, and excellent visibility.",
-      "q3": "When is the best time to visit {country} for freediving?",
-      "a3": "The best time to visit {country} for freediving depends on the specific destination. Generally, the dry season offers the best visibility and conditions. Many locations offer year-round freediving opportunities."
-    },
-    "city": {
-      "q1": "Is {city} good for freediving?",
-      "a1": "Yes, {city} is an excellent destination for freediving. The location offers {features}, making it ideal for both beginners and experienced freedivers.",
-      "q2": "What are the best dive sites in {city}?",
-      "a2": "{city} offers several amazing dive sites with {features}. Each location provides unique underwater experiences, from shallow reefs to deeper training areas.",
-      "q3": "What conditions can I expect in {city}?",
-      "a3": "{city} typically offers {features}. The water temperature, visibility, and marine life vary by season, so it's best to check current conditions before your visit."
+      "intro": "FreediveMap is your comprehensive guide to discovering freediving destinations and dive sites around the world. Whether you're a beginner exploring your first freediving location or an experienced diver seeking new adventures, we help you find the best spots for your freediving journey.",
+      "certifications": {
+        "title": "Professional Freediving Certifications",
+        "content": "From the warm waters of Koh Tao in Thailand to the world-famous Blue Hole in Dahab, Egypt, our platform helps you discover freediving destinations in the most sought-after locations. Each destination includes detailed information about dive sites, conditions, and what makes each location special."
+      },
+      "destinations": {
+        "title": "World-Class Freediving Destinations",
+        "content": "Explore destinations across Asia, Europe, Africa, and the Americas. Each region offers unique freediving experiences with different conditions, marine life, and underwater landscapes. Whether you're interested in shallow reef diving, deep water training, or recreational freediving, FreediveMap helps you plan your perfect adventure."
+      },
+      "cta": "Start your freediving journey today by exploring our directory of amazing destinations worldwide. Discover new dive sites, plan your next trip, and connect with the freediving community around the globe."
     }
   },
   "about": {
@@ -104,7 +99,7 @@
   "seo": {
     "default": {
       "title": "FreeDiveMap — Discover Freediving Destinations Worldwide",
-      "description": "Explore amazing freediving destinations and dive sites worldwide. Plan your next freediving adventure and discover new underwater experiences."
+      "description": "Explore amazing freediving destinations around the world. Browse by region and discover the perfect dive sites for your freediving adventure."
     },
     "pages": {
       "home": {
@@ -136,3 +131,4 @@
     "backHome": "Go back home"
   }
 }
+

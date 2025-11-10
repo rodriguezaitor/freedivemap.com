@@ -5,6 +5,9 @@ import { t } from '../utils/i18n.js';
 const locale = Astro.currentLocale || 'en';
 const homeUrl = getRelativeLocaleUrl(locale);
 const aboutUrl = getRelativeLocaleUrl(locale, 'about');
+const contactUrl = getRelativeLocaleUrl(locale, 'contact');
+const privacyUrl = getRelativeLocaleUrl(locale, 'privacy');
+const termsUrl = getRelativeLocaleUrl(locale, 'terms');
 const year = new Date().getFullYear();
 ---
 
@@ -16,42 +19,42 @@ const year = new Date().getFullYear();
         <h3 class="text-sm font-semibold text-gray-900 mb-4">{t(locale, 'common.nav.home')}</h3>
         <nav class="flex flex-col gap-3">
           <a href={homeUrl} class="text-sm text-gray-600 hover:text-blue-600 transition-colors">
-        {t(locale, 'common.nav.home')}
-      </a>
+            {t(locale, 'common.nav.home')}
+          </a>
           <a href={aboutUrl} class="text-sm text-gray-600 hover:text-blue-600 transition-colors">
-        {t(locale, 'common.nav.about')}
-      </a>
-          <a href={getRelativeLocaleUrl(locale, 'contact')} class="text-sm text-gray-600 hover:text-blue-600 transition-colors">
-            {t(locale, 'common.footer.contact')}
+            {t(locale, 'common.nav.about')}
+          </a>
+          <a href={contactUrl} class="text-sm text-gray-600 hover:text-blue-600 transition-colors">
+            {t(locale, 'common.nav.contact')}
           </a>
         </nav>
       </div>
-
+      
       <!-- Legal Links -->
       <div>
         <h3 class="text-sm font-semibold text-gray-900 mb-4">Legal</h3>
         <nav class="flex flex-col gap-3">
-          <a href={getRelativeLocaleUrl(locale, 'privacy')} class="text-sm text-gray-600 hover:text-blue-600 transition-colors">
-            {t(locale, 'common.footer.privacy')}
+          <a href={privacyUrl} class="text-sm text-gray-600 hover:text-blue-600 transition-colors">
+            {t(locale, 'common.legal.privacy')}
           </a>
-          <a href={getRelativeLocaleUrl(locale, 'terms')} class="text-sm text-gray-600 hover:text-blue-600 transition-colors">
-            {t(locale, 'common.footer.terms')}
+          <a href={termsUrl} class="text-sm text-gray-600 hover:text-blue-600 transition-colors">
+            {t(locale, 'common.legal.terms')}
           </a>
-    </nav>
+        </nav>
       </div>
-
+      
       <!-- SEO Text -->
       <div>
         <p class="text-sm text-gray-600 leading-relaxed">
-          {t(locale, 'common.footer.seoText')}
+          {t(locale, 'common.footer.description')}
         </p>
       </div>
     </div>
-
+    
     <!-- Copyright -->
     <div class="border-t border-gray-200 pt-6">
       <p class="text-sm text-gray-600 text-center">
-        © {year} {t(locale, 'common.footer.copyright')}. All rights reserved.
+        © {year} FreediveMap. All rights reserved.
       </p>
     </div>
   </div>

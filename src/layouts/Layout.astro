@@ -81,7 +81,75 @@ const twitterDomain = base.hostname;
 		<link rel="alternate" hreflang="en" href={enUrl} />
 		<link rel="alternate" hreflang="es" href={esUrl} />
 		<link rel="alternate" hreflang="x-default" href={enUrl} />
-		<script type="module" src="/src/scripts/utm.ts"></script>
+		<script is:inline>
+			(function() {
+				const UTM_KEYS = ['utm_source', 'utm_medium', 'utm_campaign', 'utm_term', 'utm_content', 'gclid', 'fbclid'];
+				
+				function getQueryParams() {
+					return new URLSearchParams(window.location.search);
+				}
+				
+				function extractUtm() {
+					const params = getQueryParams();
+					const data = {};
+					let hasAny = false;
+					
+					for (const key of UTM_KEYS) {
+						const val = params.get(key);
+						if (val) {
+							data[key] = val;
+							hasAny = true;
+						}
+					}
+					
+					if (!hasAny) return {};
+					
+					data.ts = new Date().toISOString();
+					data.page = window.location.href;
+					data.referrer = document.referrer || '';
+					return data;
+				}
+				
+				function computeCookieAttributes(days = 180) {
+					const maxAge = days * 24 * 60 * 60;
+					const isHttps = window.location.protocol === 'https:';
+					const SHARED_ROOT_DOMAIN = 'mails.com';
+					const host = window.location.hostname;
+					const shareAcrossSubdomains = host === SHARED_ROOT_DOMAIN || host.endsWith(`.${SHARED_ROOT_DOMAIN}`);
+					const domainPart = shareAcrossSubdomains ? `; Domain=.${SHARED_ROOT_DOMAIN}` : '';
+					const securePart = isHttps ? '; Secure' : '';
+					return `; Path=/; Max-Age=${maxAge}; SameSite=Lax${securePart}${domainPart}`;
+				}
+				
+				function setCookie(name, value, days = 180) {
+					const attrs = computeCookieAttributes(days);
+					document.cookie = `${name}=${encodeURIComponent(value)}${attrs}`;
+				}
+				
+				function getCookie(name) {
+					const match = document.cookie.match(
+						new RegExp('(?:^|; )' + name.replace(/([.$?*|{}()[\]\\/+^])/g, '\\$1') + '=([^;]*)')
+					);
+					return match ? decodeURIComponent(match[1]) : null;
+				}
+				
+				try {
+					const utm = extractUtm();
+					if (Object.keys(utm).length === 0) return;
+					
+					const serialized = JSON.stringify(utm);
+					setCookie('utm_last', serialized);
+					
+					if (!getCookie('utm_first')) {
+						setCookie('utm_first', serialized);
+					}
+					
+					try {
+						localStorage.setItem('utm', serialized);
+					} catch {}
+				} catch {}
+			})();
+		</script>
 	</head>
 	<body>
 		<ClientRouter />

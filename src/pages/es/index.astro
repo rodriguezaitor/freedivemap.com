@@ -1,19 +1,350 @@
 ---
-import Home from '../../components/Home.astro';
 import Layout from '../../layouts/Layout.astro';
 import Header from '../../components/Header.astro';
-import { generateOrganizationSchema } from '../../utils/seo';
+import { Button } from '@/components/ui/button';
+import { getRelativeLocaleUrl } from 'astro:i18n';
+import { t } from '../../utils/i18n.js';
+
+const locale = Astro.currentLocale || 'es';
+
+// Search data - hardcoded for now
+const searchData = {
+  cities: [
+    { name: "Koh Tao", slug: "koh-tao", country: "thailand", region: "asia", type: "city" },
+    { name: "Panglao", slug: "panglao", country: "philippines", region: "asia", type: "city" },
+    { name: "Amed", slug: "amed", country: "indonesia", region: "asia", type: "city" },
+    { name: "Tenerife", slug: "tenerife", country: "spain", region: "europe", type: "city" },
+    { name: "Valletta", slug: "valletta", country: "malta", region: "europe", type: "city" },
+    { name: "Dahab", slug: "dahab", country: "egypt", region: "africa", type: "city" },
+    { name: "Sharm El Sheikh", slug: "sharm-el-sheikh", country: "egypt", region: "africa", type: "city" },
+    { name: "Cozumel", slug: "cozumel", country: "mexico", region: "americas", type: "city" },
+    { name: "Roatan", slug: "roatan", country: "honduras", region: "americas", type: "city" },
+  ]
+};
+
+// Destinations data
+const destinations = [
+  { name: t(locale, 'home.destinations.amed.name'), description: t(locale, 'home.destinations.amed.description'), url: `/${locale}/asia/indonesia/amed/` },
+  { name: t(locale, 'home.destinations.panglao.name'), description: t(locale, 'home.destinations.panglao.description'), url: `/${locale}/asia/philippines/panglao/` },
+  { name: t(locale, 'home.destinations.dahab.name'), description: t(locale, 'home.destinations.dahab.description'), url: `/${locale}/africa/egypt/dahab/` },
+  { name: t(locale, 'home.destinations.tenerife.name'), description: t(locale, 'home.destinations.tenerife.description'), url: `/${locale}/europe/spain/tenerife/` },
+  { name: t(locale, 'home.destinations.valletta.name'), description: t(locale, 'home.destinations.valletta.description'), url: `/${locale}/europe/malta/valletta/` },
+  { name: t(locale, 'home.destinations.kohTao.name'), description: t(locale, 'home.destinations.kohTao.description'), url: `/${locale}/asia/thailand/koh-tao/` },
+];
+
+// Regions data
+const regions = [
+  { 
+    name: t(locale, 'home.regions.asia.title'), 
+    description: t(locale, 'home.regions.asia.description'), 
+    url: `/${locale}/asia/`,
+    countries: 0
+  },
+  { 
+    name: t(locale, 'home.regions.europe.title'), 
+    description: t(locale, 'home.regions.europe.description'), 
+    url: `/${locale}/europe/`,
+    countries: 0
+  },
+  { 
+    name: t(locale, 'home.regions.africa.title'), 
+    description: t(locale, 'home.regions.africa.description'), 
+    url: `/${locale}/africa/`,
+    countries: 0
+  },
+  { 
+    name: t(locale, 'home.regions.americas.title'), 
+    description: t(locale, 'home.regions.americas.description'), 
+    url: `/${locale}/americas/`,
+    countries: 0
+  },
+];
 ---
 
 <Layout seoKey="home">
-	{(() => {
-		// Safely convert Astro.site to string for Cloudflare Workers compatibility
-		const siteUrl = Astro.site ? String(Astro.site) : Astro.url.origin;
-		const orgSchema = generateOrganizationSchema(siteUrl);
-		return <script type="application/ld+json" set:html={JSON.stringify(orgSchema)} />;
-	})()}
-	<Header />
-	<Home />
+  <Header />
+  
+  <div class="min-h-screen bg-white">
+    <!-- Hero Section -->
+    <section class="bg-gradient-to-br from-blue-50 via-cyan-50 to-teal-50 py-20">
+      <div class="mx-auto max-w-7xl px-4 sm:px-6 lg:px-8">
+        <div class="text-center">
+          <h1 class="text-4xl md:text-5xl lg:text-6xl font-bold text-gray-900 mb-6">
+            {t(locale, 'home.hero.title')}
+          </h1>
+          <p class="text-xl md:text-2xl text-gray-700 mb-8 max-w-3xl mx-auto">
+            {t(locale, 'home.hero.subtitle')}
+          </p>
+          
+          <!-- Search Bar -->
+          <div class="mb-8">
+            <div class="relative w-full max-w-2xl mx-auto">
+              <form action="#" method="get" class="flex gap-2" id="search-form">
+                <div class="relative flex-1">
+                  <input 
+                    type="text" 
+                    name="q" 
+                    id="search-input" 
+                    placeholder={t(locale, 'home.hero.searchPlaceholder')} 
+                    class="w-full px-4 py-3 pl-10 border border-gray-300 rounded-lg focus:outline-none focus:ring-2 focus:ring-blue-500 focus:border-blue-500" 
+                    autocomplete="off"
+                  />
+                  <svg class="absolute left-3 top-1/2 transform -translate-y-1/2 w-5 h-5 text-gray-400" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                    <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M21 21l-6-6m2-5a7 7 0 11-14 0 7 7 0 0114 0z"></path>
+                  </svg>
+                </div>
+                <Button type="submit" variant="default" class="px-6 py-3">
+                  {t(locale, 'home.hero.searchButton')}
+                </Button>
+              </form>
+              
+              <!-- Autocomplete dropdown -->
+              <div id="autocomplete-results" class="hidden absolute z-50 w-full mt-2 bg-white border border-gray-300 rounded-lg shadow-lg max-h-96 overflow-y-auto">
+                <!-- Results will be populated by JavaScript -->
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- Featured Regions Section -->
+    <section class="py-16 bg-white">
+      <div class="mx-auto max-w-7xl px-4 sm:px-6 lg:px-8">
+        <div class="text-center mb-12">
+          <h2 class="text-3xl md:text-4xl font-bold text-gray-900 mb-4">
+            {t(locale, 'home.regions.title')}
+          </h2>
+          <p class="text-lg text-gray-600 max-w-2xl mx-auto">
+            {t(locale, 'home.regions.subtitle')}
+          </p>
+        </div>
+        
+        <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-6">
+          {regions.map((region) => (
+            <a href={region.url} class="bg-white rounded-lg shadow-md hover:shadow-lg transition-shadow border border-gray-200 p-6 block">
+              <h3 class="text-xl font-semibold text-gray-900 mb-2">{region.name}</h3>
+              <p class="text-sm text-gray-600 mb-4 line-clamp-3">{region.description}</p>
+              <div class="flex items-center justify-between">
+                <span class="text-sm text-blue-600 font-medium">
+                  {region.countries} {t(locale, 'home.regions.countries')}
+                </span>
+                <span class="text-blue-600">→</span>
+              </div>
+            </a>
+          ))}
+        </div>
+      </div>
+    </section>
+
+    <!-- Top Destinations Section -->
+    <section class="py-16 bg-gray-50">
+      <div class="mx-auto max-w-7xl px-4 sm:px-6 lg:px-8">
+        <div class="text-center mb-12">
+          <h2 class="text-3xl md:text-4xl font-bold text-gray-900 mb-4">
+            {t(locale, 'home.destinations.title')}
+          </h2>
+          <p class="text-lg text-gray-600 max-w-2xl mx-auto">
+            {t(locale, 'home.destinations.subtitle')}
+          </p>
+        </div>
+        
+        <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6">
+          {destinations.map((destination) => (
+            <a href={destination.url} class="bg-white rounded-lg shadow-md hover:shadow-lg transition-shadow border border-gray-200 overflow-hidden block">
+              <div class="h-48 bg-gradient-to-br from-blue-400 to-cyan-500 flex items-center justify-center">
+                <span class="text-4xl">🌊</span>
+              </div>
+              <div class="p-6">
+                <h3 class="text-xl font-semibold text-gray-900 mb-2">{destination.name}</h3>
+                <p class="text-sm text-gray-600 mb-4">{destination.description}</p>
+                <span class="text-blue-600 font-medium text-sm">{t(locale, 'home.destinations.explore')}</span>
+              </div>
+            </a>
+          ))}
+        </div>
+      </div>
+    </section>
+
+    <!-- SEO Content Section -->
+    <section class="py-16 bg-white">
+      <div class="mx-auto max-w-4xl px-4 sm:px-6 lg:px-8">
+        <article class="prose prose-lg max-w-none">
+          <h2 class="text-3xl font-bold text-gray-900 mb-6">
+            {t(locale, 'home.seo.title')}
+          </h2>
+          <p class="text-gray-700 mb-4 leading-relaxed">
+            {t(locale, 'home.seo.intro')}
+          </p>
+          
+          <h3 class="text-2xl font-semibold text-gray-900 mt-8 mb-4">
+            {t(locale, 'home.seo.certifications.title')}
+          </h3>
+          <p class="text-gray-700 mb-4 leading-relaxed">
+            {t(locale, 'home.seo.certifications.content')}
+          </p>
+          
+          <h3 class="text-2xl font-semibold text-gray-900 mt-8 mb-4">
+            {t(locale, 'home.seo.destinations.title')}
+          </h3>
+          <p class="text-gray-700 mb-4 leading-relaxed">
+            {t(locale, 'home.seo.destinations.content')}
+          </p>
+          
+          <p class="text-gray-700 mb-4 leading-relaxed">
+            {t(locale, 'home.seo.cta')}
+          </p>
+        </article>
+      </div>
+    </section>
+  </div>
 </Layout>
 
-
+<script define:vars={{ searchData, locale }}>
+  // Wait for DOM to be ready
+  document.addEventListener('DOMContentLoaded', () => {
+    const searchInput = document.getElementById('search-input');
+    const autocompleteResults = document.getElementById('autocomplete-results');
+    const searchForm = document.getElementById('search-form');
+    
+    if (!searchInput || !autocompleteResults || !searchForm) return;
+    
+    let selectedIndex = -1;
+    let results: Array<{ name: string; url: string; type: string }> = [];
+    
+    function getSearchResults(query: string) {
+      if (query.length < 2) return [];
+      
+      const lowerQuery = query.toLowerCase();
+      const matches: Array<{ name: string; url: string; type: string }> = [];
+      
+      // Search only cities
+      searchData.cities.forEach((city: { name: string; slug: string; country: string; region: string; type: string }) => {
+        if (city.name.toLowerCase().includes(lowerQuery)) {
+          // Generate city URL using the new structure: /locale/region/country/city
+          const cityUrl = `/${locale}/${city.region}/${city.country}/${city.slug}/`;
+          matches.push({
+            name: city.name,
+            url: cityUrl,
+            type: 'city'
+          });
+        }
+      });
+      
+      return matches.slice(0, 8); // Limit to 8 results
+    }
+    
+    function renderResults(matches: Array<{ name: string; url: string; type: string }>) {
+      if (matches.length === 0) {
+        autocompleteResults.classList.add('hidden');
+        return;
+      }
+      
+      results = matches;
+      autocompleteResults.innerHTML = matches.map((match, index) => `
+        <a 
+          href="${match.url}" 
+          class="autocomplete-item block px-4 py-3 hover:bg-gray-100 border-b border-gray-200 last:border-b-0 ${index === selectedIndex ? 'bg-gray-100' : ''}"
+          data-index="${index}"
+          style="transition: background-color 0.15s ease;"
+        >
+          <div class="flex items-center gap-3">
+            <span class="text-xs px-2 py-1 bg-blue-100 text-blue-800 rounded">${match.type}</span>
+            <span class="text-gray-900">${match.name}</span>
+          </div>
+        </a>
+      `).join('');
+      autocompleteResults.classList.remove('hidden');
+    }
+    
+    searchInput.addEventListener('input', (e) => {
+      const query = (e.target as HTMLInputElement).value;
+      const matches = getSearchResults(query);
+      selectedIndex = -1;
+      renderResults(matches);
+    });
+    
+    searchInput.addEventListener('keydown', (e) => {
+      if (e.key === 'ArrowDown') {
+        e.preventDefault();
+        selectedIndex = Math.min(selectedIndex + 1, results.length - 1);
+        updateSelection();
+      } else if (e.key === 'ArrowUp') {
+        e.preventDefault();
+        selectedIndex = Math.max(selectedIndex - 1, -1);
+        updateSelection();
+      } else if (e.key === 'Enter') {
+        e.preventDefault();
+        const query = (e.target as HTMLInputElement).value.trim();
+        
+        // If there's a selected result, use it
+        if (selectedIndex >= 0 && results[selectedIndex]) {
+          window.location.href = results[selectedIndex].url;
+          return;
+        }
+        
+        // If there are visible results, use first one
+        if (results.length > 0) {
+          window.location.href = results[0].url;
+          return;
+        }
+        
+        // If no visible results, search again with current query
+        if (query.length >= 2) {
+          const matches = getSearchResults(query);
+          if (matches.length > 0) {
+            window.location.href = matches[0].url;
+          }
+        }
+      } else if (e.key === 'Escape') {
+        autocompleteResults.classList.add('hidden');
+      }
+    });
+    
+    // Handle form submission
+    if (searchForm) {
+      searchForm.addEventListener('submit', (e) => {
+        e.preventDefault();
+        const query = searchInput.value.trim();
+        
+        // If there are visible results, use them
+        if (selectedIndex >= 0 && results[selectedIndex]) {
+          window.location.href = results[selectedIndex].url;
+          return;
+        }
+        
+        // If there are results but none selected, use first result
+        if (results.length > 0) {
+          window.location.href = results[0].url;
+          return;
+        }
+        
+        // If no visible results, search again with current query
+        if (query.length >= 2) {
+          const matches = getSearchResults(query);
+          if (matches.length > 0) {
+            window.location.href = matches[0].url;
+          }
+        }
+      });
+    }
+    
+    function updateSelection() {
+      const items = autocompleteResults.querySelectorAll('.autocomplete-item');
+      items.forEach((item, index) => {
+        if (index === selectedIndex) {
+          item.classList.add('bg-gray-100');
+        } else {
+          item.classList.remove('bg-gray-100');
+        }
+      });
+    }
+    
+    // Hide autocomplete when clicking outside
+    document.addEventListener('click', (e) => {
+      if (!searchInput.contains(e.target as Node) && !autocompleteResults.contains(e.target as Node)) {
+        autocompleteResults.classList.add('hidden');
+      }
+    });
+  });
+</script>

@@ -18,10 +18,13 @@ export const t = (locale, key) => {
       value = value?.[k];
       if (value === undefined) return key;
     }
-    return value;
+    // Ensure we always return a string, never an object
+    return typeof value === 'string' ? value : String(value || key);
   }
   
-  return lang[key] || key;
+  const result = lang[key];
+  // Ensure we always return a string, never an object
+  return typeof result === 'string' ? result : String(result || key);
 };
 
 

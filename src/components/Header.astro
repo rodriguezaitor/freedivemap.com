@@ -4,12 +4,13 @@ import { t } from '../utils/i18n.js';
 
 const locale = Astro.currentLocale || 'en';
 const otherLocale = locale === 'es' ? 'en' : 'es';
-const otherLocaleUrl = getRelativeLocaleUrl(otherLocale, Astro.url.pathname.replace(`/${locale}`, '').replace(`/${otherLocale}`, '') || '/');
-const homeUrl = getRelativeLocaleUrl(locale, '/');
+const otherLocaleUrl = getRelativeLocaleUrl(otherLocale);
+const homeUrl = getRelativeLocaleUrl(locale);
 const aboutUrl = getRelativeLocaleUrl(locale, 'about');
+const languageKey = `common.languages.${otherLocale}`;
 ---
 
-<header class="w-full border-b bg-white sticky top-0 z-50">
+<header class="w-full border-b bg-white sticky top-0 z-50" style="box-shadow: 0 1px 3px rgba(0, 0, 0, 0.1);">
   <nav class="mx-auto max-w-7xl px-4 sm:px-6 lg:px-8">
     <div class="flex h-16 items-center justify-between">
       <!-- Logo -->
@@ -24,27 +25,17 @@ const aboutUrl = getRelativeLocaleUrl(locale, 'about');
         <a href={aboutUrl} class="text-gray-700 hover:text-blue-600 px-3 py-2 text-sm font-medium transition-colors">
           {t(locale, 'common.nav.about')}
         </a>
-        
         <!-- Language Toggle -->
-        <a 
-          href={otherLocaleUrl} 
-          class="text-gray-700 hover:text-blue-600 px-3 py-2 text-sm font-medium transition-colors"
-          aria-label={`Switch to ${otherLocale === 'en' ? 'English' : 'Español'}`}
-        >
-          {t(locale, `common.languages.${otherLocale}`)}
+        <a href={otherLocaleUrl} class="text-gray-700 hover:text-blue-600 px-3 py-2 text-sm font-medium transition-colors" aria-label={`Switch to ${t(locale, languageKey)}`}>
+          {t(locale, languageKey)}
         </a>
       </div>
 
       <!-- Mobile Menu Button -->
       <div class="md:hidden">
-        <button 
-          type="button" 
-          class="mobile-menu-button inline-flex items-center justify-center rounded-md p-2 text-gray-700 hover:bg-gray-100 focus:outline-none focus:ring-2 focus:ring-inset focus:ring-blue-500"
-          aria-expanded="false"
-          aria-label="Toggle menu"
-        >
+        <button type="button" class="mobile-menu-button inline-flex items-center justify-center rounded-md p-2 text-gray-700 hover:bg-gray-100 focus:outline-none focus:ring-2 focus:ring-inset focus:ring-blue-500" aria-expanded="false" aria-label="Toggle menu">
           <svg class="h-6 w-6" fill="none" viewBox="0 0 24 24" stroke="currentColor">
-            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M4 6h16M4 12h16M4 18h16" />
+            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M4 6h16M4 12h16M4 18h16"></path>
           </svg>
         </button>
       </div>
@@ -56,11 +47,8 @@ const aboutUrl = getRelativeLocaleUrl(locale, 'about');
         <a href={aboutUrl} class="block px-3 py-2 text-base font-medium text-gray-700 hover:bg-gray-100 hover:text-blue-600 rounded-md">
           {t(locale, 'common.nav.about')}
         </a>
-        <a 
-          href={otherLocaleUrl} 
-          class="block px-3 py-2 text-base font-medium text-gray-700 hover:bg-gray-100 hover:text-blue-600 rounded-md"
-        >
-          {t(locale, `common.languages.${otherLocale}`)}
+        <a href={otherLocaleUrl} class="block px-3 py-2 text-base font-medium text-gray-700 hover:bg-gray-100 hover:text-blue-600 rounded-md">
+          {t(locale, languageKey)}
         </a>
       </div>
     </div>
@@ -68,25 +56,17 @@ const aboutUrl = getRelativeLocaleUrl(locale, 'about');
 </header>
 
 <script>
-  // Mobile menu toggle
-  document.addEventListener('DOMContentLoaded', () => {
-    const menuButton = document.querySelector('.mobile-menu-button');
-    const mobileMenu = document.querySelector('.mobile-menu');
+  document.addEventListener("DOMContentLoaded", () => {
+    const menuButton = document.querySelector(".mobile-menu-button");
+    const mobileMenu = document.querySelector(".mobile-menu");
     
     if (menuButton && mobileMenu) {
-      menuButton.addEventListener('click', () => {
-        const isHidden = mobileMenu.classList.contains('hidden');
-        mobileMenu.classList.toggle('hidden', !isHidden);
-        menuButton.setAttribute('aria-expanded', isHidden ? 'true' : 'false');
+      menuButton.addEventListener("click", () => {
+        const isHidden = mobileMenu.classList.contains("hidden");
+        mobileMenu.classList.toggle("hidden", !isHidden);
+        menuButton.setAttribute("aria-expanded", isHidden ? "true" : "false");
       });
     }
   });
 </script>
-
-<style>
-  /* Ensure header stays on top */
-  header {
-    box-shadow: 0 1px 3px 0 rgb(0 0 0 / 0.1);
-  }
-</style>
 
