@@ -1,0 +1,180 @@
+---
+import { getCollection, getEntry } from 'astro:content';
+import Layout from '../../../../layouts/Layout.astro';
+import Header from '../../../../components/Header.astro';
+import Breadcrumbs from '../../../../components/Breadcrumbs.astro';
+import { getRelativeLocaleUrl } from 'astro:i18n';
+import { t } from '../../../../utils/i18n.js';
+import { render } from 'astro:content';
+
+export async function getStaticPaths() {
+  const destinations = await getCollection('destinations');
+  const regions = await getCollection('regions');
+  
+  // Create a map of region data for quick lookup
+  const regionMap = new Map();
+  regions.forEach(region => {
+    regionMap.set(region.id, region.data);
+  });
+  
+  return destinations.map((destination) => {
+    const regionData = regionMap.get(destination.data.region);
+    const countryData = regionData?.countries?.[destination.data.country];
+    
+    return {
+      params: {
+        region: destination.data.region,
+        country: destination.data.country,
+        city: destination.data.city,
+      },
+      props: {
+        destinationId: destination.id,
+        regionSlug: destination.data.region,
+        countrySlug: destination.data.country,
+        citySlug: destination.data.city,
+      },
+    };
+  });
+}
+
+const locale = Astro.currentLocale || 'es';
+const { destinationId, regionSlug, countrySlug, citySlug } = Astro.props;
+
+// Get the destination from the collection
+let destination;
+try {
+  destination = await getEntry('destinations', destinationId);
+} catch (error) {
+  console.error('Error fetching destination:', error);
+  return Astro.redirect(`/${locale}/`);
+}
+
+if (!destination) {
+  return Astro.redirect(`/${locale}/`);
+}
+
+// Get region and country data for breadcrumbs
+let region;
+let country;
+try {
+  region = await getEntry('regions', regionSlug);
+  if (region?.data.countries?.[countrySlug]) {
+    country = {
+      name: region.data.countries[countrySlug].name[locale],
+      slug: countrySlug,
+    };
+  }
+} catch (error) {
+  console.error('Error fetching region:', error);
+}
+
+// Render the destination content if it has a body
+let Content;
+let headings;
+if (destination.body) {
+  try {
+    const rendered = await render(destination);
+    Content = rendered.Content;
+    headings = rendered.headings;
+  } catch (error) {
+    console.error('Error rendering destination:', error);
+  }
+}
+
+const regionName = region?.data.name[locale] || regionSlug;
+const cityName = destination.data.name[locale];
+---
+
+<Layout seoKey="home">
+  <Header />
+  
+  <div class="min-h-screen bg-white">
+    <div class="mx-auto max-w-7xl px-4 sm:px-6 lg:px-8 py-8">
+      <Breadcrumbs 
+        locale={locale}
+        region={{ name: regionName, slug: regionSlug }}
+        country={country}
+        city={{ name: cityName, slug: citySlug }}
+      />
+      
+      <!-- Hero Section -->
+      <section class="mb-12">
+        <div class="bg-gradient-to-br from-blue-50 via-cyan-50 to-teal-50 rounded-lg p-8 md:p-12">
+          <h1 class="text-4xl md:text-5xl lg:text-6xl font-bold text-gray-900 mb-6">
+            {cityName}
+          </h1>
+          <p class="text-xl md:text-2xl text-gray-700 max-w-3xl">
+            {destination.data.description[locale]}
+          </p>
+        </div>
+      </section>
+
+      <!-- Main Content -->
+      <section class="prose prose-lg max-w-none">
+        {Content && (
+          <div class="bg-white rounded-lg shadow-sm border border-gray-200 p-8">
+            <Content />
+          </div>
+        )}
+        
+        {!Content && (
+          <div class="bg-white rounded-lg shadow-sm border border-gray-200 p-8">
+            <p class="text-gray-600 text-lg">
+              {locale === 'en' 
+                ? 'More information about this destination will be available soon.' 
+                : 'Más información sobre este destino estará disponible pronto.'}
+            </p>
+          </div>
+        )}
+      </section>
+
+      <!-- Additional Info Section -->
+      <section class="mt-12 grid grid-cols-1 md:grid-cols-2 gap-6">
+        <div class="bg-white rounded-lg shadow-sm border border-gray-200 p-6">
+          <h2 class="text-2xl font-semibold text-gray-900 mb-4">
+            {locale === 'en' ? 'Location Details' : 'Detalles de Ubicación'}
+          </h2>
+          <dl class="space-y-3">
+            <div>
+              <dt class="text-sm font-medium text-gray-500">
+                {locale === 'en' ? 'Region' : 'Región'}
+              </dt>
+              <dd class="mt-1">
+                <a href={`/${locale}/${regionSlug}/`} class="text-blue-600 hover:text-blue-800">
+                  {regionName}
+                </a>
+              </dd>
+            </div>
+            {country && (
+              <div>
+                <dt class="text-sm font-medium text-gray-500">
+                  {locale === 'en' ? 'Country' : 'País'}
+                </dt>
+                <dd class="mt-1">
+                  <a href={`/${locale}/${regionSlug}/${countrySlug}/`} class="text-blue-600 hover:text-blue-800">
+                    {country.name}
+                  </a>
+                </dd>
+              </div>
+            )}
+            <div>
+              <dt class="text-sm font-medium text-gray-500">
+                {locale === 'en' ? 'City' : 'Ciudad'}
+              </dt>
+              <dd class="mt-1 text-gray-900">{cityName}</dd>
+            </div>
+          </dl>
+        </div>
+
+        {destination.data.image && (
+          <div class="bg-white rounded-lg shadow-sm border border-gray-200 overflow-hidden">
+            <div class="h-64 bg-gradient-to-br from-blue-400 to-cyan-500 flex items-center justify-center">
+              <span class="text-6xl">🌊</span>
+            </div>
+          </div>
+        )}
+      </section>
+    </div>
+  </div>
+</Layout>
+

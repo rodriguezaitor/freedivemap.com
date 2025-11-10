@@ -1,0 +1,72 @@
+---
+interface Props {
+  locale: string;
+  region?: { name: string; slug: string };
+  country?: { name: string; slug: string };
+  city?: { name: string; slug: string };
+}
+
+const { locale, region, country, city } = Astro.props;
+---
+
+<nav aria-label="breadcrumb" class="mb-6">
+  <ol class="flex flex-wrap items-center gap-1.5 text-sm text-gray-600">
+    <li class="inline-flex items-center">
+      <a href={`/${locale}/`} class="hover:text-blue-600 transition-colors">
+        {locale === 'en' ? 'Home' : 'Inicio'}
+      </a>
+    </li>
+    
+    {region && (
+      <>
+        <li class="inline-flex items-center" aria-hidden="true">
+          <svg class="w-4 h-4" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M9 5l7 7-7 7"></path>
+          </svg>
+        </li>
+        <li class="inline-flex items-center">
+          {country ? (
+            <a href={`/${locale}/${region.slug}/`} class="hover:text-blue-600 transition-colors">
+              {region.name}
+            </a>
+          ) : (
+            <span class="text-gray-900 font-normal">{region.name}</span>
+          )}
+        </li>
+      </>
+    )}
+    
+    {country && (
+      <>
+        <li class="inline-flex items-center" aria-hidden="true">
+          <svg class="w-4 h-4" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M9 5l7 7-7 7"></path>
+          </svg>
+        </li>
+        <li class="inline-flex items-center">
+          {city ? (
+            <a href={`/${locale}/${region?.slug}/${country.slug}/`} class="hover:text-blue-600 transition-colors">
+              {country.name}
+            </a>
+          ) : (
+            <span class="text-gray-900 font-normal">{country.name}</span>
+          )}
+        </li>
+      </>
+    )}
+    
+    {city && (
+      <>
+        <li class="inline-flex items-center" aria-hidden="true">
+          <svg class="w-4 h-4" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M9 5l7 7-7 7"></path>
+          </svg>
+        </li>
+        <li class="inline-flex items-center">
+          <span class="text-gray-900 font-normal" aria-current="page">{city.name}</span>
+        </li>
+      </>
+    )}
+  </ol>
+</nav>
+
