@@ -1,48 +1,72 @@
 ---
-export const prerender = false;
-
 import { getCollection, getEntry } from 'astro:content';
 import Layout from '../../layouts/Layout.astro';
 import Header from '../../components/Header.astro';
 import { getRelativeLocaleUrl } from 'astro:i18n';
 import { t } from '../../utils/i18n.js';
 
+export async function getStaticPaths() {
+  const regions = await getCollection('regions');
+  
+  return regions.map((region) => ({
+    params: { region: region.id },
+    props: { regionId: region.id },
+  }));
+}
+
 const locale = Astro.currentLocale || 'en';
-const { region: regionSlug } = Astro.params;
+const { regionId } = Astro.props;
+const regionSlug = regionId;
 
 if (!regionSlug) {
   return Astro.redirect('/en/');
 }
 
 // Get the region from the collection
-const region = await getEntry('regions', regionSlug);
+let region;
+try {
+  region = await getEntry('regions', regionSlug);
+} catch (error) {
+  console.error('Error fetching region:', error);
+  return Astro.redirect('/en/');
+}
 
 if (!region) {
   return Astro.redirect('/en/');
 }
 
 // Get all destinations for this region
-const allDestinations = await getCollection('destinations', ({ data }) => {
-  return data.region === regionSlug;
-});
+let allDestinations = [];
+try {
+  allDestinations = await getCollection('destinations', ({ data }) => {
+    return data.region === regionSlug;
+  });
+} catch (error) {
+  console.error('Error fetching destinations:', error);
+  allDestinations = [];
+}
 
 // Count countries in this region
-const countryCount = Object.keys(region.data.countries).length;
+const countryCount = region.data.countries ? Object.keys(region.data.countries).length : 0;
 
 // Get all countries with their cities
-const countries = Object.entries(region.data.countries).map(([countrySlug, countryData]: [string, any]) => {
-  const cities = Object.entries(countryData.cities).map(([citySlug, cityData]: [string, any]) => ({
-    slug: citySlug,
-    ...cityData,
-  }));
-  
-  return {
-    slug: countrySlug,
-    ...countryData,
-    cities,
-    cityCount: cities.length,
-  };
-});
+const countries = region.data.countries 
+  ? Object.entries(region.data.countries).map(([countrySlug, countryData]: [string, any]) => {
+      const cities = countryData.cities 
+        ? Object.entries(countryData.cities).map(([citySlug, cityData]: [string, any]) => ({
+            slug: citySlug,
+            ...cityData,
+          }))
+        : [];
+      
+      return {
+        slug: countrySlug,
+        ...countryData,
+        cities,
+        cityCount: cities.length,
+      };
+    })
+  : [];
 
 // Filter destinations by country to show on country cards
 const destinationsByCountry = countries.reduce((acc, country) => {
