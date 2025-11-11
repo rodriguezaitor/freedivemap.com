@@ -1,5 +1,5 @@
 {
-  "hello": "Bienvenido a FreeDiveMap",
+  "hello": "Bienvenido a FreediveMap",
   "description": "Descubre y explora sitios de buceo alrededor del mundo",
   "currentLanguage": "Idioma actual",
   "switchTo": "Cambiar a",
@@ -101,33 +101,117 @@
     }
   },
   "about": {
-    "title": "Sobre FreeDiveMap",
-    "content": "FreeDiveMap es tu puerta de entrada para descubrir increíbles sitios de buceo en todo el mundo. Explora, comparte y planifica tu próxima aventura de buceo."
+    "title": "Sobre FreediveMap",
+    "content": "FreediveMap es tu puerta de entrada para descubrir increíbles sitios de buceo en todo el mundo. Explora, comparte y planifica tu próxima aventura de buceo.",
+    "mission": "Nuestra misión es proporcionar una plataforma integral que conecte a los buceadores libres con los mejores destinos, sitios de buceo y oportunidades de entrenamiento en todo el mundo. Creemos que el buceo libre es más que un deporte: es una forma de explorar el mundo submarino y conectar con la naturaleza.",
+    "vision": "Imaginamos un mundo donde los buceadores libres puedan descubrir y acceder fácilmente a increíbles sitios de buceo, conectarse con la comunidad global de buceo libre y compartir sus experiencias para inspirar a otros."
+  },
+  "terms": {
+    "title": "Términos de Servicio",
+    "lastUpdated": "Última actualización: Enero 2025",
+    "acceptance": {
+      "title": "Aceptación de Términos",
+      "content": "Al acceder y usar FreediveMap, aceptas y te comprometes a cumplir con los términos y disposiciones de este acuerdo. Si no estás de acuerdo con lo anterior, por favor no uses este servicio."
+    },
+    "use": {
+      "title": "Licencia de Uso",
+      "content": "Se otorga permiso para acceder temporalmente a los materiales en el sitio web de FreediveMap solo para visualización personal, no comercial y transitoria. Esta es la concesión de una licencia, no una transferencia de título, y bajo esta licencia no puedes modificar o copiar los materiales."
+    },
+    "content": {
+      "title": "Descargo de Responsabilidad del Contenido",
+      "content": "Los materiales en el sitio web de FreediveMap se proporcionan 'tal cual'. FreediveMap no otorga garantías, expresas o implícitas, y por la presente renuncia y niega todas las demás garantías, incluyendo, sin limitación, garantías implícitas o condiciones de comerciabilidad, idoneidad para un propósito particular, o no infracción de propiedad intelectual u otra violación de derechos."
+    },
+    "liability": {
+      "title": "Limitaciones de Responsabilidad",
+      "content": "En ningún caso FreediveMap o sus proveedores serán responsables de ningún daño (incluyendo, sin limitación, daños por pérdida de datos o ganancias, o debido a interrupción del negocio) que surjan del uso o la imposibilidad de usar los materiales en el sitio web de FreediveMap."
+    },
+    "changes": {
+      "title": "Revisiones y Erratas",
+      "content": "Los materiales que aparecen en el sitio web de FreediveMap podrían incluir errores técnicos, tipográficos o fotográficos. FreediveMap no garantiza que ninguno de los materiales en su sitio web sean precisos, completos o actuales. FreediveMap puede hacer cambios a los materiales contenidos en su sitio web en cualquier momento sin previo aviso."
+    }
+  },
+  "privacy": {
+    "title": "Política de Privacidad",
+    "lastUpdated": "Última actualización: Enero 2025",
+    "intro": {
+      "title": "Introducción",
+      "content": "FreediveMap respeta tu privacidad y se compromete a proteger tus datos personales. Esta política de privacidad te informará sobre cómo cuidamos tus datos personales cuando visitas nuestro sitio web y te informará sobre tus derechos de privacidad y cómo la ley te protege."
+    },
+    "data": {
+      "title": "Datos que Recopilamos",
+      "content": "Podemos recopilar, usar, almacenar y transferir diferentes tipos de datos personales sobre ti, incluyendo datos de identidad, datos de contacto, datos técnicos, datos de uso, y datos de marketing y comunicaciones."
+    },
+    "use": {
+      "title": "Cómo Usamos Tus Datos",
+      "content": "Solo usaremos tus datos personales cuando la ley nos lo permita. Más comúnmente, usaremos tus datos personales para proporcionar y mejorar nuestros servicios, para comunicarnos contigo y para cumplir con obligaciones legales."
+    },
+    "cookies": {
+      "title": "Cookies",
+      "content": "Nuestro sitio web usa cookies para distinguirte de otros usuarios de nuestro sitio web. Esto nos ayuda a brindarte una buena experiencia cuando navegas por nuestro sitio web y también nos permite mejorar nuestro sitio."
+    },
+    "rights": {
+      "title": "Tus Derechos",
+      "content": "Tienes derecho a solicitar acceso a tus datos personales, solicitar la corrección de tus datos personales, solicitar la eliminación de tus datos personales, oponerte al procesamiento de tus datos personales, solicitar la restricción del procesamiento de tus datos personales y solicitar la transferencia de tus datos personales."
+    },
+    "contact": {
+      "title": "Contáctanos",
+      "content": "Si tienes alguna pregunta sobre esta política de privacidad o nuestras prácticas de privacidad, por favor contáctanos a través de nuestra página de contacto."
+    }
+  },
+  "contact": {
+    "title": "Contáctanos",
+    "description": "¡Nos encantaría saber de ti! Ya sea que tengas una pregunta, comentarios o necesites soporte, estamos aquí para ayudar.",
+    "getInTouch": {
+      "title": "Ponte en Contacto",
+      "content": "Si tienes alguna pregunta o te gustaría ponerte en contacto con nosotros, no dudes en escribirnos por correo electrónico."
+    },
+    "email": "Correo electrónico",
+    "emailAddress": "contact@freedivemap.com",
+    "feedback": {
+      "title": "Comentarios",
+      "content": "Valoramos tus comentarios y sugerencias. Si tienes ideas sobre cómo podemos mejorar FreediveMap o si te gustaría reportar un problema, no dudes en contactarnos."
+    },
+    "support": {
+      "title": "Soporte",
+      "content": "Si necesitas soporte técnico o tienes preguntas sobre el uso de FreediveMap, nuestro equipo está listo para ayudarte. Normalmente respondemos en 24-48 horas."
+    }
   },
   "seo": {
     "default": {
-      "title": "FreeDiveMap — Descubre Destinos de Buceo Libre en Todo el Mundo",
+      "title": "FreediveMap — Descubre Destinos de Buceo Libre en Todo el Mundo",
       "description": "Explora increíbles destinos de buceo libre en todo el mundo. Navega por región y descubre los sitios de buceo perfectos para tu aventura de buceo libre."
     },
     "pages": {
       "home": {
-        "title": "FreeDiveMap — Descubre Destinos de Buceo Libre en Todo el Mundo",
+        "title": "FreediveMap — Descubre Destinos de Buceo Libre en Todo el Mundo",
         "description": "Explora increíbles destinos de buceo libre en todo el mundo. Navega por región y descubre los sitios de buceo perfectos para tu aventura de buceo libre."
       },
       "about": {
-        "title": "Acerca de — FreeDiveMap",
-        "description": "Conoce más sobre FreeDiveMap y nuestra misión de ayudar a los buceadores a descubrir increíbles sitios de buceo en todo el mundo."
+        "title": "Acerca de — FreediveMap",
+        "description": "Conoce más sobre FreediveMap y nuestra misión de ayudar a los buceadores a descubrir increíbles sitios de buceo en todo el mundo."
+      },
+      "terms": {
+        "title": "Términos de Servicio — FreediveMap",
+        "description": "Lee nuestros términos de servicio y entiende las condiciones para usar FreediveMap."
+      },
+      "privacy": {
+        "title": "Política de Privacidad — FreediveMap",
+        "description": "Aprende cómo FreediveMap protege tu privacidad y maneja tus datos personales."
+      },
+      "contact": {
+        "title": "Contáctanos — FreediveMap",
+        "description": "Ponte en contacto con FreediveMap. Estamos aquí para ayudar con preguntas, comentarios y soporte."
       },
       "404": {
-        "title": "Página No Encontrada — FreeDiveMap",
+        "title": "Página No Encontrada — FreediveMap",
         "description": "La página que buscas no existe."
       }
     },
     "og": {
       "type": "website",
-      "siteName": "FreeDiveMap",
+      "siteName": "FreediveMap",
       "image": "/favicon.svg",
-      "imageAlt": "Logo de FreeDiveMap"
+      "imageAlt": "Logo de FreediveMap"
     },
     "twitter": {
       "card": "summary_large_image"

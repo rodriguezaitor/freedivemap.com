@@ -1,0 +1,62 @@
+---
+import Layout from '../../layouts/Layout.astro';
+import Header from '../../components/Header.astro';
+import { t } from '../../utils/i18n.js';
+
+const locale = Astro.currentLocale || 'en';
+---
+
+<Layout seoKey="terms">
+	<Header />
+	
+	<div class="min-h-screen bg-white">
+		<section class="py-16 bg-white">
+			<div class="mx-auto max-w-4xl px-4 sm:px-6 lg:px-8">
+				<h1 class="text-4xl md:text-5xl font-bold text-gray-900 mb-6">
+					{t(locale, 'terms.title')}
+				</h1>
+				<div class="prose prose-lg max-w-none">
+					<p class="text-sm text-gray-500 mb-8">
+						{t(locale, 'terms.lastUpdated')}
+					</p>
+					
+					<h2 class="text-2xl font-semibold text-gray-900 mt-8 mb-4">
+						{t(locale, 'terms.acceptance.title')}
+					</h2>
+					<p class="text-lg text-gray-700 leading-relaxed mb-4">
+						{t(locale, 'terms.acceptance.content')}
+					</p>
+					
+					<h2 class="text-2xl font-semibold text-gray-900 mt-8 mb-4">
+						{t(locale, 'terms.use.title')}
+					</h2>
+					<p class="text-lg text-gray-700 leading-relaxed mb-4">
+						{t(locale, 'terms.use.content')}
+					</p>
+					
+					<h2 class="text-2xl font-semibold text-gray-900 mt-8 mb-4">
+						{t(locale, 'terms.content.title')}
+					</h2>
+					<p class="text-lg text-gray-700 leading-relaxed mb-4">
+						{t(locale, 'terms.content.content')}
+					</p>
+					
+					<h2 class="text-2xl font-semibold text-gray-900 mt-8 mb-4">
+						{t(locale, 'terms.liability.title')}
+					</h2>
+					<p class="text-lg text-gray-700 leading-relaxed mb-4">
+						{t(locale, 'terms.liability.content')}
+					</p>
+					
+					<h2 class="text-2xl font-semibold text-gray-900 mt-8 mb-4">
+						{t(locale, 'terms.changes.title')}
+					</h2>
+					<p class="text-lg text-gray-700 leading-relaxed">
+						{t(locale, 'terms.changes.content')}
+					</p>
+				</div>
+			</div>
+		</section>
+	</div>
+</Layout>
+
