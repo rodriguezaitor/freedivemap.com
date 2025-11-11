@@ -112,6 +112,13 @@
               "es": "Lanzarote"
             },
             "slug": "lanzarote"
+          },
+          "barcelona": {
+            "name": {
+              "en": "Barcelona",
+              "es": "Barcelona"
+            },
+            "slug": "barcelona"
           }
         }
       },
