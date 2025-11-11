@@ -81,6 +81,9 @@ const twitterDomain = base.hostname;
 		<link rel="alternate" hreflang="en" href={enUrl} />
 		<link rel="alternate" hreflang="es" href={esUrl} />
 		<link rel="alternate" hreflang="x-default" href={enUrl} />
+		{/* Preconnect to improve resource loading */}
+		<link rel="preconnect" href={base.origin} />
+		<link rel="dns-prefetch" href={base.origin} />
 		<script is:inline>
 			(function() {
 				const UTM_KEYS = ['utm_source', 'utm_medium', 'utm_campaign', 'utm_term', 'utm_content', 'gclid', 'fbclid'];
@@ -153,16 +156,27 @@ const twitterDomain = base.hostname;
 	</head>
 	<body>
 		<ClientRouter />
-		<slot />
+		<main>
+			<slot />
+		</main>
 		<Footer />
 	</body>
 </html>
 
-<style>
+<style is:inline>
 	html,
 	body {
 		margin: 0;
 		width: 100%;
 		height: 100%;
+	}
+	/* Critical above-the-fold styles */
+	body {
+		font-family: system-ui, -apple-system, sans-serif;
+		background-color: #ffffff;
+		color: #111827;
+	}
+	main {
+		min-height: 100vh;
 	}
 </style>
