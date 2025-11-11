@@ -8,6 +8,8 @@ import tailwindcss from "@tailwindcss/vite";
 import react from "@astrojs/react";
 import sitemap from "@astrojs/sitemap";
 
+import partytown from "@astrojs/partytown";
+
 const __dirname = path.dirname(fileURLToPath(import.meta.url));
 
 // https://astro.build/config
@@ -23,18 +25,15 @@ export default defineConfig({
       },
     },
   },
-  integrations: [
-    react(),
-    sitemap({
-      i18n: {
-        defaultLocale: "en",
-        locales: {
-          en: "en",
-          es: "es",
-        },
+  integrations: [react(), sitemap({
+    i18n: {
+      defaultLocale: "en",
+      locales: {
+        en: "en",
+        es: "es",
       },
-    }),
-  ],
+    },
+  }), partytown({ config: { forward: ['dataLayer.push'] } })],
   i18n: {
     locales: ["es", "en"],
     defaultLocale: "en",

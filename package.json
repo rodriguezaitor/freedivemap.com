@@ -13,6 +13,7 @@
   },
   "dependencies": {
     "@astrojs/cloudflare": "^12.6.10",
+    "@astrojs/partytown": "^2.1.4",
     "@astrojs/react": "^4.4.1",
     "@astrojs/sitemap": "^3.6.0",
     "@hookform/resolvers": "^3.10.0",
