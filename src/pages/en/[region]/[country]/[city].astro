@@ -11,59 +11,46 @@ export async function getStaticPaths() {
   const destinations = await getCollection('destinations');
   const regions = await getCollection('regions');
   
-  // Create a map of destinations by city path for quick lookup
-  const destinationMap = new Map();
-  destinations.forEach(destination => {
-    const key = `${destination.data.region}/${destination.data.country}/${destination.data.city}`;
-    destinationMap.set(key, destination);
+  // Create a map of region data for quick lookup
+  const regionMap = new Map();
+  regions.forEach(region => {
+    regionMap.set(region.id, region.data);
   });
   
-  // Generate paths for ALL cities defined in regions, not just those with destination files
-  const paths = [];
-  
-  for (const region of regions) {
-    if (!region.data.countries) continue;
+  return destinations.map((destination) => {
+    const regionData = regionMap.get(destination.data.region);
+    const countryData = regionData?.countries?.[destination.data.country];
     
-    for (const [countrySlug, countryData] of Object.entries(region.data.countries)) {
-      if (!countryData.cities) continue;
-      
-      for (const [citySlug, cityData] of Object.entries(countryData.cities)) {
-        const key = `${region.id}/${countrySlug}/${citySlug}`;
-        const destination = destinationMap.get(key);
-        
-        paths.push({
-          params: {
-            region: region.id,
-            country: countrySlug,
-            city: citySlug,
-          },
-          props: {
-            destinationId: destination?.id || null,
-            regionSlug: region.id,
-            countrySlug: countrySlug,
-            citySlug: citySlug,
-            cityData: cityData,
-          },
-        });
-      }
-    }
-  }
-  
-  return paths;
+    return {
+      params: {
+        region: destination.data.region,
+        country: destination.data.country,
+        city: destination.data.city,
+      },
+      props: {
+        destinationId: destination.id,
+        regionSlug: destination.data.region,
+        countrySlug: destination.data.country,
+        citySlug: destination.data.city,
+      },
+    };
+  });
 }
 
 const locale = Astro.currentLocale || 'en';
-const { destinationId, regionSlug, countrySlug, citySlug, cityData } = Astro.props;
+const { destinationId, regionSlug, countrySlug, citySlug } = Astro.props;
 
-// Get the destination from the collection if it exists
-let destination = null;
-if (destinationId) {
-  try {
-    destination = await getEntry('destinations', destinationId);
-  } catch (error) {
-    console.error('Error fetching destination:', error);
-    // Continue without destination - we'll use cityData from regions
-  }
+// Get the destination from the collection
+let destination;
+try {
+  destination = await getEntry('destinations', destinationId);
+} catch (error) {
+  console.error('Error fetching destination:', error);
+  return Astro.redirect(`/${locale}/`);
+}
+
+if (!destination) {
+  return Astro.redirect(`/${locale}/`);
 }
 
 // Get region and country data for breadcrumbs
@@ -84,7 +71,7 @@ try {
 // Render the destination content if it has a body
 let Content;
 let headings;
-if (destination?.body) {
+if (destination.body) {
   try {
     const rendered = await render(destination);
     Content = rendered.Content;
@@ -95,8 +82,7 @@ if (destination?.body) {
 }
 
 const regionName = region?.data.name[locale] || regionSlug;
-const cityName = destination?.data.name[locale] || cityData?.name[locale] || citySlug;
-const cityDescription = destination?.data.description?.[locale] || '';
+const cityName = destination.data.name[locale];
 ---
 
 <Layout seoKey="home">
@@ -117,11 +103,9 @@ const cityDescription = destination?.data.description?.[locale] || '';
           <h1 class="text-4xl md:text-5xl lg:text-6xl font-bold text-gray-900 mb-6">
             {cityName}
           </h1>
-          {cityDescription && (
-            <p class="text-xl md:text-2xl text-gray-700 max-w-3xl">
-              {cityDescription}
-            </p>
-          )}
+          <p class="text-xl md:text-2xl text-gray-700 max-w-3xl">
+            {destination.data.description[locale]}
+          </p>
         </div>
       </section>
 
@@ -182,11 +166,13 @@ const cityDescription = destination?.data.description?.[locale] || '';
           </dl>
         </div>
 
-        <div class="bg-white rounded-lg shadow-sm border border-gray-200 overflow-hidden">
-          <div class="h-64 bg-gradient-to-br from-blue-400 to-cyan-500 flex items-center justify-center">
-            <span class="text-6xl">🌊</span>
+        {destination.data.image && (
+          <div class="bg-white rounded-lg shadow-sm border border-gray-200 overflow-hidden">
+            <div class="h-64 bg-gradient-to-br from-blue-400 to-cyan-500 flex items-center justify-center">
+              <span class="text-6xl">🌊</span>
+            </div>
           </div>
-        </div>
+        )}
       </section>
     </div>
   </div>
