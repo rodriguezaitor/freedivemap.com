@@ -245,7 +245,54 @@
       "en": "South America offers unique freediving experiences along its extensive coastlines, from the Pacific waters of Peru and Chile to the Caribbean destinations of Colombia and Venezuela.",
       "es": "América del Sur ofrece experiencias únicas de freediving a lo largo de sus extensas costas, desde las aguas del Pacífico de Perú y Chile hasta los destinos del Caribe de Colombia y Venezuela."
     },
-    "countries": {}
+    "countries": {
+      "colombia": {
+        "name": {
+          "en": "Colombia",
+          "es": "Colombia"
+        },
+        "slug": "colombia",
+        "cities": {
+          "cartagena": {
+            "name": {
+              "en": "Cartagena",
+              "es": "Cartagena"
+            },
+            "slug": "cartagena"
+          },
+          "taganga": {
+            "name": {
+              "en": "Taganga",
+              "es": "Taganga"
+            },
+            "slug": "taganga"
+          }
+        }
+      },
+      "brazil": {
+        "name": {
+          "en": "Brazil",
+          "es": "Brasil"
+        },
+        "slug": "brazil",
+        "cities": {
+          "fernando-de-noronha": {
+            "name": {
+              "en": "Fernando de Noronha",
+              "es": "Fernando de Noronha"
+            },
+            "slug": "fernando-de-noronha"
+          },
+          "arraial-do-cabo": {
+            "name": {
+              "en": "Arraial do Cabo",
+              "es": "Arraial do Cabo"
+            },
+            "slug": "arraial-do-cabo"
+          }
+        }
+      }
+    }
   },
   "oceania": {
     "name": {
@@ -257,7 +304,54 @@
       "en": "Oceania offers pristine waters and world-class freediving destinations across Australia, New Zealand, and the Pacific Islands, known for their diverse marine life and excellent visibility.",
       "es": "Oceanía ofrece aguas pristinas y destinos de freediving de clase mundial en Australia, Nueva Zelanda y las islas del Pacífico, conocidos por su diversa vida marina y excelente visibilidad."
     },
-    "countries": {}
+    "countries": {
+      "australia": {
+        "name": {
+          "en": "Australia",
+          "es": "Australia"
+        },
+        "slug": "australia",
+        "cities": {
+          "byron-bay": {
+            "name": {
+              "en": "Byron Bay",
+              "es": "Byron Bay"
+            },
+            "slug": "byron-bay"
+          },
+          "perth": {
+            "name": {
+              "en": "Perth",
+              "es": "Perth"
+            },
+            "slug": "perth"
+          }
+        }
+      },
+      "new-zealand": {
+        "name": {
+          "en": "New Zealand",
+          "es": "Nueva Zelanda"
+        },
+        "slug": "new-zealand",
+        "cities": {
+          "auckland": {
+            "name": {
+              "en": "Auckland",
+              "es": "Auckland"
+            },
+            "slug": "auckland"
+          },
+          "wellington": {
+            "name": {
+              "en": "Wellington",
+              "es": "Wellington"
+            },
+            "slug": "wellington"
+          }
+        }
+      }
+    }
   },
   "antarctica": {
     "name": {
@@ -269,7 +363,54 @@
       "en": "Antarctica offers unique freediving experiences in some of the world's most extreme and pristine waters, though destinations are limited due to the harsh climate.",
       "es": "La Antártida ofrece experiencias únicas de freediving en algunas de las aguas más extremas y pristinas del mundo, aunque los destinos son limitados debido al clima severo."
     },
-    "countries": {}
+    "countries": {
+      "south-shetland-islands": {
+        "name": {
+          "en": "South Shetland Islands",
+          "es": "Islas Shetland del Sur"
+        },
+        "slug": "south-shetland-islands",
+        "cities": {
+          "king-george-island": {
+            "name": {
+              "en": "King George Island",
+              "es": "Isla Rey Jorge"
+            },
+            "slug": "king-george-island"
+          },
+          "deception-island": {
+            "name": {
+              "en": "Deception Island",
+              "es": "Isla Decepción"
+            },
+            "slug": "deception-island"
+          }
+        }
+      },
+      "ross-sea": {
+        "name": {
+          "en": "Ross Sea",
+          "es": "Mar de Ross"
+        },
+        "slug": "ross-sea",
+        "cities": {
+          "mcmurdo-station": {
+            "name": {
+              "en": "McMurdo Station",
+              "es": "Estación McMurdo"
+            },
+            "slug": "mcmurdo-station"
+          },
+          "cape-adare": {
+            "name": {
+              "en": "Cape Adare",
+              "es": "Cabo Adare"
+            },
+            "slug": "cape-adare"
+          }
+        }
+      }
+    }
   }
 }
 
