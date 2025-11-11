@@ -44,9 +44,17 @@
         "title": "África",
         "description": "África es reconocida por el buceo libre, particularmente Dahab en Egipto, hogar del famoso Blue Hole. Esta región ofrece excepcionales oportunidades de entrenamiento en profundidad."
       },
-      "americas": {
-        "title": "Américas",
-        "description": "Las Américas ofrecen diversas experiencias de buceo libre desde las aguas del Caribe de Cozumel, México hasta los destinos tropicales de Centroamérica."
+      "north-america": {
+        "title": "América del Norte",
+        "description": "América del Norte ofrece diversas experiencias de buceo libre desde las aguas del Caribe de México hasta los destinos costeros de Estados Unidos y Canadá."
+      },
+      "central-america": {
+        "title": "América Central",
+        "description": "América Central ofrece destinos tropicales de buceo libre con aguas cálidas, excelente visibilidad y diversa vida marina en países como Honduras, Belice y Costa Rica."
+      },
+      "south-america": {
+        "title": "América del Sur",
+        "description": "América del Sur ofrece experiencias únicas de buceo libre a lo largo de sus extensas costas, desde las aguas del Pacífico de Perú y Chile hasta los destinos del Caribe de Colombia y Venezuela."
       },
       "oceania": {
         "title": "Oceanía",
@@ -95,7 +103,7 @@
       },
       "destinations": {
         "title": "Destinos de Buceo Libre de Clase Mundial",
-        "content": "Explora destinos en Asia, Europa, África y las Américas. Cada región ofrece experiencias únicas de buceo libre con diferentes condiciones, vida marina y paisajes submarinos. Ya sea que estés interesado en buceo en arrecifes poco profundos, entrenamiento en aguas profundas o buceo libre recreativo, FreediveMap te ayuda a planificar tu aventura perfecta."
+        "content": "Explora destinos en Asia, Europa, África, América del Norte, América Central y América del Sur. Cada región ofrece experiencias únicas de buceo libre con diferentes condiciones, vida marina y paisajes submarinos. Ya sea que estés interesado en buceo en arrecifes poco profundos, entrenamiento en aguas profundas o buceo libre recreativo, FreediveMap te ayuda a planificar tu aventura perfecta."
       },
       "cta": "Comienza tu viaje de buceo libre hoy explorando nuestro directorio de increíbles destinos en todo el mundo. Descubre nuevos sitios de buceo, planifica tu próximo viaje y conéctate con la comunidad de buceo libre en todo el mundo."
     }

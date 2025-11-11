@@ -141,15 +141,15 @@
       }
     }
   },
-  "americas": {
+  "north-america": {
     "name": {
-      "en": "Americas",
-      "es": "Américas"
+      "en": "North America",
+      "es": "América del Norte"
     },
-    "slug": "americas",
+    "slug": "north-america",
     "description": {
-      "en": "The Americas offer diverse freediving experiences from the Caribbean waters of Cozumel, Mexico to the tropical destinations of Central America.",
-      "es": "Las Américas ofrecen diversas experiencias de buceo libre desde las aguas del Caribe de Cozumel, México hasta los destinos tropicales de Centroamérica."
+      "en": "North America offers diverse freediving experiences from the Caribbean waters of Mexico to the coastal destinations of the United States and Canada.",
+      "es": "América del Norte ofrece diversas experiencias de buceo libre desde las aguas del Caribe de México hasta los destinos costeros de Estados Unidos y Canadá."
     },
     "countries": {
       "mexico": {
@@ -167,7 +167,20 @@
             "slug": "cozumel"
           }
         }
-      },
+      }
+    }
+  },
+  "central-america": {
+    "name": {
+      "en": "Central America",
+      "es": "América Central"
+    },
+    "slug": "central-america",
+    "description": {
+      "en": "Central America offers tropical freediving destinations with warm waters, excellent visibility, and diverse marine life across countries like Honduras, Belize, and Costa Rica.",
+      "es": "América Central ofrece destinos tropicales de buceo libre con aguas cálidas, excelente visibilidad y diversa vida marina en países como Honduras, Belice y Costa Rica."
+    },
+    "countries": {
       "honduras": {
         "name": {
           "en": "Honduras",
@@ -185,6 +198,18 @@
         }
       }
     }
+  },
+  "south-america": {
+    "name": {
+      "en": "South America",
+      "es": "América del Sur"
+    },
+    "slug": "south-america",
+    "description": {
+      "en": "South America offers unique freediving experiences along its extensive coastlines, from the Pacific waters of Peru and Chile to the Caribbean destinations of Colombia and Venezuela.",
+      "es": "América del Sur ofrece experiencias únicas de buceo libre a lo largo de sus extensas costas, desde las aguas del Pacífico de Perú y Chile hasta los destinos del Caribe de Colombia y Venezuela."
+    },
+    "countries": {}
   },
   "oceania": {
     "name": {

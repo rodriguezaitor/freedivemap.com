@@ -44,9 +44,17 @@
         "title": "Africa",
         "description": "Africa is renowned for freediving, particularly Egypt's Dahab, home to the famous Blue Hole. This region offers exceptional depth training opportunities."
       },
-      "americas": {
-        "title": "Americas",
-        "description": "The Americas offer diverse freediving experiences from the Caribbean waters of Cozumel, Mexico to the tropical destinations of Central America."
+      "north-america": {
+        "title": "North America",
+        "description": "North America offers diverse freediving experiences from the Caribbean waters of Mexico to the coastal destinations of the United States and Canada."
+      },
+      "central-america": {
+        "title": "Central America",
+        "description": "Central America offers tropical freediving destinations with warm waters, excellent visibility, and diverse marine life across countries like Honduras, Belize, and Costa Rica."
+      },
+      "south-america": {
+        "title": "South America",
+        "description": "South America offers unique freediving experiences along its extensive coastlines, from the Pacific waters of Peru and Chile to the Caribbean destinations of Colombia and Venezuela."
       },
       "oceania": {
         "title": "Oceania",
@@ -95,7 +103,7 @@
       },
       "destinations": {
         "title": "World-Class Freediving Destinations",
-        "content": "Explore destinations across Asia, Europe, Africa, and the Americas. Each region offers unique freediving experiences with different conditions, marine life, and underwater landscapes. Whether you're interested in shallow reef diving, deep water training, or recreational freediving, FreediveMap helps you plan your perfect adventure."
+        "content": "Explore destinations across Asia, Europe, Africa, North America, Central America, and South America. Each region offers unique freediving experiences with different conditions, marine life, and underwater landscapes. Whether you're interested in shallow reef diving, deep water training, or recreational freediving, FreediveMap helps you plan your perfect adventure."
       },
       "cta": "Start your freediving journey today by exploring our directory of amazing destinations worldwide. Discover new dive sites, plan your next trip, and connect with the freediving community around the globe."
     }
