@@ -6,6 +6,7 @@ import Breadcrumbs from '../../../../components/Breadcrumbs.astro';
 import { getRelativeLocaleUrl } from 'astro:i18n';
 import { t } from '../../../../utils/i18n.js';
 import { render } from 'astro:content';
+import { marked } from 'marked';
 
 export async function getStaticPaths() {
   const destinations = await getCollection('destinations');
@@ -68,10 +69,21 @@ try {
   console.error('Error fetching region:', error);
 }
 
-// Render the destination content if it has a body
+// Render the destination content - prefer frontmatter content over body
+let renderedContent: string | null = null;
 let Content;
 let headings;
-if (destination.body) {
+const contentFromFrontmatter = destination.data.content?.[locale];
+
+if (contentFromFrontmatter) {
+  // Use content from frontmatter (translated) - render as markdown
+  try {
+    renderedContent = await marked(contentFromFrontmatter);
+  } catch (error) {
+    console.error('Error rendering destination content:', error);
+  }
+} else if (destination.body) {
+  // Fallback to body if no frontmatter content
   try {
     const rendered = await render(destination);
     Content = rendered.Content;
@@ -117,7 +129,11 @@ const cityName = destination.data.name[locale];
           </div>
         )}
         
-        {!Content && (
+        {renderedContent && (
+          <div class="bg-white rounded-lg shadow-sm border border-gray-200 p-8" set:html={renderedContent} />
+        )}
+        
+        {!Content && !renderedContent && (
           <div class="bg-white rounded-lg shadow-sm border border-gray-200 p-8">
             <p class="text-gray-600 text-lg">
               {locale === 'en' 

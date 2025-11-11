@@ -61,6 +61,10 @@ const destinations = defineCollection({
       es: z.string(),
     }),
     image: z.string().optional(),
+    content: z.object({
+      en: z.string().optional(),
+      es: z.string().optional(),
+    }).optional(),
   }),
 });
 
