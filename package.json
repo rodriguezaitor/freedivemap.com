@@ -8,7 +8,8 @@
     "preview": "astro preview",
     "deploy": "npm run build && wrangler pages deploy dist",
     "astro": "astro",
-    "check-destinations": "node scripts/check-destinations.js"
+    "check-destinations": "node scripts/check-destinations.js",
+    "check-content": "node scripts/check-content.js"
   },
   "dependencies": {
     "@astrojs/cloudflare": "^12.6.10",

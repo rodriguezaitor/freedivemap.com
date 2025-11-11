@@ -57,4 +57,3 @@ content:
 
     Dahab alberga numerosas escuelas de freediving de clase mundial que ofrecen cursos desde principiante hasta nivel instructor, incluyendo certificaciones AIDA, PADI y SSI.
 ---
-
