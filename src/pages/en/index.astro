@@ -26,16 +26,29 @@ const destinations = allDestinations.slice(0, 6).map(dest => ({
   url: `/${locale}/${dest.data.region}/${dest.data.country}/${dest.data.city}/`,
 }));
 
-// Search data - build from destinations collection
+// Build search data - get city names from regions data
 const searchData = {
-  cities: allDestinations.map(dest => ({
-    name: dest.data.name[locale],
-    slug: dest.data.city,
-    country: dest.data.country,
-    region: dest.data.region,
-    type: "city"
-  }))
+  cities: []
 };
+
+// Build cities list from regions data for better search
+allRegions.forEach(region => {
+  if (region.data.countries) {
+    Object.entries(region.data.countries).forEach(([countrySlug, countryData]: [string, any]) => {
+      if (countryData.cities) {
+        Object.entries(countryData.cities).forEach(([citySlug, cityData]: [string, any]) => {
+          searchData.cities.push({
+            name: cityData.name[locale],
+            slug: citySlug,
+            country: countrySlug,
+            region: region.id,
+            type: "city"
+          });
+        });
+      }
+    });
+  }
+});
 ---
 
 <Layout seoKey="home">
@@ -56,7 +69,7 @@ const searchData = {
           <!-- Search Bar -->
           <div class="mb-8">
             <div class="relative w-full max-w-2xl mx-auto">
-              <form action="#" method="get" class="flex gap-2" id="search-form">
+              <form action={`/${locale}/search`} method="get" class="flex gap-2" id="search-form">
                 <div class="relative flex-1">
                   <input 
                     type="text" 
@@ -251,28 +264,30 @@ const searchData = {
         selectedIndex = Math.max(selectedIndex - 1, -1);
         updateSelection();
       } else if (e.key === 'Enter') {
-        e.preventDefault();
         const query = (e.target as HTMLInputElement).value.trim();
         
         // If there's a selected result, use it
         if (selectedIndex >= 0 && results[selectedIndex]) {
+          e.preventDefault();
           window.location.href = results[selectedIndex].url;
           return;
         }
         
         // If there are visible results, use first one
         if (results.length > 0) {
+          e.preventDefault();
           window.location.href = results[0].url;
           return;
         }
         
-        // If no visible results, search again with current query
-        if (query.length >= 2) {
-          const matches = getSearchResults(query);
-          if (matches.length > 0) {
-            window.location.href = matches[0].url;
-          }
+        // If no visible results or query too short, let form submit normally
+        if (query.length < 2) {
+          e.preventDefault();
+          return;
         }
+        
+        // If query exists but no matches, let form submit to search page
+        // Don't prevent default - let form submit to /search?q=query
       } else if (e.key === 'Escape') {
         autocompleteResults.classList.add('hidden');
       }
@@ -281,28 +296,30 @@ const searchData = {
     // Handle form submission
     if (searchForm) {
       searchForm.addEventListener('submit', (e) => {
-        e.preventDefault();
         const query = searchInput.value.trim();
         
-        // If there are visible results, use them
+        // If there are visible results and one is selected, go directly to it
         if (selectedIndex >= 0 && results[selectedIndex]) {
+          e.preventDefault();
           window.location.href = results[selectedIndex].url;
           return;
         }
         
-        // If there are results but none selected, use first result
+        // If there are visible results but none selected, go to first result
         if (results.length > 0) {
+          e.preventDefault();
           window.location.href = results[0].url;
           return;
         }
         
-        // If no visible results, search again with current query
-        if (query.length >= 2) {
-          const matches = getSearchResults(query);
-          if (matches.length > 0) {
-            window.location.href = matches[0].url;
-          }
+        // If no visible results or query is too short, let form submit normally to search page
+        if (query.length < 2) {
+          e.preventDefault();
+          return;
         }
+        
+        // If query exists but no matches, let form submit to search page
+        // Form will submit to /search?q=query automatically
       });
     }
     

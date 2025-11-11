@@ -1,0 +1,175 @@
+---
+import Layout from '../../layouts/Layout.astro';
+import Header from '../../components/Header.astro';
+import { getCollection } from 'astro:content';
+import { getRelativeLocaleUrl } from 'astro:i18n';
+import { t } from '../../utils/i18n.js';
+
+// Force SSR for search page to handle query parameters
+export const prerender = false;
+
+const locale = Astro.currentLocale || 'es';
+const queryParam = Astro.url.searchParams.get('q') || '';
+const searchQuery = queryParam.trim().toLowerCase();
+
+// Get all regions to build searchable cities
+const allRegions = await getCollection('regions');
+const allDestinations = await getCollection('destinations');
+
+// Build searchable cities list
+const allCities: Array<{ name: string; slug: string; country: string; countryName: string; region: string; regionName: string; url: string }> = [];
+
+allRegions.forEach(region => {
+  if (region.data.countries) {
+    Object.entries(region.data.countries).forEach(([countrySlug, countryData]: [string, any]) => {
+      if (countryData.cities) {
+        Object.entries(countryData.cities).forEach(([citySlug, cityData]: [string, any]) => {
+          allCities.push({
+            name: cityData.name[locale],
+            slug: citySlug,
+            country: countrySlug,
+            countryName: countryData.name[locale],
+            region: region.id,
+            regionName: region.data.name[locale],
+            url: `/${locale}/${region.id}/${countrySlug}/${citySlug}/`,
+          });
+        });
+      }
+    });
+  }
+});
+
+// Search cities
+let searchResults = [];
+if (searchQuery.length >= 2) {
+  searchResults = allCities.filter(city => 
+    city.name.toLowerCase().includes(searchQuery) ||
+    city.countryName.toLowerCase().includes(searchQuery) ||
+    city.regionName.toLowerCase().includes(searchQuery)
+  );
+}
+
+// Also search in destinations for partial matches
+if (searchQuery.length >= 2) {
+  allDestinations.forEach(dest => {
+    const destName = dest.data.name[locale].toLowerCase();
+    const destDesc = dest.data.description[locale].toLowerCase();
+    
+    if (destName.includes(searchQuery) || destDesc.includes(searchQuery)) {
+      const existingCity = searchResults.find(r => r.slug === dest.data.city);
+      if (!existingCity) {
+        // Find city info from regions
+        const region = allRegions.find(r => r.id === dest.data.region);
+        if (region?.data.countries?.[dest.data.country]?.cities?.[dest.data.city]) {
+          const cityData = region.data.countries[dest.data.country].cities[dest.data.city];
+          searchResults.push({
+            name: cityData.name[locale],
+            slug: dest.data.city,
+            country: dest.data.country,
+            countryName: region.data.countries[dest.data.country].name[locale],
+            region: dest.data.region,
+            regionName: region.data.name[locale],
+            url: `/${locale}/${dest.data.region}/${dest.data.country}/${dest.data.city}/`,
+          });
+        }
+      }
+    }
+  });
+}
+
+// Remove duplicates
+const uniqueResults = Array.from(
+  new Map(searchResults.map(item => [item.slug, item])).values()
+);
+---
+
+<Layout seoKey="home">
+  <Header />
+  
+  <div class="min-h-screen bg-white">
+    <div class="mx-auto max-w-7xl px-4 sm:px-6 lg:px-8 py-8">
+      <!-- Search Bar -->
+      <div class="mb-8">
+        <div class="relative w-full max-w-2xl mx-auto">
+          <form action={`/${locale}/search`} method="get" class="flex gap-2">
+            <div class="relative flex-1">
+              <input 
+                type="text" 
+                name="q" 
+                value={queryParam}
+                placeholder={t(locale, 'home.hero.searchPlaceholder')} 
+                class="w-full px-4 py-3 pl-10 border border-gray-300 rounded-lg focus:outline-none focus:ring-2 focus:ring-blue-500 focus:border-blue-500" 
+                autocomplete="off"
+              />
+              <svg class="absolute left-3 top-1/2 transform -translate-y-1/2 w-5 h-5 text-gray-400" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M21 21l-6-6m2-5a7 7 0 11-14 0 7 7 0 0114 0z"></path>
+              </svg>
+            </div>
+            <button type="submit" class="px-6 py-3 bg-blue-600 text-white rounded-lg hover:bg-blue-700 focus:outline-none focus:ring-2 focus:ring-blue-500 focus:ring-offset-2 transition-colors">
+              {t(locale, 'home.hero.searchButton')}
+            </button>
+          </form>
+        </div>
+      </div>
+
+      <!-- Results -->
+      {!queryParam || searchQuery.length < 2 ? (
+        <div class="text-center py-12">
+          <p class="text-lg text-gray-600">
+            {locale === 'en' 
+              ? 'Enter at least 2 characters to search' 
+              : 'Ingresa al menos 2 caracteres para buscar'}
+          </p>
+          {queryParam && (
+            <p class="text-sm text-gray-500 mt-2">
+              Query: "{queryParam}" (length: {searchQuery.length})
+            </p>
+          )}
+        </div>
+      ) : uniqueResults.length === 0 ? (
+        <div class="text-center py-12">
+          <p class="text-xl text-gray-900 mb-2">
+            {locale === 'en' ? 'No results found' : 'No se encontraron resultados'}
+          </p>
+          <p class="text-gray-600">
+            {locale === 'en' 
+              ? `No destinations found for "${queryParam}"` 
+              : `No se encontraron destinos para "${queryParam}"`}
+          </p>
+        </div>
+      ) : (
+        <>
+          <div class="mb-6">
+            <h1 class="text-2xl font-bold text-gray-900">
+              {locale === 'en' 
+                ? `Search results for "${queryParam}"` 
+                : `Resultados de búsqueda para "${queryParam}"`}
+            </h1>
+            <p class="text-gray-600 mt-2">
+              {uniqueResults.length} {locale === 'en' ? 'result' : 'resultado'}{uniqueResults.length > 1 ? 's' : ''} {locale === 'en' ? 'found' : 'encontrado'}{uniqueResults.length > 1 ? 's' : ''}
+            </p>
+          </div>
+
+          <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6">
+            {uniqueResults.map((result) => (
+              <a href={result.url} class="bg-white rounded-lg shadow-md hover:shadow-lg transition-shadow border border-gray-200 overflow-hidden block">
+                <div class="h-32 bg-gradient-to-br from-blue-400 to-cyan-500 flex items-center justify-center">
+                  <span class="text-3xl">🌊</span>
+                </div>
+                <div class="p-6">
+                  <h3 class="text-lg font-semibold text-gray-900 mb-1">{result.name}</h3>
+                  <p class="text-sm text-gray-600 mb-2">{result.countryName}</p>
+                  <p class="text-xs text-gray-500">{result.regionName}</p>
+                  <span class="text-blue-600 font-medium text-sm mt-2 inline-block">
+                    {t(locale, 'home.destinations.explore')}
+                  </span>
+                </div>
+              </a>
+            ))}
+          </div>
+        </>
+      )}
+    </div>
+  </div>
+</Layout>
+

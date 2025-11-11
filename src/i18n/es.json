@@ -47,6 +47,14 @@
       "americas": {
         "title": "Américas",
         "description": "Las Américas ofrecen diversas experiencias de buceo libre desde las aguas del Caribe de Cozumel, México hasta los destinos tropicales de Centroamérica."
+      },
+      "oceania": {
+        "title": "Oceanía",
+        "description": "Oceanía ofrece aguas pristinas y destinos de buceo libre de clase mundial en Australia, Nueva Zelanda y las islas del Pacífico, conocidos por su diversa vida marina y excelente visibilidad."
+      },
+      "antarctica": {
+        "title": "Antártida",
+        "description": "La Antártida ofrece experiencias únicas de buceo libre en algunas de las aguas más extremas y pristinas del mundo, aunque los destinos son limitados debido al clima severo."
       }
     },
     "destinations": {

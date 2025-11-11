@@ -185,6 +185,30 @@
         }
       }
     }
+  },
+  "oceania": {
+    "name": {
+      "en": "Oceania",
+      "es": "Oceanía"
+    },
+    "slug": "oceania",
+    "description": {
+      "en": "Oceania offers pristine waters and world-class freediving destinations across Australia, New Zealand, and the Pacific Islands, known for their diverse marine life and excellent visibility.",
+      "es": "Oceanía ofrece aguas pristinas y destinos de buceo libre de clase mundial en Australia, Nueva Zelanda y las islas del Pacífico, conocidos por su diversa vida marina y excelente visibilidad."
+    },
+    "countries": {}
+  },
+  "antarctica": {
+    "name": {
+      "en": "Antarctica",
+      "es": "Antártida"
+    },
+    "slug": "antarctica",
+    "description": {
+      "en": "Antarctica offers unique freediving experiences in some of the world's most extreme and pristine waters, though destinations are limited due to the harsh climate.",
+      "es": "La Antártida ofrece experiencias únicas de buceo libre en algunas de las aguas más extremas y pristinas del mundo, aunque los destinos son limitados debido al clima severo."
+    },
+    "countries": {}
   }
 }
 
