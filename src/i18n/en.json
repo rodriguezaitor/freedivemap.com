@@ -46,11 +46,7 @@
       },
       "north-america": {
         "title": "North America",
-        "description": "North America offers diverse freediving experiences from the Caribbean waters of Mexico to the coastal destinations of the United States and Canada."
-      },
-      "central-america": {
-        "title": "Central America",
-        "description": "Central America offers tropical freediving destinations with warm waters, excellent visibility, and diverse marine life across countries like Honduras, Belize, and Costa Rica."
+        "description": "North America offers diverse freediving experiences from the Caribbean waters of Mexico and Central America to the coastal destinations of the United States and Canada."
       },
       "south-america": {
         "title": "South America",
@@ -103,7 +99,7 @@
       },
       "destinations": {
         "title": "World-Class Freediving Destinations",
-        "content": "Explore destinations across Asia, Europe, Africa, North America, Central America, and South America. Each region offers unique freediving experiences with different conditions, marine life, and underwater landscapes. Whether you're interested in shallow reef diving, deep water training, or recreational freediving, FreediveMap helps you plan your perfect adventure."
+        "content": "Explore destinations across Asia, Europe, Africa, North America, and South America. Each region offers unique freediving experiences with different conditions, marine life, and underwater landscapes. Whether you're interested in shallow reef diving, deep water training, or recreational freediving, FreediveMap helps you plan your perfect adventure."
       },
       "cta": "Start your freediving journey today by exploring our directory of amazing destinations worldwide. Discover new dive sites, plan your next trip, and connect with the freediving community around the globe."
     }

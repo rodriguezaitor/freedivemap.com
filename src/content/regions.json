@@ -148,8 +148,8 @@
     },
     "slug": "north-america",
     "description": {
-      "en": "North America offers diverse freediving experiences from the Caribbean waters of Mexico to the coastal destinations of the United States and Canada.",
-      "es": "América del Norte ofrece diversas experiencias de buceo libre desde las aguas del Caribe de México hasta los destinos costeros de Estados Unidos y Canadá."
+      "en": "North America offers diverse freediving experiences from the Caribbean waters of Mexico and Central America to the coastal destinations of the United States and Canada.",
+      "es": "América del Norte ofrece diversas experiencias de buceo libre desde las aguas del Caribe de México y Centroamérica hasta los destinos costeros de Estados Unidos y Canadá."
     },
     "countries": {
       "mexico": {
@@ -167,20 +167,7 @@
             "slug": "cozumel"
           }
         }
-      }
-    }
-  },
-  "central-america": {
-    "name": {
-      "en": "Central America",
-      "es": "América Central"
-    },
-    "slug": "central-america",
-    "description": {
-      "en": "Central America offers tropical freediving destinations with warm waters, excellent visibility, and diverse marine life across countries like Honduras, Belize, and Costa Rica.",
-      "es": "América Central ofrece destinos tropicales de buceo libre con aguas cálidas, excelente visibilidad y diversa vida marina en países como Honduras, Belice y Costa Rica."
-    },
-    "countries": {
+      },
       "honduras": {
         "name": {
           "en": "Honduras",
