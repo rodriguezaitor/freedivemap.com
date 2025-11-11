@@ -18,56 +18,56 @@
       "terms": "Términos"
     },
     "footer": {
-      "description": "FreediveMap es el directorio global de destinos de buceo libre y sitios de buceo en todo el mundo."
+      "description": "FreediveMap es el directorio global de destinos de freediving y sitios de buceo en todo el mundo."
     }
   },
   "home": {
     "hero": {
-      "title": "Descubre destinos de buceo libre en todo el mundo",
-      "subtitle": "Explora increíbles sitios de buceo y planifica tu próxima aventura de buceo libre.",
+      "title": "Descubre destinos de freediving en todo el mundo",
+      "subtitle": "Explora increíbles sitios de buceo y planifica tu próxima aventura de freediving.",
       "searchPlaceholder": "Buscar por ciudad...",
       "searchButton": "Buscar"
     },
     "regions": {
       "title": "Explora por Región",
-      "subtitle": "Descubre destinos de buceo libre en tu región favorita",
+      "subtitle": "Descubre destinos de freediving en tu región favorita",
       "countries": "países",
       "asia": {
         "title": "Asia",
-        "description": "Asia alberga algunos de los destinos de buceo libre más populares del mundo, incluyendo Koh Tao en Tailandia, Amed en Indonesia y Panglao en Filipinas."
+        "description": "Asia alberga algunos de los destinos de freediving más populares del mundo, incluyendo Koh Tao en Tailandia, Amed en Indonesia y Panglao en Filipinas."
       },
       "europe": {
         "title": "Europa",
-        "description": "Europa ofrece oportunidades de buceo libre durante todo el año con instalaciones de clase mundial en destinos como Tenerife, España y Valletta, Malta."
+        "description": "Europa ofrece oportunidades de freediving durante todo el año con instalaciones de clase mundial en destinos como Tenerife, España y Valletta, Malta."
       },
       "africa": {
         "title": "África",
-        "description": "África es reconocida por el buceo libre, particularmente Dahab en Egipto, hogar del famoso Blue Hole. Esta región ofrece excepcionales oportunidades de entrenamiento en profundidad."
+        "description": "África es reconocida por el freediving, particularmente Dahab en Egipto, hogar del famoso Blue Hole. Esta región ofrece excepcionales oportunidades de entrenamiento en profundidad."
       },
       "north-america": {
         "title": "América del Norte",
-        "description": "América del Norte ofrece diversas experiencias de buceo libre desde las aguas del Caribe de México y Centroamérica hasta los destinos costeros de Estados Unidos y Canadá."
+        "description": "América del Norte ofrece diversas experiencias de freediving desde las aguas del Caribe de México y Centroamérica hasta los destinos costeros de Estados Unidos y Canadá."
       },
       "south-america": {
         "title": "América del Sur",
-        "description": "América del Sur ofrece experiencias únicas de buceo libre a lo largo de sus extensas costas, desde las aguas del Pacífico de Perú y Chile hasta los destinos del Caribe de Colombia y Venezuela."
+        "description": "América del Sur ofrece experiencias únicas de freediving a lo largo de sus extensas costas, desde las aguas del Pacífico de Perú y Chile hasta los destinos del Caribe de Colombia y Venezuela."
       },
       "oceania": {
         "title": "Oceanía",
-        "description": "Oceanía ofrece aguas pristinas y destinos de buceo libre de clase mundial en Australia, Nueva Zelanda y las islas del Pacífico, conocidos por su diversa vida marina y excelente visibilidad."
+        "description": "Oceanía ofrece aguas pristinas y destinos de freediving de clase mundial en Australia, Nueva Zelanda y las islas del Pacífico, conocidos por su diversa vida marina y excelente visibilidad."
       },
       "antarctica": {
         "title": "Antártida",
-        "description": "La Antártida ofrece experiencias únicas de buceo libre en algunas de las aguas más extremas y pristinas del mundo, aunque los destinos son limitados debido al clima severo."
+        "description": "La Antártida ofrece experiencias únicas de freediving en algunas de las aguas más extremas y pristinas del mundo, aunque los destinos son limitados debido al clima severo."
       }
     },
     "destinations": {
       "title": "Destinos Principales",
-      "subtitle": "Ubicaciones populares de buceo libre en todo el mundo",
+      "subtitle": "Ubicaciones populares de freediving en todo el mundo",
       "explore": "Explorar →",
       "amed": {
         "name": "Amed, Indonesia",
-        "description": "Amed en Bali ofrece increíbles sitios de buceo y cursos completos de buceo libre en un hermoso entorno tropical."
+        "description": "Amed en Bali ofrece increíbles sitios de buceo y cursos completos de freediving en un hermoso entorno tropical."
       },
       "panglao": {
         "name": "Panglao, Filipinas",
@@ -75,40 +75,40 @@
       },
       "dahab": {
         "name": "Dahab, Egipto",
-        "description": "Dahab es el hogar del famoso Blue Hole y es un destino mundialmente reconocido para entrenamiento en profundidad y buceo libre competitivo."
+        "description": "Dahab es el hogar del famoso Blue Hole y es un destino mundialmente reconocido para entrenamiento en profundidad y freediving competitivo."
       },
       "tenerife": {
         "name": "Tenerife, España",
-        "description": "Tenerife ofrece entrenamiento de buceo libre durante todo el año con excelentes condiciones para el desarrollo de profundidad y técnica."
+        "description": "Tenerife ofrece entrenamiento de freediving durante todo el año con excelentes condiciones para el desarrollo de profundidad y técnica."
       },
       "valletta": {
         "name": "Valletta, Malta",
-        "description": "Malta ofrece instalaciones de buceo libre de clase mundial con acceso a sitios de aguas profundas y centros de entrenamiento profesionales."
+        "description": "Malta ofrece instalaciones de freediving de clase mundial con acceso a sitios de aguas profundas y centros de entrenamiento profesionales."
       },
       "kohTao": {
         "name": "Koh Tao, Tailandia",
-        "description": "Koh Tao es uno de los principales destinos de buceo libre del mundo, conocido por sus aguas tranquilas, excelente visibilidad y vibrante comunidad de buceo libre."
+        "description": "Koh Tao es uno de los principales destinos de freediving del mundo, conocido por sus aguas tranquilas, excelente visibilidad y vibrante comunidad de freediving."
       }
     },
     "seo": {
-      "title": "Descubre Increíbles Destinos de Buceo Libre en Todo el Mundo",
-      "intro": "FreediveMap es tu guía completa para descubrir destinos de buceo libre y sitios de buceo en todo el mundo. Ya seas un principiante explorando tu primera ubicación de buceo libre o un buceador experimentado buscando nuevas aventuras, te ayudamos a encontrar los mejores lugares para tu viaje de buceo libre.",
+      "title": "Descubre Increíbles Destinos de Freediving en Todo el Mundo",
+      "intro": "FreediveMap es tu guía completa para descubrir destinos de freediving y sitios de buceo en todo el mundo. Ya seas un principiante explorando tu primera ubicación de freediving o un buceador experimentado buscando nuevas aventuras, te ayudamos a encontrar los mejores lugares para tu viaje de freediving.",
       "certifications": {
-        "title": "Certificaciones Profesionales de Buceo Libre",
-        "content": "Desde las aguas cálidas de Koh Tao en Tailandia hasta el mundialmente famoso Blue Hole en Dahab, Egipto, nuestra plataforma te ayuda a descubrir destinos de buceo libre en las ubicaciones más buscadas. Cada destino incluye información detallada sobre sitios de buceo, condiciones y lo que hace especial cada ubicación."
+        "title": "Certificaciones Profesionales de Freediving",
+        "content": "Desde las aguas cálidas de Koh Tao en Tailandia hasta el mundialmente famoso Blue Hole en Dahab, Egipto, nuestra plataforma te ayuda a descubrir destinos de freediving en las ubicaciones más buscadas. Cada destino incluye información detallada sobre sitios de buceo, condiciones y lo que hace especial cada ubicación."
       },
       "destinations": {
-        "title": "Destinos de Buceo Libre de Clase Mundial",
-        "content": "Explora destinos en Asia, Europa, África, América del Norte y América del Sur. Cada región ofrece experiencias únicas de buceo libre con diferentes condiciones, vida marina y paisajes submarinos. Ya sea que estés interesado en buceo en arrecifes poco profundos, entrenamiento en aguas profundas o buceo libre recreativo, FreediveMap te ayuda a planificar tu aventura perfecta."
+        "title": "Destinos de Freediving de Clase Mundial",
+        "content": "Explora destinos en Asia, Europa, África, América del Norte y América del Sur. Cada región ofrece experiencias únicas de freediving con diferentes condiciones, vida marina y paisajes submarinos. Ya sea que estés interesado en buceo en arrecifes poco profundos, entrenamiento en aguas profundas o freediving recreativo, FreediveMap te ayuda a planificar tu aventura perfecta."
       },
-      "cta": "Comienza tu viaje de buceo libre hoy explorando nuestro directorio de increíbles destinos en todo el mundo. Descubre nuevos sitios de buceo, planifica tu próximo viaje y conéctate con la comunidad de buceo libre en todo el mundo."
+      "cta": "Comienza tu viaje de freediving hoy explorando nuestro directorio de increíbles destinos en todo el mundo. Descubre nuevos sitios de buceo, planifica tu próximo viaje y conéctate con la comunidad de freediving en todo el mundo."
     }
   },
   "about": {
     "title": "Sobre FreediveMap",
     "content": "FreediveMap es tu puerta de entrada para descubrir increíbles sitios de buceo en todo el mundo. Explora, comparte y planifica tu próxima aventura de buceo.",
-    "mission": "Nuestra misión es proporcionar una plataforma integral que conecte a los buceadores libres con los mejores destinos, sitios de buceo y oportunidades de entrenamiento en todo el mundo. Creemos que el buceo libre es más que un deporte: es una forma de explorar el mundo submarino y conectar con la naturaleza.",
-    "vision": "Imaginamos un mundo donde los buceadores libres puedan descubrir y acceder fácilmente a increíbles sitios de buceo, conectarse con la comunidad global de buceo libre y compartir sus experiencias para inspirar a otros."
+    "mission": "Nuestra misión es proporcionar una plataforma integral que conecte a los buceadores libres con los mejores destinos, sitios de buceo y oportunidades de entrenamiento en todo el mundo. Creemos que el freediving es más que un deporte: es una forma de explorar el mundo submarino y conectar con la naturaleza.",
+    "vision": "Imaginamos un mundo donde los buceadores libres puedan descubrir y acceder fácilmente a increíbles sitios de buceo, conectarse con la comunidad global de freediving y compartir sus experiencias para inspirar a otros."
   },
   "terms": {
     "title": "Términos de Servicio",
@@ -182,13 +182,13 @@
   },
   "seo": {
     "default": {
-      "title": "FreediveMap — Descubre Destinos de Buceo Libre en Todo el Mundo",
-      "description": "Explora increíbles destinos de buceo libre en todo el mundo. Navega por región y descubre los sitios de buceo perfectos para tu aventura de buceo libre."
+      "title": "FreediveMap — Descubre Destinos de Freediving en Todo el Mundo",
+      "description": "Explora increíbles destinos de freediving en todo el mundo. Navega por región y descubre los sitios de buceo perfectos para tu aventura de freediving."
     },
     "pages": {
       "home": {
-        "title": "FreediveMap — Descubre Destinos de Buceo Libre en Todo el Mundo",
-        "description": "Explora increíbles destinos de buceo libre en todo el mundo. Navega por región y descubre los sitios de buceo perfectos para tu aventura de buceo libre."
+        "title": "FreediveMap — Descubre Destinos de Freediving en Todo el Mundo",
+        "description": "Explora increíbles destinos de freediving en todo el mundo. Navega por región y descubre los sitios de buceo perfectos para tu aventura de freediving."
       },
       "about": {
         "title": "Acerca de — FreediveMap",

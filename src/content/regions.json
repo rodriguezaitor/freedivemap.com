@@ -7,7 +7,7 @@
     "slug": "asia",
     "description": {
       "en": "Asia is home to some of the world's most popular freediving destinations, including Koh Tao in Thailand, Amed in Indonesia, and Panglao in the Philippines.",
-      "es": "Asia alberga algunos de los destinos de buceo libre más populares del mundo, incluyendo Koh Tao en Tailandia, Amed en Indonesia y Panglao en Filipinas."
+      "es": "Asia alberga algunos de los destinos de freediving más populares del mundo, incluyendo Koh Tao en Tailandia, Amed en Indonesia y Panglao en Filipinas."
     },
     "countries": {
       "thailand": {
@@ -68,7 +68,7 @@
     "slug": "europe",
     "description": {
       "en": "Europe offers year-round freediving opportunities with world-class facilities in destinations like Tenerife, Spain and Valletta, Malta.",
-      "es": "Europa ofrece oportunidades de buceo libre durante todo el año con instalaciones de clase mundial en destinos como Tenerife, España y Valletta, Malta."
+      "es": "Europa ofrece oportunidades de freediving durante todo el año con instalaciones de clase mundial en destinos como Tenerife, España y Valletta, Malta."
     },
     "countries": {
       "spain": {
@@ -113,7 +113,7 @@
     "slug": "africa",
     "description": {
       "en": "Africa is renowned for freediving, particularly Egypt's Dahab, home to the famous Blue Hole. This region offers exceptional depth training opportunities.",
-      "es": "África es reconocida por el buceo libre, particularmente Dahab en Egipto, hogar del famoso Blue Hole. Esta región ofrece excepcionales oportunidades de entrenamiento en profundidad."
+      "es": "África es reconocida por el freediving, particularmente Dahab en Egipto, hogar del famoso Blue Hole. Esta región ofrece excepcionales oportunidades de entrenamiento en profundidad."
     },
     "countries": {
       "egypt": {
@@ -149,7 +149,7 @@
     "slug": "north-america",
     "description": {
       "en": "North America offers diverse freediving experiences from the Caribbean waters of Mexico and Central America to the coastal destinations of the United States and Canada.",
-      "es": "América del Norte ofrece diversas experiencias de buceo libre desde las aguas del Caribe de México y Centroamérica hasta los destinos costeros de Estados Unidos y Canadá."
+      "es": "América del Norte ofrece diversas experiencias de freediving desde las aguas del Caribe de México y Centroamérica hasta los destinos costeros de Estados Unidos y Canadá."
     },
     "countries": {
       "mexico": {
@@ -194,7 +194,7 @@
     "slug": "south-america",
     "description": {
       "en": "South America offers unique freediving experiences along its extensive coastlines, from the Pacific waters of Peru and Chile to the Caribbean destinations of Colombia and Venezuela.",
-      "es": "América del Sur ofrece experiencias únicas de buceo libre a lo largo de sus extensas costas, desde las aguas del Pacífico de Perú y Chile hasta los destinos del Caribe de Colombia y Venezuela."
+      "es": "América del Sur ofrece experiencias únicas de freediving a lo largo de sus extensas costas, desde las aguas del Pacífico de Perú y Chile hasta los destinos del Caribe de Colombia y Venezuela."
     },
     "countries": {}
   },
@@ -206,7 +206,7 @@
     "slug": "oceania",
     "description": {
       "en": "Oceania offers pristine waters and world-class freediving destinations across Australia, New Zealand, and the Pacific Islands, known for their diverse marine life and excellent visibility.",
-      "es": "Oceanía ofrece aguas pristinas y destinos de buceo libre de clase mundial en Australia, Nueva Zelanda y las islas del Pacífico, conocidos por su diversa vida marina y excelente visibilidad."
+      "es": "Oceanía ofrece aguas pristinas y destinos de freediving de clase mundial en Australia, Nueva Zelanda y las islas del Pacífico, conocidos por su diversa vida marina y excelente visibilidad."
     },
     "countries": {}
   },
@@ -218,7 +218,7 @@
     "slug": "antarctica",
     "description": {
       "en": "Antarctica offers unique freediving experiences in some of the world's most extreme and pristine waters, though destinations are limited due to the harsh climate.",
-      "es": "La Antártida ofrece experiencias únicas de buceo libre en algunas de las aguas más extremas y pristinas del mundo, aunque los destinos son limitados debido al clima severo."
+      "es": "La Antártida ofrece experiencias únicas de freediving en algunas de las aguas más extremas y pristinas del mundo, aunque los destinos son limitados debido al clima severo."
     },
     "countries": {}
   }
