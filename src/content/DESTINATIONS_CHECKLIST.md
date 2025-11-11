@@ -32,8 +32,8 @@ node scripts/check-destinations.js
 - ✅ **Sharm El Sheikh** (`egypt/sharm-el-sheikh`) - `sharm-el-sheikh.md`
 
 ### North America
-- ❌ **Cozumel** (`mexico/cozumel`) - `cozumel.md` ⚠️ MISSING
-- ❌ **Roatan** (`honduras/roatan`) - `roatan.md` ⚠️ MISSING
+- ✅ **Cozumel** (`mexico/cozumel`) - `cozumel.md`
+- ✅ **Roatan** (`honduras/roatan`) - `roatan.md`
 
 ### South America
 - (No destinations yet)
@@ -49,8 +49,8 @@ node scripts/check-destinations.js
 ## Summary
 
 - **Total expected:** 9 destinations
-- **Created:** 7 destinations
-- **Missing:** 2 destinations
+- **Created:** 9 destinations
+- **Missing:** 0 destinations ✅
 
 ---
 

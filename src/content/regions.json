@@ -23,6 +23,13 @@
               "es": "Koh Tao"
             },
             "slug": "koh-tao"
+          },
+          "koh-lanta": {
+            "name": {
+              "en": "Koh Lanta",
+              "es": "Koh Lanta"
+            },
+            "slug": "koh-lanta"
           }
         }
       },
@@ -39,6 +46,13 @@
               "es": "Panglao"
             },
             "slug": "panglao"
+          },
+          "moalboal": {
+            "name": {
+              "en": "Moalboal",
+              "es": "Moalboal"
+            },
+            "slug": "moalboal"
           }
         }
       },
@@ -55,6 +69,13 @@
               "es": "Amed"
             },
             "slug": "amed"
+          },
+          "gili-trawangan": {
+            "name": {
+              "en": "Gili Trawangan",
+              "es": "Gili Trawangan"
+            },
+            "slug": "gili-trawangan"
           }
         }
       }
@@ -84,6 +105,13 @@
               "es": "Tenerife"
             },
             "slug": "tenerife"
+          },
+          "lanzarote": {
+            "name": {
+              "en": "Lanzarote",
+              "es": "Lanzarote"
+            },
+            "slug": "lanzarote"
           }
         }
       },
@@ -100,6 +128,13 @@
               "es": "La Valeta"
             },
             "slug": "valletta"
+          },
+          "gozo": {
+            "name": {
+              "en": "Gozo",
+              "es": "Gozo"
+            },
+            "slug": "gozo"
           }
         }
       }
@@ -165,6 +200,13 @@
               "es": "Cozumel"
             },
             "slug": "cozumel"
+          },
+          "playa-del-carmen": {
+            "name": {
+              "en": "Playa del Carmen",
+              "es": "Playa del Carmen"
+            },
+            "slug": "playa-del-carmen"
           }
         }
       },
@@ -181,6 +223,13 @@
               "es": "Roatán"
             },
             "slug": "roatan"
+          },
+          "utila": {
+            "name": {
+              "en": "Utila",
+              "es": "Utila"
+            },
+            "slug": "utila"
           }
         }
       }
