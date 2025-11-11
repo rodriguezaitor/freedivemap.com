@@ -33,7 +33,11 @@ export default defineConfig({
         es: "es",
       },
     },
-  }), partytown({ config: { forward: ['dataLayer.push'] } })],
+  }), partytown({ 
+    config: { 
+      forward: ['dataLayer.push']
+    } 
+  })],
   i18n: {
     locales: ["es", "en"],
     defaultLocale: "en",
