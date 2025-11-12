@@ -73,9 +73,18 @@ const destinationsByCountry = countries.reduce((acc, country) => {
   acc[country.slug] = allDestinations.filter(dest => dest.data.country === country.slug);
   return acc;
 }, {} as Record<string, typeof allDestinations>);
+
+const regionName = region.data.name[locale];
+const regionDescription = region.data.description?.[locale] || '';
 ---
 
-<Layout seoKey="home">
+<Layout 
+  seoKey="home"
+  seoOverrides={{
+    title: `Freediving in ${regionName} | FreediveMap`,
+    description: regionDescription
+  }}
+>
   <Header />
   
   <div class="min-h-screen bg-white">

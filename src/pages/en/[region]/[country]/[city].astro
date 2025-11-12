@@ -95,9 +95,17 @@ if (contentFromFrontmatter) {
 
 const regionName = region?.data.name[locale] || regionSlug;
 const cityName = destination.data.name[locale];
+const cityDescription = destination.data.description[locale];
+const countryName = country?.name || countrySlug;
 ---
 
-<Layout seoKey="home">
+<Layout 
+  seoKey="home"
+  seoOverrides={{
+    title: `Freediving in ${cityName}, ${countryName} | FreediveMap`,
+    description: cityDescription
+  }}
+>
   <Header />
   
   <div class="min-h-screen bg-white">

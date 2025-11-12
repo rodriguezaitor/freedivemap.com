@@ -44,7 +44,10 @@ const destinations = allDestinations.slice(0, 6).map(dest => ({
           
           <!-- Browse Button -->
           <div class="mb-8">
-            <a href="#regions">
+            <a 
+              href="#regions"
+              onclick="if(window.dataLayer){window.dataLayer.push({event:'button_click',button_name:'Explorar Destinos',button_location:'hero_section',button_url:'#regions'})}"
+            >
               <Button variant="default" size="lg" class="text-lg px-8 py-6">
                 {locale === 'en' ? 'Browse Destinations' : 'Explorar Destinos'}
               </Button>
