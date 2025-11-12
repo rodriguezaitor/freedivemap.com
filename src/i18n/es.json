@@ -19,6 +19,13 @@
     },
     "footer": {
       "description": "FreediveMap es el directorio global de destinos de freediving y sitios de buceo en todo el mundo."
+    },
+    "whatsapp": {
+      "url": "https://chat.whatsapp.com/EUgGESDaMeV21KJ3rSvtqE",
+      "cta": {
+        "home": "Únete a la comunidad",
+        "location": "Únete a freedivers en {location}"
+      }
     }
   },
   "home": {
