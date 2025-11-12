@@ -57,6 +57,7 @@ if (!destination) {
 // Get region and country data for breadcrumbs
 let region;
 let country;
+let cityNameFromRegion: string | undefined;
 try {
   region = await getEntry('regions', regionSlug);
   if (region?.data.countries?.[countrySlug]) {
@@ -64,6 +65,8 @@ try {
       name: region.data.countries[countrySlug].name[locale],
       slug: countrySlug,
     };
+    // Get city name from region data (without country)
+    cityNameFromRegion = region.data.countries[countrySlug].cities?.[citySlug]?.name[locale];
   }
 } catch (error) {
   console.error('Error fetching region:', error);
@@ -94,7 +97,8 @@ if (contentFromFrontmatter) {
 }
 
 const regionName = region?.data.name[locale] || regionSlug;
-const cityName = destination.data.name[locale];
+// Use city name from region data (without country) if available, otherwise use destination name
+const cityName = cityNameFromRegion || destination.data.name[locale];
 const cityDescription = destination.data.description[locale];
 const countryName = country?.name || countrySlug;
 ---
