@@ -76,6 +76,13 @@
               "es": "Gili Trawangan"
             },
             "slug": "gili-trawangan"
+          },
+          "pulau-weh": {
+            "name": {
+              "en": "Pulau Weh",
+              "es": "Pulau Weh"
+            },
+            "slug": "pulau-weh"
           }
         }
       }
