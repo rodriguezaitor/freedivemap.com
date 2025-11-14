@@ -8,17 +8,20 @@ import { t } from '../../../utils/i18n.js';
 
 export async function getStaticPaths() {
   const regions = await getCollection('regions');
-  const destinations = await getCollection('destinations');
   
-  // Get all unique country combinations from destinations
+  // Get all countries from regions.json (not just from destinations)
   const countryPaths = new Map();
   
-  destinations.forEach(destination => {
-    const key = `${destination.data.region}/${destination.data.country}`;
-    if (!countryPaths.has(key)) {
-      countryPaths.set(key, {
-        region: destination.data.region,
-        country: destination.data.country,
+  regions.forEach(region => {
+    if (region.data.countries) {
+      Object.keys(region.data.countries).forEach(countrySlug => {
+        const key = `${region.id}/${countrySlug}`;
+        if (!countryPaths.has(key)) {
+          countryPaths.set(key, {
+            region: region.id,
+            country: countrySlug,
+          });
+        }
       });
     }
   });
@@ -254,6 +257,23 @@ const countryTitle = locale === 'en'
                 </a>
               );
             })}
+          </div>
+        </section>
+      )}
+
+      <!-- Empty State: No cities, provinces, or destinations -->
+      {!hasProvinces && cities.length === 0 && allDestinations.length === 0 && (
+        <section class="mt-12">
+          <div class="bg-white rounded-lg shadow-sm border border-gray-200 p-12 text-center">
+            <div class="text-6xl mb-4">🌊</div>
+            <h2 class="text-2xl font-semibold text-gray-900 mb-4">
+              {locale === 'en' ? 'Destinations Coming Soon' : 'Destinos Próximamente'}
+            </h2>
+            <p class="text-lg text-gray-600 max-w-2xl mx-auto">
+              {locale === 'en' 
+                ? `We're working on adding amazing freediving destinations in ${countryName}. Check back soon!`
+                : `Estamos trabajando en añadir increíbles destinos de freediving en ${countryName}. ¡Vuelve pronto!`}
+            </p>
           </div>
         </section>
       )}

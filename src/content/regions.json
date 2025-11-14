@@ -151,6 +151,166 @@
             }
           }
         }
+      },
+      "maldives": {
+        "name": {
+          "en": "Maldives",
+          "es": "Maldivas"
+        },
+        "slug": "maldives",
+        "cities": {
+          "male": {
+            "name": {
+              "en": "Malé",
+              "es": "Malé"
+            },
+            "slug": "male"
+          }
+        }
+      },
+      "malaysia": {
+        "name": {
+          "en": "Malaysia",
+          "es": "Malasia"
+        },
+        "slug": "malaysia",
+        "cities": {
+          "sipadan": {
+            "name": {
+              "en": "Sipadan",
+              "es": "Sipadan"
+            },
+            "slug": "sipadan"
+          }
+        }
+      },
+      "sri-lanka": {
+        "name": {
+          "en": "Sri Lanka",
+          "es": "Sri Lanka"
+        },
+        "slug": "sri-lanka",
+        "cities": {
+          "unawatuna": {
+            "name": {
+              "en": "Unawatuna",
+              "es": "Unawatuna"
+            },
+            "slug": "unawatuna"
+          }
+        }
+      },
+      "japan": {
+        "name": {
+          "en": "Japan",
+          "es": "Japón"
+        },
+        "slug": "japan",
+        "cities": {
+          "okinawa": {
+            "name": {
+              "en": "Okinawa",
+              "es": "Okinawa"
+            },
+            "slug": "okinawa"
+          }
+        }
+      },
+      "taiwan": {
+        "name": {
+          "en": "Taiwan",
+          "es": "Taiwán"
+        },
+        "slug": "taiwan",
+        "cities": {
+          "kenting": {
+            "name": {
+              "en": "Kenting",
+              "es": "Kenting"
+            },
+            "slug": "kenting"
+          }
+        }
+      },
+      "israel": {
+        "name": {
+          "en": "Israel",
+          "es": "Israel"
+        },
+        "slug": "israel",
+        "cities": {
+          "eilat": {
+            "name": {
+              "en": "Eilat",
+              "es": "Eilat"
+            },
+            "slug": "eilat"
+          }
+        }
+      },
+      "jordan": {
+        "name": {
+          "en": "Jordan",
+          "es": "Jordania"
+        },
+        "slug": "jordan",
+        "cities": {
+          "aqaba": {
+            "name": {
+              "en": "Aqaba",
+              "es": "Aqaba"
+            },
+            "slug": "aqaba"
+          }
+        }
+      },
+      "saudi-arabia": {
+        "name": {
+          "en": "Saudi Arabia",
+          "es": "Arabia Saudí"
+        },
+        "slug": "saudi-arabia",
+        "cities": {
+          "jeddah": {
+            "name": {
+              "en": "Jeddah",
+              "es": "Yeda"
+            },
+            "slug": "jeddah"
+          }
+        }
+      },
+      "uae": {
+        "name": {
+          "en": "United Arab Emirates",
+          "es": "Emiratos Árabes Unidos"
+        },
+        "slug": "uae",
+        "cities": {
+          "dubai": {
+            "name": {
+              "en": "Dubai",
+              "es": "Dubái"
+            },
+            "slug": "dubai"
+          }
+        }
+      },
+      "oman": {
+        "name": {
+          "en": "Oman",
+          "es": "Omán"
+        },
+        "slug": "oman",
+        "cities": {
+          "muscat": {
+            "name": {
+              "en": "Muscat",
+              "es": "Mascate"
+            },
+            "slug": "muscat"
+          }
+        }
       }
     }
   },
@@ -233,6 +393,141 @@
               "es": "Gozo"
             },
             "slug": "gozo"
+          }
+        }
+      },
+      "turkey": {
+        "name": {
+          "en": "Turkey",
+          "es": "Turquía"
+        },
+        "slug": "turkey",
+        "cities": {
+          "kas": {
+            "name": {
+              "en": "Kas",
+              "es": "Kas"
+            },
+            "slug": "kas"
+          }
+        }
+      },
+      "greece": {
+        "name": {
+          "en": "Greece",
+          "es": "Grecia"
+        },
+        "slug": "greece",
+        "cities": {
+          "crete": {
+            "name": {
+              "en": "Crete",
+              "es": "Creta"
+            },
+            "slug": "crete"
+          }
+        }
+      },
+      "cyprus": {
+        "name": {
+          "en": "Cyprus",
+          "es": "Chipre"
+        },
+        "slug": "cyprus",
+        "cities": {
+          "limassol": {
+            "name": {
+              "en": "Limassol",
+              "es": "Limassol"
+            },
+            "slug": "limassol"
+          }
+        }
+      },
+      "portugal": {
+        "name": {
+          "en": "Portugal",
+          "es": "Portugal"
+        },
+        "slug": "portugal",
+        "cities": {
+          "madeira": {
+            "name": {
+              "en": "Madeira",
+              "es": "Madeira"
+            },
+            "slug": "madeira"
+          }
+        }
+      },
+      "italy": {
+        "name": {
+          "en": "Italy",
+          "es": "Italia"
+        },
+        "slug": "italy",
+        "cities": {
+          "sardinia": {
+            "name": {
+              "en": "Sardinia",
+              "es": "Cerdeña"
+            },
+            "slug": "sardinia"
+          },
+          "sicily": {
+            "name": {
+              "en": "Sicily",
+              "es": "Sicilia"
+            },
+            "slug": "sicily"
+          }
+        }
+      },
+      "croatia": {
+        "name": {
+          "en": "Croatia",
+          "es": "Croacia"
+        },
+        "slug": "croatia",
+        "cities": {
+          "dubrovnik": {
+            "name": {
+              "en": "Dubrovnik",
+              "es": "Dubrovnik"
+            },
+            "slug": "dubrovnik"
+          }
+        }
+      },
+      "montenegro": {
+        "name": {
+          "en": "Montenegro",
+          "es": "Montenegro"
+        },
+        "slug": "montenegro",
+        "cities": {
+          "kotor": {
+            "name": {
+              "en": "Kotor",
+              "es": "Kotor"
+            },
+            "slug": "kotor"
+          }
+        }
+      },
+      "albania": {
+        "name": {
+          "en": "Albania",
+          "es": "Albania"
+        },
+        "slug": "albania",
+        "cities": {
+          "vlore": {
+            "name": {
+              "en": "Vlorë",
+              "es": "Vlorë"
+            },
+            "slug": "vlore"
           }
         }
       }
@@ -357,6 +652,54 @@
             }
           }
         }
+      },
+      "dominican-republic": {
+        "name": {
+          "en": "Dominican Republic",
+          "es": "República Dominicana"
+        },
+        "slug": "dominican-republic",
+        "cities": {
+          "punta-cana": {
+            "name": {
+              "en": "Punta Cana",
+              "es": "Punta Cana"
+            },
+            "slug": "punta-cana"
+          }
+        }
+      },
+      "curacao": {
+        "name": {
+          "en": "Curacao",
+          "es": "Curazao"
+        },
+        "slug": "curacao",
+        "cities": {
+          "willemstad": {
+            "name": {
+              "en": "Willemstad",
+              "es": "Willemstad"
+            },
+            "slug": "willemstad"
+          }
+        }
+      },
+      "jamaica": {
+        "name": {
+          "en": "Jamaica",
+          "es": "Jamaica"
+        },
+        "slug": "jamaica",
+        "cities": {
+          "negril": {
+            "name": {
+              "en": "Negril",
+              "es": "Negril"
+            },
+            "slug": "negril"
+          }
+        }
       }
     }
   },
@@ -455,6 +798,83 @@
       }
     }
   },
+  "africa": {
+    "name": {
+      "en": "Africa",
+      "es": "África"
+    },
+    "slug": "africa",
+    "description": {
+      "en": "Africa is renowned for freediving, particularly Egypt's Dahab, home to the famous Blue Hole. This region offers exceptional depth training opportunities.",
+      "es": "África es reconocida por el freediving, particularmente Dahab en Egipto, hogar del famoso Blue Hole. Esta región ofrece excepcionales oportunidades de entrenamiento en profundidad."
+    },
+    "countries": {
+      "egypt": {
+        "name": {
+          "en": "Egypt",
+          "es": "Egipto"
+        },
+        "slug": "egypt",
+        "provinces": {
+          "south-sinai": {
+            "name": {
+              "en": "South Sinai",
+              "es": "Sinaí del Sur"
+            },
+            "slug": "south-sinai",
+            "cities": {
+              "dahab": {
+                "name": {
+                  "en": "Dahab",
+                  "es": "Dahab"
+                },
+                "slug": "dahab"
+              },
+              "sharm-el-sheikh": {
+                "name": {
+                  "en": "Sharm El Sheikh",
+                  "es": "Sharm El Sheikh"
+                },
+                "slug": "sharm-el-sheikh"
+              }
+            }
+          }
+        }
+      },
+      "mauritius": {
+        "name": {
+          "en": "Mauritius",
+          "es": "Mauricio"
+        },
+        "slug": "mauritius",
+        "cities": {
+          "grand-baie": {
+            "name": {
+              "en": "Grand Baie",
+              "es": "Grand Baie"
+            },
+            "slug": "grand-baie"
+          }
+        }
+      },
+      "tanzania": {
+        "name": {
+          "en": "Tanzania",
+          "es": "Tanzania"
+        },
+        "slug": "tanzania",
+        "cities": {
+          "zanzibar": {
+            "name": {
+              "en": "Zanzibar",
+              "es": "Zanzíbar"
+            },
+            "slug": "zanzibar"
+          }
+        }
+      }
+    }
+  },
   "oceania": {
     "name": {
       "en": "Oceania",
@@ -545,6 +965,38 @@
                 "slug": "wellington"
               }
             }
+          }
+        }
+      },
+      "fiji": {
+        "name": {
+          "en": "Fiji",
+          "es": "Fiyi"
+        },
+        "slug": "fiji",
+        "cities": {
+          "nadi": {
+            "name": {
+              "en": "Nadi",
+              "es": "Nadi"
+            },
+            "slug": "nadi"
+          }
+        }
+      },
+      "tonga": {
+        "name": {
+          "en": "Tonga",
+          "es": "Tonga"
+        },
+        "slug": "tonga",
+        "cities": {
+          "vavau": {
+            "name": {
+              "en": "Vava'u",
+              "es": "Vava'u"
+            },
+            "slug": "vavau"
           }
         }
       }
