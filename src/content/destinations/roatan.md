@@ -3,6 +3,7 @@ name:
   en: "Roatan, Honduras"
   es: "Roatán, Honduras"
 country: "honduras"
+province: "bay-islands"
 city: "roatan"
 region: "north-america"
 description:

@@ -3,6 +3,7 @@ name:
   en: "Gili Meno, Indonesia"
   es: "Gili Meno, Indonesia"
 country: "indonesia"
+province: "lombok"
 city: "gili-meno"
 region: "asia"
 description:

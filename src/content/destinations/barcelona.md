@@ -3,6 +3,7 @@ name:
   en: "Barcelona, Spain"
   es: "Barcelona, España"
 country: "spain"
+province: "catalonia"
 city: "barcelona"
 region: "europe"
 description:

@@ -3,6 +3,7 @@ name:
   en: "Gili Air, Indonesia"
   es: "Gili Air, Indonesia"
 country: "indonesia"
+province: "lombok"
 city: "gili-air"
 region: "asia"
 description:

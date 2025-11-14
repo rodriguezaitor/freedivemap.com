@@ -3,6 +3,7 @@ name:
   en: "Gili Trawangan, Indonesia"
   es: "Gili Trawangan, Indonesia"
 country: "indonesia"
+province: "lombok"
 city: "gili-trawangan"
 region: "asia"
 description:

@@ -1,0 +1,212 @@
+---
+import { getCollection, getEntry } from 'astro:content';
+import Layout from '../../../../layouts/Layout.astro';
+import Header from '../../../../components/Header.astro';
+import Breadcrumbs from '../../../../components/Breadcrumbs.astro';
+import { getRelativeLocaleUrl } from 'astro:i18n';
+import { t } from '../../../../utils/i18n.js';
+
+export async function getStaticPaths() {
+  const regions = await getCollection('regions');
+  const destinations = await getCollection('destinations');
+  
+  // Get all unique province combinations from destinations
+  const provincePaths = new Map();
+  
+  destinations.forEach(destination => {
+    if (destination.data.province) {
+      const key = `${destination.data.region}/${destination.data.country}/${destination.data.province}`;
+      if (!provincePaths.has(key)) {
+        provincePaths.set(key, {
+          region: destination.data.region,
+          country: destination.data.country,
+          province: destination.data.province,
+        });
+      }
+    }
+  });
+  
+  return Array.from(provincePaths.values()).map(({ region, country, province }) => ({
+    params: {
+      region,
+      country,
+      province,
+    },
+    props: {
+      regionSlug: region,
+      countrySlug: country,
+      provinceSlug: province,
+    },
+  }));
+}
+
+const locale = Astro.currentLocale || 'en';
+const { regionSlug, countrySlug, provinceSlug } = Astro.props;
+
+// Get the region from the collection
+let region;
+try {
+  region = await getEntry('regions', regionSlug);
+} catch (error) {
+  console.error('Error fetching region:', error);
+  return Astro.redirect(`/${locale}/`);
+}
+
+if (!region) {
+  return Astro.redirect(`/${locale}/`);
+}
+
+// Get country data
+const countryData = region.data.countries?.[countrySlug];
+if (!countryData) {
+  return Astro.redirect(`/${locale}/${regionSlug}/`);
+}
+
+// Get province data
+const provinceData = countryData.provinces?.[provinceSlug];
+if (!provinceData) {
+  return Astro.redirect(`/${locale}/${regionSlug}/${countrySlug}/`);
+}
+
+// Get all destinations for this province
+let allDestinations = [];
+try {
+  allDestinations = await getCollection('destinations', ({ data }) => {
+    return data.region === regionSlug && data.country === countrySlug && data.province === provinceSlug;
+  });
+} catch (error) {
+  console.error('Error fetching destinations:', error);
+  allDestinations = [];
+}
+
+// Get all cities from the province data
+const cities = provinceData.cities 
+  ? Object.entries(provinceData.cities).map(([citySlug, cityData]: [string, any]) => ({
+      slug: citySlug,
+      ...cityData,
+    }))
+  : [];
+
+const regionName = region.data.name[locale];
+const countryName = countryData.name[locale];
+const provinceName = provinceData.name[locale];
+const provinceDescription = locale === 'en' 
+  ? `Discover amazing freediving destinations in ${provinceName}, ${countryName}. Explore world-class dive sites, training facilities, and the best freediving locations.`
+  : `Descubre increíbles destinos de freediving en ${provinceName}, ${countryName}. Explora sitios de buceo de clase mundial, instalaciones de entrenamiento y las mejores ubicaciones de freediving.`;
+const provinceTitle = locale === 'en'
+  ? `Freediving in ${provinceName}, ${countryName} | FreediveMap`
+  : `Freediving en ${provinceName}, ${countryName} | FreediveMap`;
+---
+
+<Layout 
+  seoKey="home"
+  seoOverrides={{
+    title: provinceTitle,
+    description: provinceDescription
+  }}
+  whatsappLocation={`${provinceName}, ${countryName}`}
+>
+  <Header />
+  
+  <div class="min-h-screen bg-white">
+    <div class="mx-auto max-w-7xl px-4 sm:px-6 lg:px-8 py-8">
+      <Breadcrumbs 
+        locale={locale}
+        region={{ name: regionName, slug: regionSlug }}
+        country={{ name: countryName, slug: countrySlug }}
+        province={{ name: provinceName, slug: provinceSlug }}
+      />
+      
+      <!-- Hero Section -->
+      <section class="mb-12">
+        <div class="bg-gradient-to-br from-blue-50 via-cyan-50 to-teal-50 rounded-lg p-8 md:p-12">
+          <h1 class="text-4xl md:text-5xl lg:text-6xl font-bold text-gray-900 mb-6">
+            {provinceName}
+          </h1>
+          <p class="text-xl md:text-2xl text-gray-700 max-w-3xl">
+            {locale === 'en' 
+              ? `Explore freediving destinations in ${provinceName}, ${countryName}` 
+              : `Explora destinos de freediving en ${provinceName}, ${countryName}`}
+          </p>
+          <div class="flex items-center gap-4 text-lg text-gray-600 mt-4">
+            <span>{cities.length} {locale === 'en' ? 'cities' : 'ciudades'}</span>
+            <span>•</span>
+            <span>{allDestinations.length} {locale === 'en' ? 'destinations' : 'destinos'}</span>
+          </div>
+        </div>
+      </section>
+
+      <!-- Cities Section -->
+      {cities.length > 0 && (
+        <section class="mb-12">
+          <div class="text-center mb-8">
+            <h2 class="text-3xl md:text-4xl font-bold text-gray-900 mb-4">
+              {locale === 'en' ? 'Cities' : 'Ciudades'}
+            </h2>
+            <p class="text-lg text-gray-600 max-w-2xl mx-auto">
+              {locale === 'en' ? 'Explore freediving destinations by city' : 'Explora destinos de freediving por ciudad'}
+            </p>
+          </div>
+          
+          <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6">
+            {cities.map((city) => {
+              const cityDestinations = allDestinations.filter(dest => dest.data.city === city.slug);
+              return (
+                <a 
+                  href={`/${locale}/${regionSlug}/${countrySlug}/${provinceSlug}/${city.slug}/`} 
+                  class="bg-white rounded-lg shadow-md hover:shadow-lg transition-shadow border border-gray-200 p-6 block"
+                >
+                  <h3 class="text-xl font-semibold text-gray-900 mb-2">{city.name[locale]}</h3>
+                  {cityDestinations.length > 0 && (
+                    <p class="text-sm text-gray-600 mb-4">
+                      {cityDestinations.length} {locale === 'en' ? 'destination' : 'destino'}{cityDestinations.length > 1 ? 's' : ''}
+                    </p>
+                  )}
+                  <div class="flex items-center justify-between mt-4">
+                    <span class="text-sm text-blue-600 font-medium">
+                      {locale === 'en' ? 'Explore →' : 'Explorar →'}
+                    </span>
+                  </div>
+                </a>
+              );
+            })}
+          </div>
+        </section>
+      )}
+
+      <!-- Destinations Section -->
+      {allDestinations.length > 0 && (
+        <section class="mt-12">
+          <div class="text-center mb-8">
+            <h2 class="text-3xl md:text-4xl font-bold text-gray-900 mb-4">
+              {locale === 'en' ? 'Top Destinations' : 'Destinos Principales'}
+            </h2>
+            <p class="text-lg text-gray-600 max-w-2xl mx-auto">
+              {locale === 'en' ? 'Popular freediving locations in this province' : 'Ubicaciones populares de freediving en esta provincia'}
+            </p>
+          </div>
+          
+          <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6">
+            {allDestinations.map((destination) => {
+              const destinationUrl = `/${locale}/${regionSlug}/${countrySlug}/${provinceSlug}/${destination.data.city}/`;
+              
+              return (
+                <a href={destinationUrl} class="bg-white rounded-lg shadow-md hover:shadow-lg transition-shadow border border-gray-200 overflow-hidden block">
+                  <div class="h-48 bg-gradient-to-br from-blue-400 to-cyan-500 flex items-center justify-center">
+                    <span class="text-4xl">🌊</span>
+                  </div>
+                  <div class="p-6">
+                    <h3 class="text-xl font-semibold text-gray-900 mb-2">{destination.data.name[locale]}</h3>
+                    <p class="text-sm text-gray-600 mb-4">{destination.data.description[locale]}</p>
+                    <span class="text-blue-600 font-medium text-sm">{t(locale, 'home.destinations.explore')}</span>
+                  </div>
+                </a>
+              );
+            })}
+          </div>
+        </section>
+      )}
+    </div>
+  </div>
+</Layout>
+

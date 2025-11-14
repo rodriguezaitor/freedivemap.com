@@ -3,6 +3,7 @@ name:
   en: "Utila, Honduras"
   es: "Utila, Honduras"
 country: "honduras"
+province: "bay-islands"
 city: "utila"
 region: "north-america"
 description:

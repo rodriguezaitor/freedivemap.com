@@ -3,6 +3,7 @@ name:
   en: "Auckland, New Zealand"
   es: "Auckland, Nueva Zelanda"
 country: "new-zealand"
+province: "auckland"
 city: "auckland"
 region: "oceania"
 description:

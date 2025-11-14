@@ -3,6 +3,7 @@ name:
   en: "Tenerife, Spain"
   es: "Tenerife, España"
 country: "spain"
+province: "canary-islands"
 city: "tenerife"
 region: "europe"
 description:

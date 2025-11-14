@@ -3,6 +3,7 @@ name:
   en: "Cebu, Philippines"
   es: "Cebú, Filipinas"
 country: "philippines"
+province: "cebu"
 city: "cebu"
 region: "asia"
 description:

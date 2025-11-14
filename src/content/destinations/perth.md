@@ -3,6 +3,7 @@ name:
   en: "Perth, Australia"
   es: "Perth, Australia"
 country: "australia"
+province: "western-australia"
 city: "perth"
 region: "oceania"
 description:

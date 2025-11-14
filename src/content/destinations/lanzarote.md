@@ -3,6 +3,7 @@ name:
   en: "Lanzarote, Spain"
   es: "Lanzarote, España"
 country: "spain"
+province: "canary-islands"
 city: "lanzarote"
 region: "europe"
 description:

@@ -3,6 +3,7 @@ name:
   en: "Playa del Carmen, Mexico"
   es: "Playa del Carmen, México"
 country: "mexico"
+province: "quintana-roo"
 city: "playa-del-carmen"
 region: "north-america"
 description:

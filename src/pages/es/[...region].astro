@@ -49,9 +49,10 @@ try {
 // Count countries in this region
 const countryCount = region.data.countries ? Object.keys(region.data.countries).length : 0;
 
-// Get all countries with their cities
+// Get all countries with their cities (including cities within provinces)
 const countries = region.data.countries 
   ? Object.entries(region.data.countries).map(([countrySlug, countryData]: [string, any]) => {
+      // Get cities directly in country (for countries without provinces)
       const cities = countryData.cities 
         ? Object.entries(countryData.cities).map(([citySlug, cityData]: [string, any]) => ({
             slug: citySlug,
@@ -59,11 +60,24 @@ const countries = region.data.countries
           }))
         : [];
       
+      // Count cities within provinces (for countries with provinces)
+      let provinceCityCount = 0;
+      if (countryData.provinces) {
+        for (const province of Object.values(countryData.provinces)) {
+          if ((province as any).cities) {
+            provinceCityCount += Object.keys((province as any).cities).length;
+          }
+        }
+      }
+      
+      // Total city count: direct cities + cities in provinces
+      const totalCityCount = cities.length + provinceCityCount;
+      
       return {
         slug: countrySlug,
         ...countryData,
         cities,
-        cityCount: cities.length,
+        cityCount: totalCityCount,
       };
     })
   : [];
@@ -173,7 +187,10 @@ const regionDescription = region.data.description?.[locale] || '';
             {allDestinations.map((destination) => {
               const countrySlug = destination.data.country;
               const citySlug = destination.data.city;
-              const destinationUrl = `/${locale}/${regionSlug}/${countrySlug}/${citySlug}/`;
+              const provinceSlug = destination.data.province;
+              const destinationUrl = provinceSlug
+                ? `/${locale}/${regionSlug}/${countrySlug}/${provinceSlug}/${citySlug}/`
+                : `/${locale}/${regionSlug}/${countrySlug}/${citySlug}/`;
               
               return (
                 <a href={destinationUrl} class="bg-white rounded-lg shadow-md hover:shadow-lg transition-shadow border border-gray-200 overflow-hidden block">

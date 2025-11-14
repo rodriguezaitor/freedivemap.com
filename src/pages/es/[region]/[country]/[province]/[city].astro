@@ -1,10 +1,10 @@
 ---
 import { getCollection, getEntry } from 'astro:content';
-import Layout from '../../../../layouts/Layout.astro';
-import Header from '../../../../components/Header.astro';
-import Breadcrumbs from '../../../../components/Breadcrumbs.astro';
+import Layout from '../../../../../layouts/Layout.astro';
+import Header from '../../../../../components/Header.astro';
+import Breadcrumbs from '../../../../../components/Breadcrumbs.astro';
 import { getRelativeLocaleUrl } from 'astro:i18n';
-import { t } from '../../../../utils/i18n.js';
+import { t } from '../../../../../utils/i18n.js';
 import { render } from 'astro:content';
 import { marked } from 'marked';
 
@@ -12,8 +12,8 @@ export async function getStaticPaths() {
   const destinations = await getCollection('destinations');
   const regions = await getCollection('regions');
   
-  // Filter destinations that DON'T have a province (those with province use [province]/[city].astro)
-  const destinationsWithoutProvince = destinations.filter(dest => !dest.data.province);
+  // Filter destinations that have a province
+  const destinationsWithProvince = destinations.filter(dest => dest.data.province);
   
   // Create a map of region data for quick lookup
   const regionMap = new Map();
@@ -21,20 +21,19 @@ export async function getStaticPaths() {
     regionMap.set(region.id, region.data);
   });
   
-  return destinationsWithoutProvince.map((destination) => {
-    const regionData = regionMap.get(destination.data.region);
-    const countryData = regionData?.countries?.[destination.data.country];
-    
+  return destinationsWithProvince.map((destination) => {
     return {
       params: {
         region: destination.data.region,
         country: destination.data.country,
+        province: destination.data.province,
         city: destination.data.city,
       },
       props: {
         destinationId: destination.id,
         regionSlug: destination.data.region,
         countrySlug: destination.data.country,
+        provinceSlug: destination.data.province,
         citySlug: destination.data.city,
       },
     };
@@ -42,7 +41,7 @@ export async function getStaticPaths() {
 }
 
 const locale = Astro.currentLocale || 'es';
-const { destinationId, regionSlug, countrySlug, citySlug } = Astro.props;
+const { destinationId, regionSlug, countrySlug, provinceSlug, citySlug } = Astro.props;
 
 // Get the destination from the collection
 let destination;
@@ -57,9 +56,10 @@ if (!destination) {
   return Astro.redirect(`/${locale}/`);
 }
 
-// Get region and country data for breadcrumbs
+// Get region, country, and province data for breadcrumbs
 let region;
 let country;
+let province;
 let cityNameFromRegion: string | undefined;
 try {
   region = await getEntry('regions', regionSlug);
@@ -68,8 +68,16 @@ try {
       name: region.data.countries[countrySlug].name[locale],
       slug: countrySlug,
     };
-    // Get city name from region data (without country)
-    cityNameFromRegion = region.data.countries[countrySlug].cities?.[citySlug]?.name[locale];
+    // Get province data
+    const provinceData = region.data.countries[countrySlug].provinces?.[provinceSlug];
+    if (provinceData) {
+      province = {
+        name: provinceData.name[locale],
+        slug: provinceSlug,
+      };
+      // Get city name from province data
+      cityNameFromRegion = provinceData.cities?.[citySlug]?.name[locale];
+    }
   }
 } catch (error) {
   console.error('Error fetching region:', error);
@@ -100,19 +108,20 @@ if (contentFromFrontmatter) {
 }
 
 const regionName = region?.data.name[locale] || regionSlug;
-// Use city name from region data (without country) if available, otherwise use destination name
+// Use city name from region data if available, otherwise use destination name
 const cityName = cityNameFromRegion || destination.data.name[locale];
 const cityDescription = destination.data.description[locale];
 const countryName = country?.name || countrySlug;
+const provinceName = province?.name || provinceSlug;
 ---
 
 <Layout 
   seoKey="home"
   seoOverrides={{
-    title: `Freediving in ${cityName}, ${countryName} | FreediveMap`,
+    title: `Freediving en ${cityName}, ${provinceName}, ${countryName} | FreediveMap`,
     description: cityDescription
   }}
-  whatsappLocation={`${cityName}, ${countryName}`}
+  whatsappLocation={`${cityName}, ${provinceName}, ${countryName}`}
 >
   <Header />
   
@@ -122,6 +131,7 @@ const countryName = country?.name || countrySlug;
         locale={locale}
         region={{ name: regionName, slug: regionSlug }}
         country={country}
+        province={province}
         city={{ name: cityName, slug: citySlug }}
       />
       
@@ -185,6 +195,18 @@ const countryName = country?.name || countrySlug;
                 <dd class="mt-1">
                   <a href={`/${locale}/${regionSlug}/${countrySlug}/`} class="text-blue-600 hover:text-blue-800">
                     {country.name}
+                  </a>
+                </dd>
+              </div>
+            )}
+            {province && (
+              <div>
+                <dt class="text-sm font-medium text-gray-500">
+                  {locale === 'en' ? 'Province' : 'Provincia'}
+                </dt>
+                <dd class="mt-1">
+                  <a href={`/${locale}/${regionSlug}/${countrySlug}/${provinceSlug}/`} class="text-blue-600 hover:text-blue-800">
+                    {province.name}
                   </a>
                 </dd>
               </div>

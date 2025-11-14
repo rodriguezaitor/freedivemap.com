@@ -3,6 +3,7 @@ name:
   en: "Amed, Indonesia"
   es: "Amed, Indonesia"
 country: "indonesia"
+province: "bali"
 city: "amed"
 region: "asia"
 description:

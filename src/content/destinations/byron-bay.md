@@ -3,6 +3,7 @@ name:
   en: "Byron Bay, Australia"
   es: "Byron Bay, Australia"
 country: "australia"
+province: "new-south-wales"
 city: "byron-bay"
 region: "oceania"
 description:

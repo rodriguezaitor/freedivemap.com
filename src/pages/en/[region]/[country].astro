@@ -68,8 +68,19 @@ try {
   allDestinations = [];
 }
 
-// Get all cities from the region data
-const cities = countryData.cities 
+// Check if country has provinces
+const hasProvinces = countryData.provinces && Object.keys(countryData.provinces).length > 0;
+
+// Get provinces if they exist, otherwise get cities
+const provinces = hasProvinces && countryData.provinces
+  ? Object.entries(countryData.provinces).map(([provinceSlug, provinceData]: [string, any]) => ({
+      slug: provinceSlug,
+      ...provinceData,
+      cityCount: provinceData.cities ? Object.keys(provinceData.cities).length : 0,
+    }))
+  : [];
+
+const cities = !hasProvinces && countryData.cities 
   ? Object.entries(countryData.cities).map(([citySlug, cityData]: [string, any]) => ({
       slug: citySlug,
       ...cityData,
@@ -116,15 +127,66 @@ const countryTitle = locale === 'en'
               : `Explora destinos de freediving en ${countryName}, ${regionName}`}
           </p>
           <div class="flex items-center gap-4 text-lg text-gray-600 mt-4">
-            <span>{cities.length} {locale === 'en' ? 'cities' : 'ciudades'}</span>
-            <span>•</span>
-            <span>{allDestinations.length} {locale === 'en' ? 'destinations' : 'destinos'}</span>
+            {hasProvinces ? (
+              <>
+                <span>{provinces.length} {locale === 'en' ? 'provinces' : 'provincias'}</span>
+                <span>•</span>
+                <span>{allDestinations.length} {locale === 'en' ? 'destinations' : 'destinos'}</span>
+              </>
+            ) : (
+              <>
+                <span>{cities.length} {locale === 'en' ? 'cities' : 'ciudades'}</span>
+                <span>•</span>
+                <span>{allDestinations.length} {locale === 'en' ? 'destinations' : 'destinos'}</span>
+              </>
+            )}
           </div>
         </div>
       </section>
 
-      <!-- Cities Section -->
-      {cities.length > 0 && (
+      <!-- Provinces Section (if country has provinces) -->
+      {hasProvinces && provinces.length > 0 && (
+        <section class="mb-12">
+          <div class="text-center mb-8">
+            <h2 class="text-3xl md:text-4xl font-bold text-gray-900 mb-4">
+              {locale === 'en' ? 'Provinces' : 'Provincias'}
+            </h2>
+            <p class="text-lg text-gray-600 max-w-2xl mx-auto">
+              {locale === 'en' ? 'Explore freediving destinations by province' : 'Explora destinos de freediving por provincia'}
+            </p>
+          </div>
+          
+          <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6">
+            {provinces.map((province) => {
+              const provinceDestinations = allDestinations.filter(dest => dest.data.province === province.slug);
+              return (
+                <a 
+                  href={`/${locale}/${regionSlug}/${countrySlug}/${province.slug}/`} 
+                  class="bg-white rounded-lg shadow-md hover:shadow-lg transition-shadow border border-gray-200 p-6 block"
+                >
+                  <h3 class="text-xl font-semibold text-gray-900 mb-2">{province.name[locale]}</h3>
+                  <p class="text-sm text-gray-600 mb-2">
+                    {province.cityCount} {locale === 'en' ? 'cities' : 'ciudades'}
+                  </p>
+                  {provinceDestinations.length > 0 && (
+                    <p class="text-sm text-gray-600 mb-4">
+                      {provinceDestinations.length} {locale === 'en' ? 'destination' : 'destino'}{provinceDestinations.length > 1 ? 's' : ''}
+                    </p>
+                  )}
+                  <div class="flex items-center justify-between mt-4">
+                    <span class="text-sm text-blue-600 font-medium">
+                      {locale === 'en' ? 'Explore →' : 'Explorar →'}
+                    </span>
+                  </div>
+                </a>
+              );
+            })}
+          </div>
+        </section>
+      )}
+
+      <!-- Cities Section (if country doesn't have provinces) -->
+      {!hasProvinces && cities.length > 0 && (
         <section class="mb-12">
           <div class="text-center mb-8">
             <h2 class="text-3xl md:text-4xl font-bold text-gray-900 mb-4">
@@ -175,7 +237,9 @@ const countryTitle = locale === 'en'
           
           <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6">
             {allDestinations.map((destination) => {
-              const destinationUrl = `/${locale}/${regionSlug}/${countrySlug}/${destination.data.city}/`;
+              const destinationUrl = destination.data.province
+                ? `/${locale}/${regionSlug}/${countrySlug}/${destination.data.province}/${destination.data.city}/`
+                : `/${locale}/${regionSlug}/${countrySlug}/${destination.data.city}/`;
               
               return (
                 <a href={destinationUrl} class="bg-white rounded-lg shadow-md hover:shadow-lg transition-shadow border border-gray-200 overflow-hidden block">

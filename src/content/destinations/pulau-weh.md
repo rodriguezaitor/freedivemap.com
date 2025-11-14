@@ -3,6 +3,7 @@ name:
   en: "Pulau Weh, Indonesia"
   es: "Pulau Weh, Indonesia"
 country: "indonesia"
+province: "aceh"
 city: "pulau-weh"
 region: "asia"
 description:

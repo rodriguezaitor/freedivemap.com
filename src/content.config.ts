@@ -31,6 +31,24 @@ const regions = defineCollection({
           es: z.string(),
         }),
         slug: z.string(),
+        provinces: z.record(
+          z.object({
+            name: z.object({
+              en: z.string(),
+              es: z.string(),
+            }),
+            slug: z.string(),
+            cities: z.record(
+              z.object({
+                name: z.object({
+                  en: z.string(),
+                  es: z.string(),
+                }),
+                slug: z.string(),
+              })
+            ),
+          })
+        ).optional(),
         cities: z.record(
           z.object({
             name: z.object({
@@ -39,7 +57,7 @@ const regions = defineCollection({
             }),
             slug: z.string(),
           })
-        ),
+        ).optional(),
       })
     ),
   }),
@@ -54,6 +72,7 @@ const destinations = defineCollection({
       es: z.string(),
     }),
     country: z.string(),
+    province: z.string().optional(),
     city: z.string(),
     region: z.string(),
     description: z.object({

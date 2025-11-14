@@ -3,6 +3,7 @@ name:
   en: "Wellington, New Zealand"
   es: "Wellington, Nueva Zelanda"
 country: "new-zealand"
+province: "wellington"
 city: "wellington"
 region: "oceania"
 description:

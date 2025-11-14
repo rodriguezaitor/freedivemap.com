@@ -3,6 +3,7 @@ name:
   en: "Cozumel, Mexico"
   es: "Cozumel, México"
 country: "mexico"
+province: "quintana-roo"
 city: "cozumel"
 region: "north-america"
 description:

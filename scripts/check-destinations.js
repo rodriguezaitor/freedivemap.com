@@ -29,15 +29,38 @@ const existingFiles = fs.readdirSync(destinationsDir)
 const expectedDestinations = [];
 for (const [regionId, region] of Object.entries(regions)) {
   for (const [countryId, country] of Object.entries(region.countries || {})) {
-    for (const [cityId, city] of Object.entries(country.cities || {})) {
-      expectedDestinations.push({
-        region: regionId,
-        country: countryId,
-        city: cityId,
-        name: city.name.en,
-        slug: city.slug,
-        fileName: `${city.slug}.md`,
-      });
+    // Check cities directly in country (for countries without provinces)
+    if (country.cities) {
+      for (const [cityId, city] of Object.entries(country.cities)) {
+        expectedDestinations.push({
+          region: regionId,
+          country: countryId,
+          province: null,
+          city: cityId,
+          name: city.name.en,
+          slug: city.slug,
+          fileName: `${city.slug}.md`,
+        });
+      }
+    }
+    
+    // Check cities within provinces (for countries with provinces)
+    if (country.provinces) {
+      for (const [provinceId, province] of Object.entries(country.provinces)) {
+        if (province.cities) {
+          for (const [cityId, city] of Object.entries(province.cities)) {
+            expectedDestinations.push({
+              region: regionId,
+              country: countryId,
+              province: provinceId,
+              city: cityId,
+              name: city.name.en,
+              slug: city.slug,
+              fileName: `${city.slug}.md`,
+            });
+          }
+        }
+      }
     }
   }
 }
@@ -59,6 +82,9 @@ if (missing.length > 0) {
     console.log(`  - ${dest.name}`);
     console.log(`    Region: ${dest.region}`);
     console.log(`    Country: ${dest.country}`);
+    if (dest.province) {
+      console.log(`    Province: ${dest.province}`);
+    }
     console.log(`    Slug: ${dest.slug}`);
     console.log(`    File: ${dest.fileName}`);
     console.log(`    Path: src/content/destinations/${dest.fileName}\n`);

@@ -3,6 +3,7 @@ name:
   en: "Arraial do Cabo, Brazil"
   es: "Arraial do Cabo, Brasil"
 country: "brazil"
+province: "rio-de-janeiro"
 city: "arraial-do-cabo"
 region: "south-america"
 description:

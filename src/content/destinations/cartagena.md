@@ -3,6 +3,7 @@ name:
   en: "Cartagena, Colombia"
   es: "Cartagena, Colombia"
 country: "colombia"
+province: "bolivar"
 city: "cartagena"
 region: "south-america"
 description:

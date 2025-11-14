@@ -3,6 +3,7 @@ name:
   en: "Sharm El Sheikh, Egypt"
   es: "Sharm El Sheikh, Egipto"
 country: "egypt"
+province: "south-sinai"
 city: "sharm-el-sheikh"
 region: "africa"
 description:

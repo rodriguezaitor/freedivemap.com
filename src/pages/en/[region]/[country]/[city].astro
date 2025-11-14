@@ -12,13 +12,16 @@ export async function getStaticPaths() {
   const destinations = await getCollection('destinations');
   const regions = await getCollection('regions');
   
+  // Filter destinations that DON'T have a province (those with province use [province]/[city].astro)
+  const destinationsWithoutProvince = destinations.filter(dest => !dest.data.province);
+  
   // Create a map of region data for quick lookup
   const regionMap = new Map();
   regions.forEach(region => {
     regionMap.set(region.id, region.data);
   });
   
-  return destinations.map((destination) => {
+  return destinationsWithoutProvince.map((destination) => {
     const regionData = regionMap.get(destination.data.region);
     const countryData = regionData?.countries?.[destination.data.country];
     

@@ -3,6 +3,7 @@ name:
   en: "Dahab, Egypt"
   es: "Dahab, Egipto"
 country: "egypt"
+province: "south-sinai"
 city: "dahab"
 region: "africa"
 description:

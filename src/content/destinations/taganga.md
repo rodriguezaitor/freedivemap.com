@@ -3,6 +3,7 @@ name:
   en: "Taganga, Colombia"
   es: "Taganga, Colombia"
 country: "colombia"
+province: "magdalena"
 city: "taganga"
 region: "south-america"
 description:

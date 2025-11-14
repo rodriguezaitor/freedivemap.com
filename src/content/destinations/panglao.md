@@ -3,6 +3,7 @@ name:
   en: "Panglao, Philippines"
   es: "Panglao, Filipinas"
 country: "philippines"
+province: "bohol"
 city: "panglao"
 region: "asia"
 description:

@@ -39,27 +39,45 @@
           "es": "Filipinas"
         },
         "slug": "philippines",
-        "cities": {
-          "panglao": {
+        "provinces": {
+          "bohol": {
             "name": {
-              "en": "Panglao",
-              "es": "Panglao"
+              "en": "Bohol",
+              "es": "Bohol"
             },
-            "slug": "panglao"
-          },
-          "moalboal": {
-            "name": {
-              "en": "Moalboal",
-              "es": "Moalboal"
-            },
-            "slug": "moalboal"
+            "slug": "bohol",
+            "cities": {
+              "panglao": {
+                "name": {
+                  "en": "Panglao",
+                  "es": "Panglao"
+                },
+                "slug": "panglao"
+              }
+            }
           },
           "cebu": {
             "name": {
               "en": "Cebu",
               "es": "Cebú"
             },
-            "slug": "cebu"
+            "slug": "cebu",
+            "cities": {
+              "cebu": {
+                "name": {
+                  "en": "Cebu",
+                  "es": "Cebú"
+                },
+                "slug": "cebu"
+              },
+              "moalboal": {
+                "name": {
+                  "en": "Moalboal",
+                  "es": "Moalboal"
+                },
+                "slug": "moalboal"
+              }
+            }
           }
         }
       },
@@ -69,48 +87,68 @@
           "es": "Indonesia"
         },
         "slug": "indonesia",
-        "cities": {
-          "amed": {
-            "name": {
-              "en": "Amed",
-              "es": "Amed"
-            },
-            "slug": "amed"
-          },
+        "provinces": {
           "bali": {
             "name": {
               "en": "Bali",
               "es": "Bali"
             },
-            "slug": "bali"
+            "slug": "bali",
+            "cities": {
+              "amed": {
+                "name": {
+                  "en": "Amed",
+                  "es": "Amed"
+                },
+                "slug": "amed"
+              }
+            }
           },
-          "gili-trawangan": {
+          "lombok": {
             "name": {
-              "en": "Gili Trawangan",
-              "es": "Gili Trawangan"
+              "en": "Lombok",
+              "es": "Lombok"
             },
-            "slug": "gili-trawangan"
+            "slug": "lombok",
+            "cities": {
+              "gili-trawangan": {
+                "name": {
+                  "en": "Gili Trawangan",
+                  "es": "Gili Trawangan"
+                },
+                "slug": "gili-trawangan"
+              },
+              "gili-meno": {
+                "name": {
+                  "en": "Gili Meno",
+                  "es": "Gili Meno"
+                },
+                "slug": "gili-meno"
+              },
+              "gili-air": {
+                "name": {
+                  "en": "Gili Air",
+                  "es": "Gili Air"
+                },
+                "slug": "gili-air"
+              }
+            }
           },
-          "gili-meno": {
+          "aceh": {
             "name": {
-              "en": "Gili Meno",
-              "es": "Gili Meno"
+              "en": "Aceh",
+              "es": "Aceh"
             },
-            "slug": "gili-meno"
-          },
-          "gili-air": {
-            "name": {
-              "en": "Gili Air",
-              "es": "Gili Air"
-            },
-            "slug": "gili-air"
-          },
-          "pulau-weh": {
-            "name": {
-              "en": "Pulau Weh",
-              "es": "Pulau Weh"
-            },
-            "slug": "pulau-weh"
+            "slug": "aceh",
+            "cities": {
+              "pulau-weh": {
+                "name": {
+                  "en": "Pulau Weh",
+                  "es": "Pulau Weh"
+                },
+                "slug": "pulau-weh"
+              }
+            }
           }
         }
       }
@@ -133,27 +171,45 @@
           "es": "España"
         },
         "slug": "spain",
-        "cities": {
-          "tenerife": {
+        "provinces": {
+          "canary-islands": {
             "name": {
-              "en": "Tenerife",
-              "es": "Tenerife"
+              "en": "Canary Islands",
+              "es": "Islas Canarias"
             },
-            "slug": "tenerife"
+            "slug": "canary-islands",
+            "cities": {
+              "tenerife": {
+                "name": {
+                  "en": "Tenerife",
+                  "es": "Tenerife"
+                },
+                "slug": "tenerife"
+              },
+              "lanzarote": {
+                "name": {
+                  "en": "Lanzarote",
+                  "es": "Lanzarote"
+                },
+                "slug": "lanzarote"
+              }
+            }
           },
-          "lanzarote": {
+          "catalonia": {
             "name": {
-              "en": "Lanzarote",
-              "es": "Lanzarote"
+              "en": "Catalonia",
+              "es": "Cataluña"
             },
-            "slug": "lanzarote"
-          },
-          "barcelona": {
-            "name": {
-              "en": "Barcelona",
-              "es": "Barcelona"
-            },
-            "slug": "barcelona"
+            "slug": "catalonia",
+            "cities": {
+              "barcelona": {
+                "name": {
+                  "en": "Barcelona",
+                  "es": "Barcelona"
+                },
+                "slug": "barcelona"
+              }
+            }
           }
         }
       },
@@ -199,20 +255,29 @@
           "es": "Egipto"
         },
         "slug": "egypt",
-        "cities": {
-          "dahab": {
+        "provinces": {
+          "south-sinai": {
             "name": {
-              "en": "Dahab",
-              "es": "Dahab"
+              "en": "South Sinai",
+              "es": "Sinaí del Sur"
             },
-            "slug": "dahab"
-          },
-          "sharm-el-sheikh": {
-            "name": {
-              "en": "Sharm El Sheikh",
-              "es": "Sharm El Sheikh"
-            },
-            "slug": "sharm-el-sheikh"
+            "slug": "south-sinai",
+            "cities": {
+              "dahab": {
+                "name": {
+                  "en": "Dahab",
+                  "es": "Dahab"
+                },
+                "slug": "dahab"
+              },
+              "sharm-el-sheikh": {
+                "name": {
+                  "en": "Sharm El Sheikh",
+                  "es": "Sharm El Sheikh"
+                },
+                "slug": "sharm-el-sheikh"
+              }
+            }
           }
         }
       }
@@ -235,20 +300,29 @@
           "es": "México"
         },
         "slug": "mexico",
-        "cities": {
-          "cozumel": {
+        "provinces": {
+          "quintana-roo": {
             "name": {
-              "en": "Cozumel",
-              "es": "Cozumel"
+              "en": "Quintana Roo",
+              "es": "Quintana Roo"
             },
-            "slug": "cozumel"
-          },
-          "playa-del-carmen": {
-            "name": {
-              "en": "Playa del Carmen",
-              "es": "Playa del Carmen"
-            },
-            "slug": "playa-del-carmen"
+            "slug": "quintana-roo",
+            "cities": {
+              "cozumel": {
+                "name": {
+                  "en": "Cozumel",
+                  "es": "Cozumel"
+                },
+                "slug": "cozumel"
+              },
+              "playa-del-carmen": {
+                "name": {
+                  "en": "Playa del Carmen",
+                  "es": "Playa del Carmen"
+                },
+                "slug": "playa-del-carmen"
+              }
+            }
           }
         }
       },
@@ -258,20 +332,29 @@
           "es": "Honduras"
         },
         "slug": "honduras",
-        "cities": {
-          "roatan": {
+        "provinces": {
+          "bay-islands": {
             "name": {
-              "en": "Roatan",
-              "es": "Roatán"
+              "en": "Bay Islands",
+              "es": "Islas de la Bahía"
             },
-            "slug": "roatan"
-          },
-          "utila": {
-            "name": {
-              "en": "Utila",
-              "es": "Utila"
-            },
-            "slug": "utila"
+            "slug": "bay-islands",
+            "cities": {
+              "roatan": {
+                "name": {
+                  "en": "Roatan",
+                  "es": "Roatán"
+                },
+                "slug": "roatan"
+              },
+              "utila": {
+                "name": {
+                  "en": "Utila",
+                  "es": "Utila"
+                },
+                "slug": "utila"
+              }
+            }
           }
         }
       }
@@ -294,20 +377,38 @@
           "es": "Colombia"
         },
         "slug": "colombia",
-        "cities": {
-          "cartagena": {
+        "provinces": {
+          "bolivar": {
             "name": {
-              "en": "Cartagena",
-              "es": "Cartagena"
+              "en": "Bolívar",
+              "es": "Bolívar"
             },
-            "slug": "cartagena"
+            "slug": "bolivar",
+            "cities": {
+              "cartagena": {
+                "name": {
+                  "en": "Cartagena",
+                  "es": "Cartagena"
+                },
+                "slug": "cartagena"
+              }
+            }
           },
-          "taganga": {
+          "magdalena": {
             "name": {
-              "en": "Taganga",
-              "es": "Taganga"
+              "en": "Magdalena",
+              "es": "Magdalena"
             },
-            "slug": "taganga"
+            "slug": "magdalena",
+            "cities": {
+              "taganga": {
+                "name": {
+                  "en": "Taganga",
+                  "es": "Taganga"
+                },
+                "slug": "taganga"
+              }
+            }
           }
         }
       },
@@ -317,20 +418,38 @@
           "es": "Brasil"
         },
         "slug": "brazil",
-        "cities": {
-          "fernando-de-noronha": {
+        "provinces": {
+          "pernambuco": {
             "name": {
-              "en": "Fernando de Noronha",
-              "es": "Fernando de Noronha"
+              "en": "Pernambuco",
+              "es": "Pernambuco"
             },
-            "slug": "fernando-de-noronha"
+            "slug": "pernambuco",
+            "cities": {
+              "fernando-de-noronha": {
+                "name": {
+                  "en": "Fernando de Noronha",
+                  "es": "Fernando de Noronha"
+                },
+                "slug": "fernando-de-noronha"
+              }
+            }
           },
-          "arraial-do-cabo": {
+          "rio-de-janeiro": {
             "name": {
-              "en": "Arraial do Cabo",
-              "es": "Arraial do Cabo"
+              "en": "Rio de Janeiro",
+              "es": "Río de Janeiro"
             },
-            "slug": "arraial-do-cabo"
+            "slug": "rio-de-janeiro",
+            "cities": {
+              "arraial-do-cabo": {
+                "name": {
+                  "en": "Arraial do Cabo",
+                  "es": "Arraial do Cabo"
+                },
+                "slug": "arraial-do-cabo"
+              }
+            }
           }
         }
       }
@@ -353,20 +472,38 @@
           "es": "Australia"
         },
         "slug": "australia",
-        "cities": {
-          "byron-bay": {
+        "provinces": {
+          "new-south-wales": {
             "name": {
-              "en": "Byron Bay",
-              "es": "Byron Bay"
+              "en": "New South Wales",
+              "es": "Nueva Gales del Sur"
             },
-            "slug": "byron-bay"
+            "slug": "new-south-wales",
+            "cities": {
+              "byron-bay": {
+                "name": {
+                  "en": "Byron Bay",
+                  "es": "Byron Bay"
+                },
+                "slug": "byron-bay"
+              }
+            }
           },
-          "perth": {
+          "western-australia": {
             "name": {
-              "en": "Perth",
-              "es": "Perth"
+              "en": "Western Australia",
+              "es": "Australia Occidental"
             },
-            "slug": "perth"
+            "slug": "western-australia",
+            "cities": {
+              "perth": {
+                "name": {
+                  "en": "Perth",
+                  "es": "Perth"
+                },
+                "slug": "perth"
+              }
+            }
           }
         }
       },
@@ -376,20 +513,38 @@
           "es": "Nueva Zelanda"
         },
         "slug": "new-zealand",
-        "cities": {
+        "provinces": {
           "auckland": {
             "name": {
               "en": "Auckland",
               "es": "Auckland"
             },
-            "slug": "auckland"
+            "slug": "auckland",
+            "cities": {
+              "auckland": {
+                "name": {
+                  "en": "Auckland",
+                  "es": "Auckland"
+                },
+                "slug": "auckland"
+              }
+            }
           },
           "wellington": {
             "name": {
               "en": "Wellington",
               "es": "Wellington"
             },
-            "slug": "wellington"
+            "slug": "wellington",
+            "cities": {
+              "wellington": {
+                "name": {
+                  "en": "Wellington",
+                  "es": "Wellington"
+                },
+                "slug": "wellington"
+              }
+            }
           }
         }
       }

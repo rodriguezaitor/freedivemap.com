@@ -3,10 +3,11 @@ interface Props {
   locale: string;
   region?: { name: string; slug: string };
   country?: { name: string; slug: string };
+  province?: { name: string; slug: string };
   city?: { name: string; slug: string };
 }
 
-const { locale, region, country, city } = Astro.props;
+const { locale, region, country, province, city } = Astro.props;
 ---
 
 <nav aria-label="breadcrumb" class="mb-6">
@@ -44,12 +45,31 @@ const { locale, region, country, city } = Astro.props;
           </svg>
         </li>
         <li class="inline-flex items-center">
-          {city ? (
+          {province || city ? (
             <a href={`/${locale}/${region?.slug}/${country.slug}/`} class="hover:text-blue-600 transition-colors">
               {country.name}
             </a>
           ) : (
             <span class="text-gray-900 font-normal">{country.name}</span>
+          )}
+        </li>
+      </>
+    )}
+    
+    {province && (
+      <>
+        <li class="inline-flex items-center" aria-hidden="true">
+          <svg class="w-4 h-4" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M9 5l7 7-7 7"></path>
+          </svg>
+        </li>
+        <li class="inline-flex items-center">
+          {city ? (
+            <a href={`/${locale}/${region?.slug}/${country?.slug}/${province.slug}/`} class="hover:text-blue-600 transition-colors">
+              {province.name}
+            </a>
+          ) : (
+            <span class="text-gray-900 font-normal">{province.name}</span>
           )}
         </li>
       </>

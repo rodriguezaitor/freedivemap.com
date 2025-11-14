@@ -3,6 +3,7 @@ name:
   en: "Moalboal, Philippines"
   es: "Moalboal, Filipinas"
 country: "philippines"
+province: "cebu"
 city: "moalboal"
 region: "asia"
 description:

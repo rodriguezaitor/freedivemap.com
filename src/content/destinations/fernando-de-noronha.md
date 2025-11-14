@@ -3,6 +3,7 @@ name:
   en: "Fernando de Noronha, Brazil"
   es: "Fernando de Noronha, Brasil"
 country: "brazil"
+province: "pernambuco"
 city: "fernando-de-noronha"
 region: "south-america"
 description:
