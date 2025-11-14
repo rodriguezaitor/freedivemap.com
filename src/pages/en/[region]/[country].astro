@@ -81,12 +81,15 @@ const countryName = countryData.name[locale];
 const countryDescription = locale === 'en' 
   ? `Discover amazing freediving destinations in ${countryName}, ${regionName}. Explore world-class dive sites, training facilities, and the best freediving locations.`
   : `Descubre increíbles destinos de freediving en ${countryName}, ${regionName}. Explora sitios de buceo de clase mundial, instalaciones de entrenamiento y las mejores ubicaciones de freediving.`;
+const countryTitle = locale === 'en'
+  ? `Freediving in ${countryName} | FreediveMap`
+  : `Freediving en ${countryName} | FreediveMap`;
 ---
 
 <Layout 
   seoKey="home"
   seoOverrides={{
-    title: `Freediving in ${countryName} | FreediveMap`,
+    title: countryTitle,
     description: countryDescription
   }}
   whatsappLocation={countryName}
