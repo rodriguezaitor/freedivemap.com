@@ -53,6 +53,13 @@
               "es": "Moalboal"
             },
             "slug": "moalboal"
+          },
+          "cebu": {
+            "name": {
+              "en": "Cebu",
+              "es": "Cebú"
+            },
+            "slug": "cebu"
           }
         }
       },
@@ -70,12 +77,33 @@
             },
             "slug": "amed"
           },
+          "bali": {
+            "name": {
+              "en": "Bali",
+              "es": "Bali"
+            },
+            "slug": "bali"
+          },
           "gili-trawangan": {
             "name": {
               "en": "Gili Trawangan",
               "es": "Gili Trawangan"
             },
             "slug": "gili-trawangan"
+          },
+          "gili-meno": {
+            "name": {
+              "en": "Gili Meno",
+              "es": "Gili Meno"
+            },
+            "slug": "gili-meno"
+          },
+          "gili-air": {
+            "name": {
+              "en": "Gili Air",
+              "es": "Gili Air"
+            },
+            "slug": "gili-air"
           },
           "pulau-weh": {
             "name": {
