@@ -661,51 +661,6 @@
       }
     }
   },
-  "africa": {
-    "name": {
-      "en": "Africa",
-      "es": "África"
-    },
-    "slug": "africa",
-    "description": {
-      "en": "Africa is renowned for freediving, particularly Egypt's Dahab, home to the famous Blue Hole. This region offers exceptional depth training opportunities.",
-      "es": "África es reconocida por el freediving, particularmente Dahab en Egipto, hogar del famoso Blue Hole. Esta región ofrece excepcionales oportunidades de entrenamiento en profundidad."
-    },
-    "countries": {
-      "egypt": {
-        "name": {
-          "en": "Egypt",
-          "es": "Egipto"
-        },
-        "slug": "egypt",
-        "provinces": {
-          "south-sinai": {
-            "name": {
-              "en": "South Sinai",
-              "es": "Sinaí del Sur"
-            },
-            "slug": "south-sinai",
-            "cities": {
-              "dahab": {
-                "name": {
-                  "en": "Dahab",
-                  "es": "Dahab"
-                },
-                "slug": "dahab"
-              },
-              "sharm-el-sheikh": {
-                "name": {
-                  "en": "Sharm El Sheikh",
-                  "es": "Sharm El Sheikh"
-                },
-                "slug": "sharm-el-sheikh"
-              }
-            }
-          }
-        }
-      }
-    }
-  },
   "north-america": {
     "name": {
       "en": "North America",
@@ -996,6 +951,10 @@
       "en": "Africa is renowned for freediving, particularly Egypt's Dahab, home to the famous Blue Hole. This region offers exceptional depth training opportunities.",
       "es": "África es reconocida por el freediving, particularmente Dahab en Egipto, hogar del famoso Blue Hole. Esta región ofrece excepcionales oportunidades de entrenamiento en profundidad."
     },
+    "content": {
+      "en": "## About Freediving in Africa\n\nAfrica is home to some of the world's most legendary freediving destinations, particularly along the Red Sea coast. The region is renowned for its exceptional depth training opportunities, crystal-clear waters, and world-class freediving facilities.\n\n### Red Sea Excellence\n\nThe Red Sea, shared by Egypt, Jordan, and other nations, offers some of the clearest waters in the world. With visibility often exceeding 30-40 meters and year-round warm temperatures (22-28°C), these destinations are perfect for both recreational and competitive freediving.\n\n### Key Features\n\n- **Exceptional Visibility**: Red Sea waters typically offer 30-40 meter visibility\n- **Depth Training**: World-famous deep water sites including the legendary Blue Hole in Dahab\n- **Competitive Scene**: Home to world records and elite training\n- **Rich Marine Life**: Diverse Red Sea ecosystems\n- **Training Facilities**: World-class freediving schools and certification centers\n\n### Popular Destinations\n\nDahab in Egypt's South Sinai is the undisputed freediving capital of Africa, renowned for the 130-meter deep Blue Hole. The region attracts competitive freedivers and depth training enthusiasts from around the world.\n\n### Best Time to Visit\n\nThe Red Sea offers excellent conditions year-round. Spring (March to May) and autumn (September to November) typically offer the best visibility, while water temperatures remain comfortable throughout the year.",
+      "es": "## Acerca del Freediving en África\n\nÁfrica alberga algunos de los destinos de freediving más legendarios del mundo, particularmente a lo largo de la costa del Mar Rojo. La región es reconocida por sus excepcionales oportunidades de entrenamiento en profundidad, aguas cristalinas e instalaciones de freediving de clase mundial.\n\n### Excelencia del Mar Rojo\n\nEl Mar Rojo, compartido por Egipto, Jordania y otras naciones, ofrece algunas de las aguas más claras del mundo. Con visibilidad que a menudo supera los 30-40 metros y temperaturas cálidas durante todo el año (22-28°C), estos destinos son perfectos tanto para freediving recreativo como competitivo.\n\n### Características Principales\n\n- **Visibilidad Excepcional**: Las aguas del Mar Rojo típicamente ofrecen visibilidad de 30-40 metros\n- **Entrenamiento en Profundidad**: Sitios de aguas profundas mundialmente famosos incluyendo el legendario Blue Hole en Dahab\n- **Escena Competitiva**: Hogar de récords mundiales y entrenamiento de élite\n- **Rica Vida Marina**: Ecosistemas diversos del Mar Rojo\n- **Instalaciones de Entrenamiento**: Escuelas de freediving y centros de certificación de clase mundial\n\n### Destinos Populares\n\nDahab en Sinaí del Sur de Egipto es la capital indiscutible del freediving de África, reconocida por el Blue Hole de 130 metros de profundidad. La región atrae freedivers competitivos y entusiastas del entrenamiento en profundidad de todo el mundo.\n\n### Mejor Época para Visitar\n\nEl Mar Rojo ofrece excelentes condiciones durante todo el año. La primavera (marzo a mayo) y el otoño (septiembre a noviembre) típicamente ofrecen la mejor visibilidad, mientras que las temperaturas del agua permanecen cómodas durante todo el año."
+    },
     "countries": {
       "egypt": {
         "name": {
@@ -1003,6 +962,10 @@
           "es": "Egipto"
         },
         "slug": "egypt",
+        "content": {
+          "en": "## About Freediving in Egypt\n\nEgypt is home to some of the world's most legendary freediving destinations, particularly Dahab in South Sinai with its famous Blue Hole. The country offers exceptional depth training opportunities, crystal-clear waters, and world-class freediving facilities.\n\n### Freediving Conditions\n\nEgypt offers exceptional freediving conditions:\n\n- **Visibility**: Often exceeding 30-40 meters, some of the clearest waters in the world\n- **Water Temperature**: Warm year-round, ranging from 22-28°C (72-82°F)\n- **Depth Training**: World-famous deep water sites including the legendary Blue Hole\n- **Competitive Scene**: Home to world records and elite training\n- **Rich Marine Life**: Diverse Red Sea ecosystems\n\n### Popular Destinations\n\nDahab in South Sinai is the undisputed freediving capital of Egypt, renowned for the 130-meter deep Blue Hole and excellent training infrastructure. Sharm El Sheikh offers additional freediving opportunities with good facilities.\n\n### Training Facilities\n\nEgypt hosts numerous world-class freediving schools, particularly in Dahab. The country is a mecca for competitive freedivers and depth training enthusiasts, offering AIDA, PADI, and SSI certifications.\n\n### Best Time to Visit\n\nThe Red Sea offers excellent conditions year-round. Spring (March to May) and autumn (September to November) typically offer the best visibility, while water temperatures remain comfortable throughout the year.",
+          "es": "## Acerca del Freediving en Egipto\n\nEgipto alberga algunos de los destinos de freediving más legendarios del mundo, particularmente Dahab en Sinaí del Sur con su famoso Blue Hole. El país ofrece excepcionales oportunidades de entrenamiento en profundidad, aguas cristalinas e instalaciones de freediving de clase mundial.\n\n### Condiciones de Freediving\n\nEgipto ofrece condiciones excepcionales de freediving:\n\n- **Visibilidad**: A menudo superando los 30-40 metros, algunas de las aguas más claras del mundo\n- **Temperatura del Agua**: Cálida durante todo el año, oscilando entre 22-28°C (72-82°F)\n- **Entrenamiento en Profundidad**: Sitios de aguas profundas mundialmente famosos incluyendo el legendario Blue Hole\n- **Escena Competitiva**: Hogar de récords mundiales y entrenamiento de élite\n- **Rica Vida Marina**: Ecosistemas diversos del Mar Rojo\n\n### Destinos Populares\n\nDahab en Sinaí del Sur es la capital indiscutible del freediving de Egipto, reconocida por el Blue Hole de 130 metros de profundidad y excelente infraestructura de entrenamiento. Sharm El Sheikh ofrece oportunidades adicionales de freediving con buenas instalaciones.\n\n### Instalaciones de Entrenamiento\n\nEgipto alberga numerosas escuelas de freediving de clase mundial, particularmente en Dahab. El país es un meca para freedivers competitivos y entusiastas del entrenamiento en profundidad, ofreciendo certificaciones AIDA, PADI y SSI.\n\n### Mejor Época para Visitar\n\nEl Mar Rojo ofrece excelentes condiciones durante todo el año. La primavera (marzo a mayo) y el otoño (septiembre a noviembre) típicamente ofrecen la mejor visibilidad, mientras que las temperaturas del agua permanecen cómodas durante todo el año."
+        },
         "provinces": {
           "south-sinai": {
             "name": {
@@ -1010,6 +973,10 @@
               "es": "Sinaí del Sur"
             },
             "slug": "south-sinai",
+            "content": {
+              "en": "## About Freediving in South Sinai\n\nSouth Sinai is home to some of the world's most legendary freediving destinations, particularly Dahab with its famous Blue Hole. The region offers exceptional depth training opportunities, crystal-clear waters, and world-class freediving facilities.\n\n### Freediving Conditions\n\nSouth Sinai offers exceptional freediving conditions:\n\n- **Visibility**: Often exceeding 30-40 meters, some of the clearest waters in the world\n- **Water Temperature**: Warm year-round, ranging from 22-28°C (72-82°F)\n- **Depth Training**: World-famous deep water sites including the legendary Blue Hole\n- **Competitive Scene**: Home to world records and elite training\n- **Rich Marine Life**: Diverse Red Sea ecosystems\n\n### Popular Destinations\n\nDahab is the undisputed freediving capital of South Sinai, renowned for the 130-meter deep Blue Hole and excellent training infrastructure. Sharm El Sheikh offers additional freediving opportunities with good facilities.\n\n### Training Facilities\n\nSouth Sinai hosts numerous world-class freediving schools, particularly in Dahab. The region is a mecca for competitive freedivers and depth training enthusiasts, offering AIDA, PADI, and SSI certifications.\n\n### Best Time to Visit\n\nThe Red Sea offers excellent conditions year-round. Spring (March to May) and autumn (September to November) typically offer the best visibility, while water temperatures remain comfortable throughout the year.",
+              "es": "## Acerca del Freediving en Sinaí del Sur\n\nSinaí del Sur alberga algunos de los destinos de freediving más legendarios del mundo, particularmente Dahab con su famoso Blue Hole. La región ofrece excepcionales oportunidades de entrenamiento en profundidad, aguas cristalinas e instalaciones de freediving de clase mundial.\n\n### Condiciones de Freediving\n\nSinaí del Sur ofrece condiciones excepcionales de freediving:\n\n- **Visibilidad**: A menudo superando los 30-40 metros, algunas de las aguas más claras del mundo\n- **Temperatura del Agua**: Cálida durante todo el año, oscilando entre 22-28°C (72-82°F)\n- **Entrenamiento en Profundidad**: Sitios de aguas profundas mundialmente famosos incluyendo el legendario Blue Hole\n- **Escena Competitiva**: Hogar de récords mundiales y entrenamiento de élite\n- **Rica Vida Marina**: Ecosistemas diversos del Mar Rojo\n\n### Destinos Populares\n\nDahab es la capital indiscutible del freediving en Sinaí del Sur, reconocida por el Blue Hole de 130 metros de profundidad y excelente infraestructura de entrenamiento. Sharm El Sheikh ofrece oportunidades adicionales de freediving con buenas instalaciones.\n\n### Instalaciones de Entrenamiento\n\nSinaí del Sur alberga numerosas escuelas de freediving de clase mundial, particularmente en Dahab. La región es un meca para freedivers competitivos y entusiastas del entrenamiento en profundidad, ofreciendo certificaciones AIDA, PADI y SSI.\n\n### Mejor Época para Visitar\n\nEl Mar Rojo ofrece excelentes condiciones durante todo el año. La primavera (marzo a mayo) y el otoño (septiembre a noviembre) típicamente ofrecen la mejor visibilidad, mientras que las temperaturas del agua permanecen cómodas durante todo el año."
+            },
             "cities": {
               "dahab": {
                 "name": {
@@ -1255,6 +1222,10 @@
           "es": "Islas Shetland del Sur"
         },
         "slug": "south-shetland-islands",
+        "content": {
+          "en": "## About Freediving in the South Shetland Islands\n\nThe South Shetland Islands offer some of the most accessible freediving opportunities in Antarctica. These islands, located near the Antarctic Peninsula, provide unique experiences in extreme but pristine waters.\n\n### Freediving Conditions\n\nThe South Shetland Islands offer extreme freediving conditions:\n\n- **Visibility**: Typically 10-20 meters, varying with ice conditions\n- **Water Temperature**: Extremely cold, ranging from -2°C to 2°C (28-36°F)\n- **Diverse Sites**: From shallow areas to deeper channels\n- **Unique Marine Life**: Antarctic ecosystems found nowhere else\n- **Extreme Challenge**: Requires specialized training and equipment\n\n### Popular Destinations\n\nKing George Island and Deception Island offer the most accessible freediving opportunities in the region. These locations are primarily accessible through expedition cruises.\n\n### Training Facilities\n\nFreediving in the South Shetland Islands requires specialized training and support. Expeditions typically provide necessary equipment and safety support.\n\n### Best Time to Visit\n\nThe Antarctic summer (November to March) offers the only viable window for freediving, with slightly warmer water temperatures and more accessible conditions.",
+          "es": "## Acerca del Freediving en las Islas Shetland del Sur\n\nLas Islas Shetland del Sur ofrecen algunas de las oportunidades de freediving más accesibles en la Antártida. Estas islas, ubicadas cerca de la Península Antártica, proporcionan experiencias únicas en aguas extremas pero pristinas.\n\n### Condiciones de Freediving\n\nLas Islas Shetland del Sur ofrecen condiciones extremas de freediving:\n\n- **Visibilidad**: Típicamente 10-20 metros, variando con las condiciones del hielo\n- **Temperatura del Agua**: Extremadamente fría, oscilando entre -2°C a 2°C (28-36°F)\n- **Sitios Diversos**: Desde áreas poco profundas hasta canales más profundos\n- **Vida Marina Única**: Ecosistemas antárticos que no se encuentran en ningún otro lugar\n- **Desafío Extremo**: Requiere entrenamiento y equipo especializado\n\n### Destinos Populares\n\nLa Isla Rey Jorge y la Isla Decepción ofrecen las oportunidades de freediving más accesibles en la región. Estas ubicaciones son principalmente accesibles a través de cruceros de expedición.\n\n### Instalaciones de Entrenamiento\n\nEl freediving en las Islas Shetland del Sur requiere entrenamiento especializado y apoyo. Las expediciones típicamente proporcionan el equipo necesario y apoyo de seguridad.\n\n### Mejor Época para Visitar\n\nEl verano antártico (noviembre a marzo) ofrece la única ventana viable para freediving, con temperaturas de agua ligeramente más cálidas y condiciones más accesibles."
+        },
         "cities": {
           "king-george-island": {
             "name": {
@@ -1278,6 +1249,10 @@
           "es": "Mar de Ross"
         },
         "slug": "ross-sea",
+        "content": {
+          "en": "## About Freediving in the Ross Sea\n\nThe Ross Sea offers some of the most extreme and remote freediving opportunities in Antarctica. This region is primarily accessible through specialized expeditions and research programs.\n\n### Freediving Conditions\n\nThe Ross Sea offers extreme freediving conditions:\n\n- **Visibility**: Typically 10-20 meters, varying with ice conditions\n- **Water Temperature**: Extremely cold, ranging from -2°C to 2°C (28-36°F)\n- **Diverse Sites**: From shallow areas to deeper channels\n- **Unique Marine Life**: Antarctic ecosystems including unique species\n- **Extreme Challenge**: Requires specialized training and equipment\n\n### Popular Destinations\n\nMcMurdo Station and Cape Adare offer the most accessible freediving opportunities in the region. These locations are primarily accessible through research expeditions.\n\n### Training Facilities\n\nFreediving in the Ross Sea requires specialized training and support. Expeditions typically provide necessary equipment and safety support.\n\n### Best Time to Visit\n\nThe Antarctic summer (November to March) offers the only viable window for freediving, with slightly warmer water temperatures and more accessible conditions.",
+          "es": "## Acerca del Freediving en el Mar de Ross\n\nEl Mar de Ross ofrece algunas de las oportunidades de freediving más extremas y remotas en la Antártida. Esta región es principalmente accesible a través de expediciones especializadas y programas de investigación.\n\n### Condiciones de Freediving\n\nEl Mar de Ross ofrece condiciones extremas de freediving:\n\n- **Visibilidad**: Típicamente 10-20 metros, variando con las condiciones del hielo\n- **Temperatura del Agua**: Extremadamente fría, oscilando entre -2°C a 2°C (28-36°F)\n- **Sitios Diversos**: Desde áreas poco profundas hasta canales más profundos\n- **Vida Marina Única**: Ecosistemas antárticos incluyendo especies únicas\n- **Desafío Extremo**: Requiere entrenamiento y equipo especializado\n\n### Destinos Populares\n\nLa Estación McMurdo y el Cabo Adare ofrecen las oportunidades de freediving más accesibles en la región. Estas ubicaciones son principalmente accesibles a través de expediciones de investigación.\n\n### Instalaciones de Entrenamiento\n\nEl freediving en el Mar de Ross requiere entrenamiento especializado y apoyo. Las expediciones típicamente proporcionan el equipo necesario y apoyo de seguridad.\n\n### Mejor Época para Visitar\n\nEl verano antártico (noviembre a marzo) ofrece la única ventana viable para freediving, con temperaturas de agua ligeramente más cálidas y condiciones más accesibles."
+        },
         "cities": {
           "mcmurdo-station": {
             "name": {
