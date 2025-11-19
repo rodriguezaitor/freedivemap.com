@@ -215,9 +215,14 @@ if (countryContent) {
           <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6">
             {cities.map((city) => {
               const cityDestinations = allDestinations.filter(dest => dest.data.city === city.slug);
+              // Check if any destination for this city has a province
+              const cityWithProvince = cityDestinations.find(dest => dest.data.province);
+              const cityUrl = cityWithProvince
+                ? `/${locale}/${regionSlug}/${countrySlug}/${cityWithProvince.data.province}/${city.slug}/`
+                : `/${locale}/${regionSlug}/${countrySlug}/${city.slug}/`;
               return (
                 <a 
-                  href={`/${locale}/${regionSlug}/${countrySlug}/${city.slug}/`} 
+                  href={cityUrl} 
                   class="bg-white rounded-lg shadow-md hover:shadow-lg transition-shadow border border-gray-200 p-6 block"
                 >
                   <h3 class="text-xl font-semibold text-gray-900 mb-2">{city.name[locale]}</h3>

@@ -2,7 +2,7 @@
 import { ClientRouter } from "astro:transitions";
 import { t } from "../utils/i18n.js";
 import Footer from "../components/Footer.astro";
-import WhatsAppCTA from "../components/WhatsAppCTA.astro";
+// import WhatsAppCTA from "../components/WhatsAppCTA.astro";
 import { getRelativeLocaleUrl } from "astro:i18n";
 import "../styles/global.css";
 
@@ -247,7 +247,7 @@ const twitterDomain = base.hostname;
       <slot />
     </main>
     <Footer />
-    <WhatsAppCTA location={whatsappLocation} locale={currentLocale} />
+    {/* <WhatsAppCTA location={whatsappLocation} locale={currentLocale} /> */}
   </body>
 </html>
 

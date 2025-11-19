@@ -23,7 +23,9 @@ const allDestinations = await getCollection('destinations');
 const destinations = allDestinations.slice(0, 6).map(dest => ({
   name: dest.data.name[locale],
   description: dest.data.description[locale],
-  url: `/${locale}/${dest.data.region}/${dest.data.country}/${dest.data.city}/`,
+  url: dest.data.province
+    ? `/${locale}/${dest.data.region}/${dest.data.country}/${dest.data.province}/${dest.data.city}/`
+    : `/${locale}/${dest.data.region}/${dest.data.country}/${dest.data.city}/`,
 }));
 ---
 
