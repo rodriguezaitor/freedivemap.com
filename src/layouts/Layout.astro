@@ -1,26 +1,41 @@
 ---
-import { ClientRouter } from 'astro:transitions';
+import { ClientRouter } from "astro:transitions";
 import { t } from "../utils/i18n.js";
-import Footer from '../components/Footer.astro';
-import WhatsAppCTA from '../components/WhatsAppCTA.astro';
-import { getRelativeLocaleUrl } from 'astro:i18n';
-import '../styles/global.css';
+import Footer from "../components/Footer.astro";
+import WhatsAppCTA from "../components/WhatsAppCTA.astro";
+import { getRelativeLocaleUrl } from "astro:i18n";
+import "../styles/global.css";
 
 // Get current pathname without locale prefix
 // With prefixDefaultLocale: true, all URLs have locale prefix (e.g., /en/ or /es/)
 const pathname = Astro.url.pathname;
-const locales = ['en', 'es'];
-const currentLocale = Astro.currentLocale || 'en';
-const { seoKey = 'home', seoOverrides, noindex = false, whatsappLocation } = Astro.props as { seoKey?: string; seoOverrides?: { title?: string; description?: string; image?: string; twitterCard?: string }; noindex?: boolean; whatsappLocation?: string };
+const locales = ["en", "es"];
+const currentLocale = Astro.currentLocale || "en";
+const {
+  seoKey = "home",
+  seoOverrides,
+  noindex = false,
+  whatsappLocation,
+} = Astro.props as {
+  seoKey?: string;
+  seoOverrides?: {
+    title?: string;
+    description?: string;
+    image?: string;
+    twitterCard?: string;
+  };
+  noindex?: boolean;
+  whatsappLocation?: string;
+};
 
 // Extract path without locale prefix
 let pathWithoutLocale = pathname;
 for (const locale of locales) {
   if (pathname.startsWith(`/${locale}/`)) {
-    pathWithoutLocale = pathname.slice(`/${locale}/`.length) || '/';
+    pathWithoutLocale = pathname.slice(`/${locale}/`.length) || "/";
     break;
   } else if (pathname === `/${locale}`) {
-    pathWithoutLocale = '/';
+    pathWithoutLocale = "/";
     break;
   }
 }
@@ -31,167 +46,228 @@ const siteUrl = Astro.site ? String(Astro.site) : Astro.url.origin;
 const canonical = new URL(pathname, siteUrl).toString();
 
 // Generate alternate URLs for each locale (maintaining current path)
-const enUrl = new URL(getRelativeLocaleUrl('en', pathWithoutLocale), siteUrl).toString();
-const esUrl = new URL(getRelativeLocaleUrl('es', pathWithoutLocale), siteUrl).toString();
+const enUrl = new URL(
+  getRelativeLocaleUrl("en", pathWithoutLocale),
+  siteUrl
+).toString();
+const esUrl = new URL(
+  getRelativeLocaleUrl("es", pathWithoutLocale),
+  siteUrl
+).toString();
 
 // SEO: compute localized title/description and social
-const title = seoOverrides?.title
-  || t(currentLocale, `seo.pages.${seoKey}.title`)
-  || t(currentLocale, 'seo.default.title');
-const description = seoOverrides?.description
-  || t(currentLocale, `seo.pages.${seoKey}.description`)
-  || t(currentLocale, 'seo.default.description');
-const ogImageRel = seoOverrides?.image || t(currentLocale, 'seo.og.image');
+const title =
+  seoOverrides?.title ||
+  t(currentLocale, `seo.pages.${seoKey}.title`) ||
+  t(currentLocale, "seo.default.title");
+const description =
+  seoOverrides?.description ||
+  t(currentLocale, `seo.pages.${seoKey}.description`) ||
+  t(currentLocale, "seo.default.description");
+const ogImageRel = seoOverrides?.image || t(currentLocale, "seo.og.image");
 const base = new URL(siteUrl);
-const ogImage = ogImageRel && base ? new URL(ogImageRel, base).toString() : ogImageRel || undefined;
-const ogType = t(currentLocale, 'seo.og.type') || 'website';
-const ogSiteName = t(currentLocale, 'seo.og.siteName') || 'FreediveMap';
-const ogImageAlt = t(currentLocale, 'seo.og.imageAlt') || '';
-const twitterCard = seoOverrides?.twitterCard || t(currentLocale, 'seo.twitter.card') || 'summary_large_image';
+const ogImage =
+  ogImageRel && base
+    ? new URL(ogImageRel, base).toString()
+    : ogImageRel || undefined;
+const ogType = t(currentLocale, "seo.og.type") || "website";
+const ogSiteName = t(currentLocale, "seo.og.siteName") || "FreediveMap";
+const ogImageAlt = t(currentLocale, "seo.og.imageAlt") || "";
+const twitterCard =
+  seoOverrides?.twitterCard ||
+  t(currentLocale, "seo.twitter.card") ||
+  "summary_large_image";
 // Extract domain from site URL for Twitter
 const twitterDomain = base.hostname;
 ---
 
 <!doctype html>
 <html lang={Astro.currentLocale}>
-	<head>
-		<!-- Google Tag Manager -->
-		<script is:inline type="text/partytown">
-			window.dataLayer = window.dataLayer || [];
-			window.dataLayer.push({'gtm.start': new Date().getTime(), event: 'gtm.js'});
-		</script>
-		<script is:inline type="text/partytown" src="https://www.googletagmanager.com/gtm.js?id=GTM-NG9MG7LN"></script>
-		<!-- End Google Tag Manager -->
-		<meta charset="UTF-8" />
-		<meta name="viewport" content="width=device-width" />
-		<link rel="icon" type="image/svg+xml" href="/favicon.svg" />
-		<meta name="generator" content={Astro.generator} />
-		<title>{title}</title>
-		<meta name="description" content={description} />
-		<meta property="og:title" content={title} />
-		<meta property="og:description" content={description} />
-		<meta property="og:type" content={ogType} />
-		<meta property="og:url" content={canonical} />
-		<meta property="og:site_name" content={ogSiteName} />
-		{ogImage && <meta property="og:image" content={ogImage} />}
-		{ogImage && ogImageAlt && <meta property="og:image:alt" content={ogImageAlt} />}
-		<meta property="og:locale" content={currentLocale === 'en' ? 'en_US' : 'es_ES'} />
-		{currentLocale === 'en' ? <meta property="og:locale:alternate" content="es_ES" /> : <meta property="og:locale:alternate" content="en_US" />}
-		<meta name="twitter:card" content={twitterCard} />
-		<meta property="twitter:domain" content={twitterDomain} />
-		<meta property="twitter:url" content={canonical} />
-		<meta name="twitter:title" content={title} />
-		<meta name="twitter:description" content={description} />
-		{ogImage && <meta name="twitter:image" content={ogImage} />}
-		{noindex && <meta name="robots" content="noindex, nofollow" />}
-		<link rel="sitemap" type="application/xml" href="/sitemap-index.xml" />
-		<link rel="canonical" href={canonical} />
-		<link rel="alternate" hreflang="en" href={enUrl} />
-		<link rel="alternate" hreflang="es" href={esUrl} />
-		<link rel="alternate" hreflang="x-default" href={enUrl} />
-		{/* Preconnect to improve resource loading */}
-		<link rel="preconnect" href={base.origin} />
-		<link rel="dns-prefetch" href={base.origin} />
-		<script is:inline>
-			(function() {
-				const UTM_KEYS = ['utm_source', 'utm_medium', 'utm_campaign', 'utm_term', 'utm_content', 'gclid', 'fbclid'];
-				
-				function getQueryParams() {
-					return new URLSearchParams(window.location.search);
-				}
-				
-				function extractUtm() {
-					const params = getQueryParams();
-					const data = {};
-					let hasAny = false;
-					
-					for (const key of UTM_KEYS) {
-						const val = params.get(key);
-						if (val) {
-							data[key] = val;
-							hasAny = true;
-						}
-					}
-					
-					if (!hasAny) return {};
-					
-					data.ts = new Date().toISOString();
-					data.page = window.location.href;
-					data.referrer = document.referrer || '';
-					return data;
-				}
-				
-				function computeCookieAttributes(days = 180) {
-					const maxAge = days * 24 * 60 * 60;
-					const isHttps = window.location.protocol === 'https:';
-					const SHARED_ROOT_DOMAIN = 'mails.com';
-					const host = window.location.hostname;
-					const shareAcrossSubdomains = host === SHARED_ROOT_DOMAIN || host.endsWith(`.${SHARED_ROOT_DOMAIN}`);
-					const domainPart = shareAcrossSubdomains ? `; Domain=.${SHARED_ROOT_DOMAIN}` : '';
-					const securePart = isHttps ? '; Secure' : '';
-					return `; Path=/; Max-Age=${maxAge}; SameSite=Lax${securePart}${domainPart}`;
-				}
-				
-				function setCookie(name, value, days = 180) {
-					const attrs = computeCookieAttributes(days);
-					document.cookie = `${name}=${encodeURIComponent(value)}${attrs}`;
-				}
-				
-				function getCookie(name) {
-					const match = document.cookie.match(
-						new RegExp('(?:^|; )' + name.replace(/([.$?*|{}()[\]\\/+^])/g, '\\$1') + '=([^;]*)')
-					);
-					return match ? decodeURIComponent(match[1]) : null;
-				}
-				
-				try {
-					const utm = extractUtm();
-					if (Object.keys(utm).length === 0) return;
-					
-					const serialized = JSON.stringify(utm);
-					setCookie('utm_last', serialized);
-					
-					if (!getCookie('utm_first')) {
-						setCookie('utm_first', serialized);
-					}
-					
-					try {
-						localStorage.setItem('utm', serialized);
-					} catch {}
-				} catch {}
-			})();
-		</script>
-	</head>
-	<body>
-		<!-- Google Tag Manager (noscript) -->
-		<noscript>
-			<iframe src="https://www.googletagmanager.com/ns.html?id=GTM-NG9MG7LN"
-			height="0" width="0" style="display:none;visibility:hidden"></iframe>
-		</noscript>
-		<!-- End Google Tag Manager (noscript) -->
-		<ClientRouter />
-		<main>
-		<slot />
-		</main>
-		<Footer />
-		<WhatsAppCTA location={whatsappLocation} locale={currentLocale} />
-	</body>
+  <head>
+    <!-- Google Tag Manager -->
+    <script is:inline type="text/partytown">
+      window.dataLayer = window.dataLayer || [];
+      window.dataLayer.push({
+        "gtm.start": new Date().getTime(),
+        event: "gtm.js",
+      });
+    </script>
+    <script
+      is:inline
+      type="text/partytown"
+      src="https://www.googletagmanager.com/gtm.js?id=GTM-NG9MG7LN"></script>
+    <!-- End Google Tag Manager -->
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width" />
+    <link rel="icon" type="image/svg+xml" href="/favicon.svg" />
+    <link rel="icon" type="image/png" href="/favicon-96x96.png" sizes="96x96" />
+    <link rel="icon" type="image/svg+xml" href="/favicon.svg" />
+    <link rel="shortcut icon" href="/favicon.ico" />
+    <link rel="apple-touch-icon" sizes="180x180" href="/apple-touch-icon.png" />
+    <meta name="apple-mobile-web-app-title" content="FreediveMap" />
+    <link rel="manifest" href="/site.webmanifest" />
+    <meta name="generator" content={Astro.generator} />
+    <title>{title}</title>
+    <meta name="description" content={description} />
+    <meta property="og:title" content={title} />
+    <meta property="og:description" content={description} />
+    <meta property="og:type" content={ogType} />
+    <meta property="og:url" content={canonical} />
+    <meta property="og:site_name" content={ogSiteName} />
+    {ogImage && <meta property="og:image" content={ogImage} />}
+    {
+      ogImage && ogImageAlt && (
+        <meta property="og:image:alt" content={ogImageAlt} />
+      )
+    }
+    <meta
+      property="og:locale"
+      content={currentLocale === "en" ? "en_US" : "es_ES"}
+    />
+    {
+      currentLocale === "en" ? (
+        <meta property="og:locale:alternate" content="es_ES" />
+      ) : (
+        <meta property="og:locale:alternate" content="en_US" />
+      )
+    }
+    <meta name="twitter:card" content={twitterCard} />
+    <meta property="twitter:domain" content={twitterDomain} />
+    <meta property="twitter:url" content={canonical} />
+    <meta name="twitter:title" content={title} />
+    <meta name="twitter:description" content={description} />
+    {ogImage && <meta name="twitter:image" content={ogImage} />}
+    {noindex && <meta name="robots" content="noindex, nofollow" />}
+    <link rel="sitemap" type="application/xml" href="/sitemap-index.xml" />
+    <link rel="canonical" href={canonical} />
+    <link rel="alternate" hreflang="en" href={enUrl} />
+    <link rel="alternate" hreflang="es" href={esUrl} />
+    <link rel="alternate" hreflang="x-default" href={enUrl} />
+    {/* Preconnect to improve resource loading */}
+    <link rel="preconnect" href={base.origin} />
+    <link rel="dns-prefetch" href={base.origin} />
+    <script is:inline>
+      (function () {
+        const UTM_KEYS = [
+          "utm_source",
+          "utm_medium",
+          "utm_campaign",
+          "utm_term",
+          "utm_content",
+          "gclid",
+          "fbclid",
+        ];
+
+        function getQueryParams() {
+          return new URLSearchParams(window.location.search);
+        }
+
+        function extractUtm() {
+          const params = getQueryParams();
+          const data = {};
+          let hasAny = false;
+
+          for (const key of UTM_KEYS) {
+            const val = params.get(key);
+            if (val) {
+              data[key] = val;
+              hasAny = true;
+            }
+          }
+
+          if (!hasAny) return {};
+
+          data.ts = new Date().toISOString();
+          data.page = window.location.href;
+          data.referrer = document.referrer || "";
+          return data;
+        }
+
+        function computeCookieAttributes(days = 180) {
+          const maxAge = days * 24 * 60 * 60;
+          const isHttps = window.location.protocol === "https:";
+          const SHARED_ROOT_DOMAIN = "mails.com";
+          const host = window.location.hostname;
+          const shareAcrossSubdomains =
+            host === SHARED_ROOT_DOMAIN ||
+            host.endsWith(`.${SHARED_ROOT_DOMAIN}`);
+          const domainPart = shareAcrossSubdomains
+            ? `; Domain=.${SHARED_ROOT_DOMAIN}`
+            : "";
+          const securePart = isHttps ? "; Secure" : "";
+          return `; Path=/; Max-Age=${maxAge}; SameSite=Lax${securePart}${domainPart}`;
+        }
+
+        function setCookie(name, value, days = 180) {
+          const attrs = computeCookieAttributes(days);
+          document.cookie = `${name}=${encodeURIComponent(value)}${attrs}`;
+        }
+
+        function getCookie(name) {
+          const match = document.cookie.match(
+            new RegExp(
+              "(?:^|; )" +
+                name.replace(/([.$?*|{}()[\]\\/+^])/g, "\\$1") +
+                "=([^;]*)"
+            )
+          );
+          return match ? decodeURIComponent(match[1]) : null;
+        }
+
+        try {
+          const utm = extractUtm();
+          if (Object.keys(utm).length === 0) return;
+
+          const serialized = JSON.stringify(utm);
+          setCookie("utm_last", serialized);
+
+          if (!getCookie("utm_first")) {
+            setCookie("utm_first", serialized);
+          }
+
+          try {
+            localStorage.setItem("utm", serialized);
+          } catch {}
+        } catch {}
+      })();
+    </script>
+  </head>
+  <body>
+    <!-- Google Tag Manager (noscript) -->
+    <noscript>
+      <iframe
+        src="https://www.googletagmanager.com/ns.html?id=GTM-NG9MG7LN"
+        height="0"
+        width="0"
+        style="display:none;visibility:hidden"></iframe>
+    </noscript>
+    <!-- End Google Tag Manager (noscript) -->
+    <ClientRouter />
+    <main>
+      <slot />
+    </main>
+    <Footer />
+    <WhatsAppCTA location={whatsappLocation} locale={currentLocale} />
+  </body>
 </html>
 
 <style is:inline>
-	html,
-	body {
-		margin: 0;
-		width: 100%;
-		height: 100%;
-	}
-	/* Critical above-the-fold styles */
-	body {
-		font-family: system-ui, -apple-system, sans-serif;
-		background-color: #ffffff;
-		color: #111827;
-	}
-	main {
-		min-height: 100vh;
-	}
+  html,
+  body {
+    margin: 0;
+    width: 100%;
+    height: 100%;
+  }
+  /* Critical above-the-fold styles */
+  body {
+    font-family:
+      system-ui,
+      -apple-system,
+      sans-serif;
+    background-color: #ffffff;
+    color: #111827;
+  }
+  main {
+    min-height: 100vh;
+  }
 </style>
