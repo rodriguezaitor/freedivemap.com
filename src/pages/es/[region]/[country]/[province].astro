@@ -5,6 +5,7 @@ import Header from '../../../../components/Header.astro';
 import Breadcrumbs from '../../../../components/Breadcrumbs.astro';
 import { getRelativeLocaleUrl } from 'astro:i18n';
 import { t } from '../../../../utils/i18n.js';
+import { marked } from 'marked';
 
 export async function getStaticPaths() {
   const regions = await getCollection('regions');
@@ -96,6 +97,17 @@ const provinceDescription = locale === 'en'
 const provinceTitle = locale === 'en'
   ? `Freediving in ${provinceName}, ${countryName} | FreediveMap`
   : `Freediving en ${provinceName}, ${countryName} | FreediveMap`;
+
+// Render province content if available
+let renderedProvinceContent: string | null = null;
+const provinceContent = provinceData.content?.[locale];
+if (provinceContent) {
+  try {
+    renderedProvinceContent = await marked(provinceContent);
+  } catch (error) {
+    console.error('Error rendering province content:', error);
+  }
+}
 ---
 
 <Layout 
@@ -135,6 +147,17 @@ const provinceTitle = locale === 'en'
           </div>
         </div>
       </section>
+
+      <!-- SEO Content Section -->
+      {renderedProvinceContent && (
+        <section class="mb-12">
+          <div class="mx-auto max-w-4xl px-4 sm:px-6 lg:px-8">
+            <div class="prose prose-lg max-w-none">
+              <div class="bg-white rounded-lg shadow-sm border border-gray-200 p-8" set:html={renderedProvinceContent} />
+            </div>
+          </div>
+        </section>
+      )}
 
       <!-- Cities Section -->
       {cities.length > 0 && (

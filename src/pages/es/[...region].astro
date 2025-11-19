@@ -4,6 +4,7 @@ import Layout from '../../layouts/Layout.astro';
 import Header from '../../components/Header.astro';
 import { getRelativeLocaleUrl } from 'astro:i18n';
 import { t } from '../../utils/i18n.js';
+import { marked } from 'marked';
 
 export async function getStaticPaths() {
   const regions = await getCollection('regions');
@@ -90,6 +91,17 @@ const destinationsByCountry = countries.reduce((acc, country) => {
 
 const regionName = region.data.name[locale];
 const regionDescription = region.data.description?.[locale] || '';
+
+// Render region content if available
+let renderedRegionContent: string | null = null;
+const regionContent = region.data.content?.[locale];
+if (regionContent) {
+  try {
+    renderedRegionContent = await marked(regionContent);
+  } catch (error) {
+    console.error('Error rendering region content:', error);
+  }
+}
 ---
 
 <Layout 
@@ -121,6 +133,17 @@ const regionDescription = region.data.description?.[locale] || '';
         </div>
       </div>
     </section>
+
+    <!-- SEO Content Section -->
+    {renderedRegionContent && (
+      <section class="py-16 bg-white">
+        <div class="mx-auto max-w-4xl px-4 sm:px-6 lg:px-8">
+          <div class="prose prose-lg max-w-none">
+            <div class="bg-white rounded-lg shadow-sm border border-gray-200 p-8" set:html={renderedRegionContent} />
+          </div>
+        </div>
+      </section>
+    )}
 
     <!-- Countries Section -->
     <section class="py-16 bg-white">
