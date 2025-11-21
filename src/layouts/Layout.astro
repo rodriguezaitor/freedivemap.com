@@ -16,6 +16,7 @@ const {
   seoOverrides,
   noindex = false,
   whatsappLocation,
+  breadcrumbs,
 } = Astro.props as {
   seoKey?: string;
   seoOverrides?: {
@@ -26,6 +27,7 @@ const {
   };
   noindex?: boolean;
   whatsappLocation?: string;
+  breadcrumbs?: Array<{ name: string; url: string }>;
 };
 
 // Extract path without locale prefix
@@ -145,6 +147,39 @@ const twitterDomain = base.hostname;
     {/* Preconnect to improve resource loading */}
     <link rel="preconnect" href={base.origin} />
     <link rel="dns-prefetch" href={base.origin} />
+    {/* JSON-LD Organization Schema */}
+    <script
+      type="application/ld+json"
+      set:html={JSON.stringify({
+        "@context": "https://schema.org",
+        "@type": "Organization",
+        name: "FreediveMap",
+        url: siteUrl,
+        logo: ogImage || new URL("/favicon.svg", siteUrl).toString(),
+        description:
+          t(currentLocale, "common.footer.description") ||
+          t(currentLocale, "seo.default.description"),
+        email: "contact@freedivemap.com",
+      })}
+    />
+    {/* JSON-LD BreadcrumbList Schema */}
+    {
+      breadcrumbs && breadcrumbs.length > 0 && (
+        <script
+          type="application/ld+json"
+          set:html={JSON.stringify({
+            "@context": "https://schema.org",
+            "@type": "BreadcrumbList",
+            itemListElement: breadcrumbs.map((crumb, index) => ({
+              "@type": "ListItem",
+              position: index + 1,
+              name: crumb.name,
+              item: new URL(crumb.url, siteUrl).toString(),
+            })),
+          })}
+        />
+      )
+    }
     <script is:inline>
       (function () {
         const UTM_KEYS = [

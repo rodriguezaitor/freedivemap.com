@@ -102,6 +102,12 @@ if (regionContent) {
     console.error('Error rendering region content:', error);
   }
 }
+
+// Build breadcrumbs for JSON-LD schema
+const breadcrumbs = [
+  { name: locale === 'en' ? 'Home' : 'Inicio', url: `/${locale}/` },
+  { name: regionName, url: `/${locale}/${regionSlug}/` },
+];
 ---
 
 <Layout 
@@ -111,6 +117,7 @@ if (regionContent) {
     description: regionDescription
   }}
   whatsappLocation={regionName}
+  breadcrumbs={breadcrumbs}
 >
   <Header />
   

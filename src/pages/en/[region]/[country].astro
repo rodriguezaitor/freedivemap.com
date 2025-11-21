@@ -100,6 +100,13 @@ const countryTitle = locale === 'en'
   ? `Freediving in ${countryName} | FreediveMap`
   : `Freediving en ${countryName} | FreediveMap`;
 
+// Build breadcrumbs for JSON-LD schema
+const breadcrumbs = [
+  { name: locale === 'en' ? 'Home' : 'Inicio', url: `/${locale}/` },
+  { name: regionName, url: `/${locale}/${regionSlug}/` },
+  { name: countryName, url: `/${locale}/${regionSlug}/${countrySlug}/` },
+];
+
 // Render country content if available
 let renderedCountryContent: string | null = null;
 const countryContent = countryData.content?.[locale];
@@ -119,6 +126,7 @@ if (countryContent) {
     description: countryDescription
   }}
   whatsappLocation={countryName}
+  breadcrumbs={breadcrumbs}
 >
   <Header />
   

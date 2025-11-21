@@ -104,6 +104,14 @@ const regionName = region?.data.name[locale] || regionSlug;
 const cityName = cityNameFromRegion || destination.data.name[locale];
 const cityDescription = destination.data.description[locale];
 const countryName = country?.name || countrySlug;
+
+// Build breadcrumbs for JSON-LD schema
+const breadcrumbs = [
+  { name: locale === 'en' ? 'Home' : 'Inicio', url: `/${locale}/` },
+  { name: regionName, url: `/${locale}/${regionSlug}/` },
+  { name: countryName, url: `/${locale}/${regionSlug}/${countrySlug}/` },
+  { name: cityName, url: `/${locale}/${regionSlug}/${countrySlug}/${citySlug}/` },
+];
 ---
 
 <Layout 
@@ -113,6 +121,7 @@ const countryName = country?.name || countrySlug;
     description: cityDescription
   }}
   whatsappLocation={`${cityName}, ${countryName}`}
+  breadcrumbs={breadcrumbs}
 >
   <Header />
   
