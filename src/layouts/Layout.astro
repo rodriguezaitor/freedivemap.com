@@ -81,6 +81,12 @@ const twitterCard =
   "summary_large_image";
 // Extract domain from site URL for Twitter
 const twitterDomain = base.hostname;
+
+// Check if this is the homepage
+const isHomepage =
+  pathWithoutLocale === "/" ||
+  pathname === `/${currentLocale}/` ||
+  pathname === `/${currentLocale}`;
 ---
 
 <!doctype html>
@@ -162,6 +168,28 @@ const twitterDomain = base.hostname;
         email: "contact@freedivemap.com",
       })}
     />
+    {/* JSON-LD WebSite Schema (homepage only) */}
+    {
+      isHomepage && (
+        <script
+          type="application/ld+json"
+          set:html={JSON.stringify({
+            "@context": "https://schema.org",
+            "@type": "WebSite",
+            name: "FreediveMap",
+            url: siteUrl,
+            description:
+              t(currentLocale, "common.footer.description") ||
+              t(currentLocale, "seo.default.description"),
+            publisher: {
+              "@type": "Organization",
+              name: "FreediveMap",
+              logo: ogImage || new URL("/favicon.svg", siteUrl).toString(),
+            },
+          })}
+        />
+      )
+    }
     {/* JSON-LD BreadcrumbList Schema */}
     {
       breadcrumbs && breadcrumbs.length > 0 && (
