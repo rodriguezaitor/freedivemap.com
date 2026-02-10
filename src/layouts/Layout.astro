@@ -17,6 +17,7 @@ const {
   noindex = false,
   whatsappLocation,
   breadcrumbs,
+  faqSchema,
 } = Astro.props as {
   seoKey?: string;
   seoOverrides?: {
@@ -28,6 +29,7 @@ const {
   noindex?: boolean;
   whatsappLocation?: string;
   breadcrumbs?: Array<{ name: string; url: string }>;
+  faqSchema?: Array<{ question: string; answer: string }> | null;
 };
 
 // Extract path without locale prefix
@@ -203,6 +205,26 @@ const isHomepage =
               position: index + 1,
               name: crumb.name,
               item: new URL(crumb.url, siteUrl).toString(),
+            })),
+          })}
+        />
+      )
+    }
+    {/* JSON-LD FAQPage Schema */}
+    {
+      faqSchema && faqSchema.length > 0 && (
+        <script
+          type="application/ld+json"
+          set:html={JSON.stringify({
+            "@context": "https://schema.org",
+            "@type": "FAQPage",
+            mainEntity: faqSchema.map((item) => ({
+              "@type": "Question",
+              name: item.question,
+              acceptedAnswer: {
+                "@type": "Answer",
+                text: item.answer,
+              },
             })),
           })}
         />

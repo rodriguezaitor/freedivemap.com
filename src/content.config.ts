@@ -96,6 +96,32 @@ const destinations = defineCollection({
       en: z.string().optional(),
       es: z.string().optional(),
     }).optional(),
+    schools: z.array(z.object({
+      name: z.string(),
+      url: z.string().optional(),
+      description: z.object({ en: z.string(), es: z.string() }),
+      priceRange: z.string().optional(),
+      certifications: z.array(z.string()).optional(),
+      instructor: z.string().optional(),
+    })).optional(),
+    diveSites: z.array(z.object({
+      name: z.string(),
+      description: z.object({ en: z.string(), es: z.string() }),
+      depth: z.string().optional(),
+      distance: z.string().optional(),
+      level: z.string().optional(),
+    })).optional(),
+    seasonalInfo: z.array(z.object({
+      season: z.object({ en: z.string(), es: z.string() }),
+      months: z.string(),
+      waterTemp: z.string(),
+      visibility: z.string(),
+      highlights: z.object({ en: z.string(), es: z.string() }),
+    })).optional(),
+    faq: z.array(z.object({
+      question: z.object({ en: z.string(), es: z.string() }),
+      answer: z.object({ en: z.string(), es: z.string() }),
+    })).optional(),
   }),
 });
 

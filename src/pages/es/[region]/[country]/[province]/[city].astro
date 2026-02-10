@@ -122,6 +122,18 @@ const breadcrumbs = [
   { name: provinceName, url: `/${locale}/${regionSlug}/${countrySlug}/${provinceSlug}/` },
   { name: cityName, url: `/${locale}/${regionSlug}/${countrySlug}/${provinceSlug}/${citySlug}/` },
 ];
+
+// Extract structured data
+const schools = destination.data.schools || [];
+const diveSites = destination.data.diveSites || [];
+const seasonalInfo = destination.data.seasonalInfo || [];
+const faq = destination.data.faq || [];
+
+// Build FAQ schema for JSON-LD
+const faqSchema = faq.length > 0 ? faq.map((item: any) => ({
+  question: item.question[locale],
+  answer: item.answer[locale],
+})) : null;
 ---
 
 <Layout 
@@ -132,6 +144,7 @@ const breadcrumbs = [
   }}
   whatsappLocation={`${cityName}, ${provinceName}, ${countryName}`}
   breadcrumbs={breadcrumbs}
+  faqSchema={faqSchema}
 >
   <Header />
   
@@ -149,7 +162,7 @@ const breadcrumbs = [
       <section class="mb-12">
         <div class="bg-gradient-to-br from-blue-50 via-cyan-50 to-teal-50 rounded-lg p-8 md:p-12">
           <h1 class="text-4xl md:text-5xl lg:text-6xl font-bold text-gray-900 mb-6">
-            {cityName}
+            {locale === 'en' ? `Freediving in ${cityName}` : `Freediving en ${cityName}`}
           </h1>
           <p class="text-xl md:text-2xl text-gray-700 max-w-3xl">
             {destination.data.description[locale]}
@@ -180,8 +193,162 @@ const breadcrumbs = [
         )}
       </section>
 
-      <!-- Additional Info Section -->
-      <section class="mt-12 grid grid-cols-1 md:grid-cols-2 gap-6">
+      <!-- Schools Section -->
+      {schools.length > 0 && (
+        <section class="mt-16">
+          <h2 class="text-3xl font-bold text-gray-900 mb-2">
+            {locale === 'en' ? `Freediving Schools in ${cityName}` : `Escuelas de Freediving en ${cityName}`}
+          </h2>
+          <p class="text-lg text-gray-600 mb-8">
+            {locale === 'en' 
+              ? `Compare courses, certifications, and prices from freediving schools near ${cityName}.`
+              : `Compara cursos, certificaciones y precios de escuelas de freediving cerca de ${cityName}.`}
+          </p>
+          <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6">
+            {schools.map((school: any) => (
+              <div class="bg-white rounded-lg shadow-sm border border-gray-200 p-6 flex flex-col">
+                <h3 class="text-xl font-semibold text-gray-900 mb-1">{school.name}</h3>
+                {school.instructor && (
+                  <p class="text-sm text-blue-700 font-medium mb-3">
+                    {locale === 'en' ? 'Instructor' : 'Instructor'}: {school.instructor}
+                  </p>
+                )}
+                <p class="text-sm text-gray-600 mb-4 flex-grow">{school.description[locale]}</p>
+                {school.certifications && school.certifications.length > 0 && (
+                  <div class="flex flex-wrap gap-1.5 mb-3">
+                    {school.certifications.map((cert: string) => (
+                      <span class="inline-flex items-center rounded-full bg-blue-50 px-2.5 py-0.5 text-xs font-medium text-blue-700 ring-1 ring-blue-700/10 ring-inset">
+                        {cert}
+                      </span>
+                    ))}
+                  </div>
+                )}
+                <div class="flex items-center justify-between mt-auto pt-3 border-t border-gray-100">
+                  {school.priceRange && (
+                    <span class="text-sm font-semibold text-gray-900">{school.priceRange}</span>
+                  )}
+                  {school.url && (
+                    <a href={school.url} target="_blank" rel="noopener noreferrer" class="text-sm text-blue-600 hover:text-blue-800 font-medium">
+                      {locale === 'en' ? 'Visit website' : 'Visitar web'} &rarr;
+                    </a>
+                  )}
+                </div>
+              </div>
+            ))}
+          </div>
+        </section>
+      )}
+
+      <!-- Dive Sites Section -->
+      {diveSites.length > 0 && (
+        <section class="mt-16">
+          <h2 class="text-3xl font-bold text-gray-900 mb-2">
+            {locale === 'en' ? `Best Dive Sites Near ${cityName}` : `Mejores Sitios de Buceo Cerca de ${cityName}`}
+          </h2>
+          <p class="text-lg text-gray-600 mb-8">
+            {locale === 'en' 
+              ? 'Detailed information on the top freediving and apnea spots in the area.'
+              : 'Información detallada sobre los mejores puntos de freediving y apnea en la zona.'}
+          </p>
+          <div class="space-y-4">
+            {diveSites.map((site: any) => (
+              <div class="bg-white rounded-lg shadow-sm border border-gray-200 p-6">
+                <div class="flex flex-col md:flex-row md:items-start md:justify-between gap-4">
+                  <div class="flex-grow">
+                    <h3 class="text-xl font-semibold text-gray-900 mb-2">{site.name}</h3>
+                    <p class="text-sm text-gray-600 mb-3">{site.description[locale]}</p>
+                  </div>
+                  <div class="flex flex-wrap gap-3 md:flex-col md:items-end md:gap-2 shrink-0">
+                    {site.depth && (
+                      <div class="flex items-center gap-1.5">
+                        <span class="text-xs font-medium text-gray-500 uppercase tracking-wide">{locale === 'en' ? 'Depth' : 'Prof.'}</span>
+                        <span class="inline-flex items-center rounded-md bg-cyan-50 px-2 py-1 text-xs font-medium text-cyan-700 ring-1 ring-cyan-700/10 ring-inset">{site.depth}</span>
+                      </div>
+                    )}
+                    {site.distance && (
+                      <div class="flex items-center gap-1.5">
+                        <span class="text-xs font-medium text-gray-500 uppercase tracking-wide">{locale === 'en' ? 'Distance' : 'Dist.'}</span>
+                        <span class="inline-flex items-center rounded-md bg-gray-50 px-2 py-1 text-xs font-medium text-gray-700 ring-1 ring-gray-700/10 ring-inset">{site.distance}</span>
+                      </div>
+                    )}
+                    {site.level && (
+                      <div class="flex items-center gap-1.5">
+                        <span class="text-xs font-medium text-gray-500 uppercase tracking-wide">{locale === 'en' ? 'Level' : 'Nivel'}</span>
+                        <span class="inline-flex items-center rounded-md bg-green-50 px-2 py-1 text-xs font-medium text-green-700 ring-1 ring-green-700/10 ring-inset">{site.level}</span>
+                      </div>
+                    )}
+                  </div>
+                </div>
+              </div>
+            ))}
+          </div>
+        </section>
+      )}
+
+      <!-- Seasonal Info Section -->
+      {seasonalInfo.length > 0 && (
+        <section class="mt-16">
+          <h2 class="text-3xl font-bold text-gray-900 mb-2">
+            {locale === 'en' ? `When to Freedive in ${cityName}` : `Cuándo Hacer Freediving en ${cityName}`}
+          </h2>
+          <p class="text-lg text-gray-600 mb-8">
+            {locale === 'en'
+              ? 'Water temperature, visibility, and marine life highlights by season.'
+              : 'Temperatura del agua, visibilidad y vida marina destacada por temporada.'}
+          </p>
+          <div class="grid grid-cols-1 md:grid-cols-2 gap-6">
+            {seasonalInfo.map((season: any) => (
+              <div class="bg-white rounded-lg shadow-sm border border-gray-200 p-6">
+                <h3 class="text-lg font-semibold text-gray-900 mb-1">{season.season[locale]}</h3>
+                <p class="text-sm text-gray-500 mb-4">{season.months}</p>
+                <dl class="grid grid-cols-2 gap-3 mb-4">
+                  <div>
+                    <dt class="text-xs font-medium text-gray-500 uppercase tracking-wide">{locale === 'en' ? 'Water Temp' : 'Temp. Agua'}</dt>
+                    <dd class="mt-0.5 text-lg font-semibold text-cyan-700">{season.waterTemp}</dd>
+                  </div>
+                  <div>
+                    <dt class="text-xs font-medium text-gray-500 uppercase tracking-wide">{locale === 'en' ? 'Visibility' : 'Visibilidad'}</dt>
+                    <dd class="mt-0.5 text-lg font-semibold text-cyan-700">{season.visibility}</dd>
+                  </div>
+                </dl>
+                <p class="text-sm text-gray-600">{season.highlights[locale]}</p>
+              </div>
+            ))}
+          </div>
+        </section>
+      )}
+
+      <!-- FAQ Section -->
+      {faq.length > 0 && (
+        <section class="mt-16">
+          <h2 class="text-3xl font-bold text-gray-900 mb-2">
+            {locale === 'en' ? `Frequently Asked Questions` : `Preguntas Frecuentes`}
+          </h2>
+          <p class="text-lg text-gray-600 mb-8">
+            {locale === 'en'
+              ? `Common questions about freediving in ${cityName}.`
+              : `Preguntas comunes sobre freediving en ${cityName}.`}
+          </p>
+          <div class="bg-white rounded-lg shadow-sm border border-gray-200 divide-y divide-gray-200">
+            {faq.map((item: any, index: number) => (
+              <details class="group" open={index === 0}>
+                <summary class="flex cursor-pointer items-center justify-between gap-4 p-6 text-left font-medium text-gray-900 hover:bg-gray-50 transition-colors [&::-webkit-details-marker]:hidden">
+                  <span class="text-base">{item.question[locale]}</span>
+                  <svg class="h-5 w-5 shrink-0 text-gray-400 transition-transform group-open:rotate-180" xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke-width="1.5" stroke="currentColor">
+                    <path stroke-linecap="round" stroke-linejoin="round" d="M19.5 8.25l-7.5 7.5-7.5-7.5" />
+                  </svg>
+                </summary>
+                <div class="px-6 pb-6 text-sm text-gray-600 leading-relaxed">
+                  {item.answer[locale]}
+                </div>
+              </details>
+            ))}
+          </div>
+        </section>
+      )}
+
+      <!-- Location Details Section -->
+      <section class="mt-16 grid grid-cols-1 md:grid-cols-2 gap-6">
         <div class="bg-white rounded-lg shadow-sm border border-gray-200 p-6">
           <h2 class="text-2xl font-semibold text-gray-900 mb-4">
             {locale === 'en' ? 'Location Details' : 'Detalles de Ubicación'}
